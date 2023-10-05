@@ -8,4 +8,4 @@ Link para os outros repositórios do grupo:
 - [Documento Visão](/Documento%20Visão.pdf)
 
 ## Apresentações
-- [1° Apresentação - 05/09/2023](Apresentações/1°%20Apresentação.pdf)
+- [1° Apresentação - 04/09/2023](Apresentações/1°%20Apresentação.pdf)

@@ -1,0 +1,22 @@
+select{
+    background-color: rgba(158, 179, 132, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    height: auto;
+    padding: 12px  26px; 
+    width: 17.9rem; 
+    font-size: 16px;
+    color: rgba(67, 83, 52, 0.8);
+    margin-top: 10px;
+    cursor: pointer
+}
+
+option{
+    color: #435334;
+    padding: 5px;
+}
+
+option:checked {
+    background-color: #435334; /* Cor de fundo quando selecionado */
+    color: #fff; /* Cor do texto quando selecionado */
+}

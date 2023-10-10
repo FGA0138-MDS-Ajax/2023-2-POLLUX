@@ -8,12 +8,16 @@ const todos = async () => {
   const users = await getAll();
   return users;
 };
-const criar = async ({ email, senha }) => {
+const criar = async ({
+  email, senha, nome, curso, periodo,
+}) => {
   const usuario = await userExists({ email });
 
   if (usuario) return usuario;
 
-  const user = await newUser({ email, senha });
+  const user = await newUser({
+    email, senha, nome, curso, periodo,
+  });
   return user;
 };
 

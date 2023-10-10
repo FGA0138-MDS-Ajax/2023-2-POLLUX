@@ -10,9 +10,13 @@ const getAll = async () => {
   return db.collection('usuarios').find().toArray();
 };
 
-const newUser = async ({ email, senha }) => {
+const newUser = async ({
+  email, senha, nome, curso, periodo,
+}) => {
   const db = await connection();
-  const user = await db.collection('usuarios').insertOne({ email, senha });
+  const user = await db.collection('usuarios').insertOne({
+    email, senha, nome, curso, periodo,
+  });
   const { isertedId: id } = user;
   return { email, _id: id };
 };

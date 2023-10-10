@@ -1,5 +1,9 @@
 import { ObjectId } from 'mongodb';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import jwt from 'jsonwebtoken';
 import connection from './mongoConnection';
+
+const SECRET = 'paranguaricutirimiruarum';
 
 const getAll = async () => {
   const db = await connection();
@@ -36,8 +40,34 @@ const update = async ({ id, email, senha }) => {
   return { id, email };
 };
 
-const login = async () => null;
+const login = async ({ email, senha }) => {
+  const db = await connection();
+  const user = await db.collection('usuarios').findOne({ email, senha });
+  return user;
+};
+
+const requestLogin = async (req, res) => {
+  const { email, senha } = req.body;
+  const usuario = await login({ email, senha });
+
+  if (!usuario) return res.status(401).json({ message: 'User not found' });
+
+  const { _id } = usuario;
+
+  const newToken = jwt.sign(
+    {
+      userId: _id,
+      email,
+    },
+    SECRET,
+    {
+      expiresIn: 1440,
+    },
+  );
+
+  return res.status(201).json({ token: newToken });
+};
 
 export {
-  getAll, login, newUser, userExists, deleta, update,
+  getAll, login, newUser, userExists, deleta, update, requestLogin,
 };

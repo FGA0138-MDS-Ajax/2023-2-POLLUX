@@ -1,6 +1,6 @@
-# Welcome to MkDocs
+# Documentação da equipe Pollux
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+For full documentit [mkdocs.org](https://www.mkdocs.org).
 
 ## Commands
 

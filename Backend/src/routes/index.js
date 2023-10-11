@@ -12,14 +12,14 @@ routes.get('/', (req, res) => {
   res.status(200).json({ ok: 'conected' });
 });
 
-routes.get('/usuario', VerififyToken, getAll);
+routes.get('/usuario', getAll);
 
 routes.get('/login', requestLogin);
 
-routes.post('/usuario', VerififyToken, createUser);
+routes.post('/usuario', createUser);
 
-routes.delete('/usuario/:id', VerififyToken, deleteUser);
+routes.delete('/usuario/:id', deleteUser);
 
-routes.put('/usuario/:id', VerififyToken, updateUser);
+routes.put('/usuario/:id', updateUser);
 
 export default routes;

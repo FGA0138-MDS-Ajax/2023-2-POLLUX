@@ -18,10 +18,11 @@ function Login () {
         e.preventDefault()
         console.log(email, password)
 
-        const response = await axios.post('http://localhost:3000/login', {
+        const response = await axios.get('http://localhost:3002/login', {
             email,
             password
         });
+        console.log(response);
         
     }
 

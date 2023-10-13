@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from 'axios';
-
 //styles
 import './styles.css'
 import femaleCharacter from '../../assets/images/female-character.jpg'
@@ -12,15 +11,15 @@ import SignButton from "../../components/SignButton"
 function Login () {
 
     const [email, setEmail] = useState(''); 
-    const [password, setPassword] = useState(''); 
+    const [senha, setSenha] = useState(''); 
 
     const handleLogin = async (e) => {
         e.preventDefault()
-        console.log(email, password)
+        console.log(email, senha)
 
         const response = await axios.get('http://localhost:3002/login', {
             email,
-            password
+            senha
         });
         console.log(response);
         
@@ -32,14 +31,16 @@ function Login () {
                 <h1>Bem Vindo!</h1>
 
                 <Input 
+                type='email'
                 name='email'
                 placeholder='Email' 
                 onChange={setEmail}
                 />
                 <Input
-                name='password'
+                type='password'
+                name='senha'
                 placeholder='Senha'
-                onChange={setPassword}
+                onChange={setSenha}
                 />
                 <SignButton
                 placeholder='Entrar'

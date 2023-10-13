@@ -13,7 +13,7 @@ function DropDown (props) {
 
     return(
         <div>
-            <select onChange={props.onChange}>
+            <select onChange={(e) => props.onChange(e.target.value)}>
                  <option disabled value="" selected>
                     {defaultOption}
                 </option>

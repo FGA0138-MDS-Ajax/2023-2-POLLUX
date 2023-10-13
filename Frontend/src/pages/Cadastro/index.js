@@ -27,6 +27,14 @@ function Cadastro () {
             return
         }
 
+        const response = await axios.post("http://localhost:3000/usuario", {
+            email,
+            senha,
+            nome,
+            curso,
+            periodo
+        });
+
         console.log('Tudo certo :)) ', nome, email, curso, periodo, senha)
     }
 
@@ -42,7 +50,7 @@ function Cadastro () {
                 onChange={setNome}
                 />
                 <Input 
-                type='email'
+                type='text'
                 nome='email'
                 placeholder="Email"
                 onChange={setEmail}

@@ -14,24 +14,25 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    const data = {
+  
+    if (email !== '' && senha !== '') {
+      const data = {
         email: email,
         senha: senha
-    }
-        
-    if (email !== '' && senha !== ''){
-        const response = await axios.get('http://localhost:3000/login', data);
-
-        if (response.status === 200){
-            console.log(response.status)
-        } else {
-            alert('Erro ao logar!')
-        }
+      };
+  
+      try {
+        const response = await axios.post('http://localhost:3000/login', data);
+        console.log(response.status);
+      } catch (error) {
+        console.error(error);
+      }
+      
     } else {
-        alert('Por favor, preencha todos os campos!')
+      alert('Por favor, preencha todos os campos!');
     }
-  }
+  };
+  
 
   return (
     <div className="login">

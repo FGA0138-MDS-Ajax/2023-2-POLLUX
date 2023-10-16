@@ -20,7 +20,11 @@ const getAll = async (req, res) => {
 
 const createUser = async (req, res) => {
   const {
-    email, senha, nome, curso, periodo,
+    email,
+    senha,
+    nome,
+    curso,
+    periodo
   } = req.body;
 
   const { email: mail, _id } = await criar({

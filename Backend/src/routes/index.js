@@ -13,7 +13,7 @@ routes.get('/', (req, res) => {
 });
 
 routes.get('/usuario', getAll);
-routes.get('/login', requestLogin);
+routes.post('/login', requestLogin);
 routes.post('/usuario', createUser);
 routes.delete('/usuario/:id', deleteUser);
 routes.put('/usuario/:id', updateUser);

@@ -1,7 +1,7 @@
 const { MongoClient } = require('mongodb');
 
-const MONGO_DB_URL = 'mongodb://127.0.0.1:27017';
-const DB_NAME = 'aulas';
+const MONGO_DB_URL = 'mongodb+srv://dev:nic12345@cluster0.jmqx3ny.mongodb.net/';
+const DB_NAME = 'banco';
 
 const connection = () => MongoClient
   .connect(MONGO_DB_URL, {

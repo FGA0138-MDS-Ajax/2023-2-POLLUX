@@ -1,4 +1,6 @@
 import { ObjectId } from 'mongodb';
+// eslint-disable-next-line import/no-extraneous-dependencies
+
 import connection from './mongoConnection';
 
 const getAll = async () => {
@@ -6,9 +8,13 @@ const getAll = async () => {
   return db.collection('usuarios').find().toArray();
 };
 
-const newUser = async ({ email, senha }) => {
+const newUser = async ({
+  email, senha, nome, curso, periodo,
+}) => {
   const db = await connection();
-  const user = await db.collection('usuarios').insertOne({ email, senha });
+  const user = await db.collection('usuarios').insertOne({
+    email, senha, nome, curso, periodo,
+  });
   const { isertedId: id } = user;
   return { email, _id: id };
 };
@@ -36,8 +42,21 @@ const update = async ({ id, email, senha }) => {
   return { id, email };
 };
 
-const login = async () => null;
+const login = async ({ email, senha }) => {
+  const db = await connection();
+  const user = await db.collection('usuarios').findOne({ email, senha });
+  return user;
+};
+
+const requestLogin = async (req, res) => {
+  const { email, senha } = req.body;
+  const usuario = await login({ email, senha });
+
+  if (!usuario) return res.status(401).json({ message: 'User not found' });
+
+  return res.status(200).json({ email, senha });
+};
 
 export {
-  getAll, login, newUser, userExists, deleta, update,
+  getAll, login, newUser, userExists, deleta, update, requestLogin,
 };

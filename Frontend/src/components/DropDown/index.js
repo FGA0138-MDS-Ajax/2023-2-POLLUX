@@ -13,13 +13,15 @@ function DropDown (props) {
 
     return(
         <div>
-            <select>
+            <select onChange={(e) => props.onChange(e.target.value)}>
                  <option disabled value="" selected>
                     {defaultOption}
                 </option>
                 {
                     options.map((option, index) => (
-                        <option key={index}>{option}</option>
+                        <option key={index}>
+                            {option}
+                        </option>
                     ))
                 }
             </select>

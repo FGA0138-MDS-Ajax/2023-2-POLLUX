@@ -5,7 +5,7 @@ function Input (props) {
     return(
         <div>
             <input 
-            type={props.name}
+            type={props.type}
             name={props.name} 
             value={props.value}
             placeholder={props.placeholder}

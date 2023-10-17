@@ -25,13 +25,13 @@
 
 .left-section .link{
     cursor: pointer; 
-    color: #9EB384;
+    color: #435334;
     text-decoration: none;
     transition: 0.2s ease-in-out;
 }
 
 .left-section .link:hover{
-    color: #435334;
+    color: #9EB384;
     text-decoration: underline;
 }
 

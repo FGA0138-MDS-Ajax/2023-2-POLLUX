@@ -1,35 +1,21 @@
+/* eslint-disable import/named */
 import { Router } from 'express';
-import userRoutes from './userRoutes';
+import VerififyToken from '../middleware/usuarios.middleware';
+import { requestLogin } from '../models/usuario.model';
+import {
+  getAll, createUser, deleteUser, updateUser,
+} from '../controllers/usuariocontroller';
+
 const routes = new Router();
 
-const users = [{
-  id: 1, 
-  name: 'Lucas', 
-  email: 'lucas.123@gmail.com', 
-  password: '123456'
-}]
-
-// Rota de autenticação
-routes.post('/login', (req, res) => {
-  const {email, password } = req.body; 
-  const user = users.find(user => user.email === email && user.password === password); 
-
-  //caso as credenciais estejam corretas
-  if(user) {
-    return res.status(200).json(user);
-  }
-
-  //caso estejam erradas, impede o acesso
-  return res.status(401).json({ message: 'dados inválidos'}); 
+routes.get('/', (req, res) => {
+  res.status(200).json({ ok: 'conected' });
 });
 
-// Rota de cadastro de usuário
-routes.post('/cadastro', (req, res) => {
-  // 
-});
-
-// Rotas de recursos de usuário
-routes.use(userRoutes);
+routes.get('/usuario', getAll);
+routes.post('/login', requestLogin);
+routes.post('/usuario', createUser);
+routes.delete('/usuario/:id', deleteUser);
+routes.put('/usuario/:id', updateUser);
 
 export default routes;
-

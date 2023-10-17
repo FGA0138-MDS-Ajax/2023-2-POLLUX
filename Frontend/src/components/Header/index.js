@@ -1,19 +1,26 @@
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+//styles
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faStar } from '@fortawesome/free-solid-svg-icons';
+import './styles.css'
+
 function Header () {
     return(
-        <div>
-            <a>
-                <span></span>
-            </a>
+        <header>
+            <Link to="/Home" className="link">
+                <a><FontAwesomeIcon icon={faStar}/></a>
+            </Link>
             <ul>
-                <li><a>Home</a></li>
-                <li><a>Matérias</a></li>
-                <li><a>Sobre</a></li>
+                <li><Link to="/Home" className="link">Home</Link></li>
+                <li><Link to="/Materias"className="link">Matérias</Link></li>
+                <li><Link to="/Sobre" className="link">Sobre</Link></li>
             </ul>
-            <div>
-                <a></a>
-                <a></a>
+            <div className="sign-in">
+                <Link to="/Login" className="link">Entrar</Link>
+                <FontAwesomeIcon icon={faUser} className="link"/>
             </div>
-        </div>
+        </header>
     )
 }
 

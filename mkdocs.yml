@@ -25,5 +25,7 @@ theme:
         name: Switch to light mode    
       primary: teal
       accent: lime
-
+nav :
+  - Home : index.md
+  - Sprints : sprints.md
 

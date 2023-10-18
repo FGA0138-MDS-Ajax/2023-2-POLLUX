@@ -1,17 +1,16 @@
-# Documentação da equipe Pollux
+# Pollux
 
-For full documentit [mkdocs.org](https://www.mkdocs.org).
+Nosso software representa uma aplicação web que
+oferece uma abordagem prática e em tempo real para avaliar e pesquisar os
+professores da FGA. O propósito central desta ferramenta é criar um ambiente seguro
+e anônimo onde estudantes, tanto novos quanto veteranos, possam compartilhar suas
+opiniões sobre os professores e as disciplinas ministradas na Faculdade do Gama
+(FGA).
 
-## Commands
+## Equipe
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+* Eric Rabelo 
+* Nicollas Gabriel
+* Isaque colem
+* Samuel Ribeiro
+* Rogrigo 

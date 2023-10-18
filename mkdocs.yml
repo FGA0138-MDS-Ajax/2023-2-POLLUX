@@ -40,6 +40,9 @@ theme:
 
 nav :
   - Início : index.md
+  - Visão do Produto: 
+    - Documento de Visão: documentoVisao.md
+    - Declaração de Escopo: escopo.md
+    - Documente de Arquitetura: arquitetura.md
   - Sprints : sprints.md
-  - Visão do Produto e Projeto: visao.md
-
+  

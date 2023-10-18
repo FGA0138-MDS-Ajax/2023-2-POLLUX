@@ -3,7 +3,7 @@
 
 Foi feita a documentação das semanas iniciais do projeto e das *sprints*.
 
-## *Definições*
+## *Sprints*
 - [*Sprint* 1](./sprints/sprint1.md)
 - [*Sprint* 2](./sprints/sprint2.md)
 - [*Sprint* 3](./sprints/sprint3.md)

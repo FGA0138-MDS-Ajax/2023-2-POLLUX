@@ -1,6 +1,11 @@
 site_name: Pollux | MDS
+
+repo_name: "2023-2-Pollux"
+repo_url: "https://github.com/FGA0138-MDS-Ajax/2023-2-POLLUX"
+
 theme:
   name: material
+
   features:
     - navigation.tabs
     - navigation.sections
@@ -11,21 +16,30 @@ theme:
     - content.tabs.link
     - content.code.annotation
     - content.code.copy
-  language: en
+    
+  language: pt
+
+  font:
+    text: "Roboto"
+    code: "sans-serif"
+
   palette:
     - scheme: default
       toggle:
         icon: material/toggle-switch-off-outline 
         name: Switch to dark mode
-      primary: teal
-      accent: purple 
+      primary: lime
+      accent:  indigo
+
     - scheme: slate 
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode    
-      primary: teal
-      accent: lime
+      primary: lime
+      accent:  indigo
+
 nav :
-  - Home : index.md
+  - Início : index.md
   - Sprints : sprints.md
+  - Visão do Produto e Projeto: visao.md
 

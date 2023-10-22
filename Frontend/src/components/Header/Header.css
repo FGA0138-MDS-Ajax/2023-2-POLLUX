@@ -11,14 +11,14 @@ header{
     font-weight: 500; 
     font-size: 16px;
 }
-
-header ul{
-    display: flex;
+header ul {
+    display: flex; 
 }
 
-header ul li{
-    margin: 0 40px; 
+header ul li {
+    margin-left: 100px;
 }
+
 
 header .link{
     cursor: pointer; 

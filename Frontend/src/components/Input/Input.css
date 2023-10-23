@@ -1,16 +1,16 @@
-input{
+.input-container input{
     background-color: rgba(158, 179, 132, 0.2);
     outline: none;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     height: auto;
     padding: 12px 30px 12px 30px; 
-    width: 14rem; 
+    width: 18rem; 
     font-size: 16px;
     color: #435334;
     margin-top: 10px;
 }
 
-input::placeholder{
+.input-container input::placeholder{
     color: rgba(67, 83, 52, 0.8);
 }

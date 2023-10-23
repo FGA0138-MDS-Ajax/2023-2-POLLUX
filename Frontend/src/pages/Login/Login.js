@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 //styles
-import "./styles.css";
+import "./Login.css";
 import femaleCharacter from "../../assets/images/female-character.jpg";
 //componentes
-import Input from "../../components/Input";
-import SignButton from "../../components/SignButton";
+import Input from "../../components/Input/Input";
+import SignButton from "../../components/SignButton/SignButton";
 
 function Login() {
   const [email, setEmail] = useState("");

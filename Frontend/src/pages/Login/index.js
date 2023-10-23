@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 //styles
 import "./styles.css";
@@ -12,6 +12,8 @@ function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
+  const [error, setError] = useState("");
+
   const handleLogin = async (e) => {
     e.preventDefault();
   
@@ -23,13 +25,16 @@ function Login() {
   
       try {
         const response = await axios.post('http://localhost:3000/login', data);
-        console.log(response.status);
+        if(response.status === 200){
+          Navigate('/Home');
+        }
       } catch (error) {
         console.error(error);
+        setError('Email ou senha incorretos.');
       }
       
     } else {
-      alert('Por favor, preencha todos os campos!');
+      setError('Preencha todos os campos.');
     }
   };
   
@@ -37,6 +42,7 @@ function Login() {
   return (
     <div className="login">
       <div className="left-section">
+        <div className="form-container">
         <h1>Bem Vindo!</h1>
 
         <Input
@@ -45,24 +51,31 @@ function Login() {
           placeholder="Email"
           onChange={setEmail}
         />
+
         <Input
           type="password"
           name="senha"
           placeholder="Senha"
           onChange={setSenha}
         />
+
+        <p className={`error-message ${error ? 'shake' : ''}`} style={{ display: error ? "block" : "none"}}>{error}</p>
+      
         <SignButton placeholder="Entrar" onClick={handleLogin} />
 
-        <p>
+        <p className="sign-up-text">
           Não possui uma conta?{" "}
           <Link to="/Cadastro" className="link">
             Registre-se
           </Link>
         </p>
+        </div>
       </div>
+
       <div className="right-section">
         <img src={femaleCharacter}></img>
       </div>
+
     </div>
   );
 }

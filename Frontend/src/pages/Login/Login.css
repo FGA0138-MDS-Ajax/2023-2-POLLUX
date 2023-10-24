@@ -27,7 +27,7 @@
     font-weight: 500; 
 }
 
-.left-section .form-container .sign-up-text{
+.left-section .form-container .sign-text{
     text-align: center;
 }
 
@@ -38,15 +38,15 @@
     display: none;
 }
 
-.left-section .link{
+.left-section .sign-link{
     cursor: pointer; 
-    color: #435334;
+    color: #9EB384;
     text-decoration: none;
     transition: 0.2s ease-in-out;
 }
 
-.left-section .link:hover{
-    color: #9EB384;
+.left-section .sign-link:hover{
+    color: #435334; 
     text-decoration: underline;
 }
 

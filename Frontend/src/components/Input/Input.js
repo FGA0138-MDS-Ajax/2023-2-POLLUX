@@ -9,6 +9,7 @@ function Input (props) {
             name={props.name} 
             value={props.value}
             placeholder={props.placeholder}
+            style={{borderColor: props.error ? 'red' : 'none'}}
             onChange={(e) => props.onChange(e.target.value)}
             />
         </div>

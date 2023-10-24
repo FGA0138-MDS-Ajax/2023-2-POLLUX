@@ -26,7 +26,7 @@ function Login() {
       try {
         const response = await axios.post('http://localhost:3000/login', data);
         if(response.status === 200){
-          Navigate('/Home');
+          console.log('SENHA CORRETA')
         }
       } catch (error) {
         console.error(error);
@@ -43,32 +43,34 @@ function Login() {
     <div className="login">
       <div className="left-section">
         <div className="form-container">
-        <h1>Bem Vindo!</h1>
+          <h1>Bem Vindo!</h1>
 
-        <Input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={setEmail}
-        />
+          <Input
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={setEmail}
+            error={error}
+          />
 
-        <Input
-          type="password"
-          name="senha"
-          placeholder="Senha"
-          onChange={setSenha}
-        />
+          <Input
+            type="password"
+            name="senha"
+            placeholder="Senha"
+            onChange={setSenha}
+            error={error}
+          />
 
-        <p className={`error-message ${error ? 'shake' : ''}`} style={{ display: error ? "block" : "none"}}>{error}</p>
-      
-        <SignButton placeholder="Entrar" onClick={handleLogin} />
+          <p className={`error-message ${error ? 'shake' : ''}`} style={{ display: error ? "block" : "none"}}>{error}</p>
+        
+          <SignButton placeholder="Entrar" onClick={handleLogin} />
 
-        <p className="sign-up-text">
-          Não possui uma conta?{" "}
-          <Link to="/Cadastro" className="link">
-            Registre-se
-          </Link>
-        </p>
+          <p className="sign-text">
+            Não possui uma conta?{" "}
+            <Link to="/Cadastro" className="sign-link">
+              Registre-se
+            </Link>
+          </p>
         </div>
       </div>
 

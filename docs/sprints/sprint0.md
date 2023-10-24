@@ -1,4 +1,4 @@
-# **Planning da Sprint 2**
+# **Planning da Sprint 0**
 
 - Período: 
 - Objetivo: 

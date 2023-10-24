@@ -1,6 +1,9 @@
-# Primeira Sprint 
+# **Planning da Sprint 1**
 
-## Tarefas
+- Período: 
+- Objetivo: 
+
+## **Issues**
 
 - Definição do nome do projeto.
 - Definiçao das tecnologias e plataformas a serem usadas.

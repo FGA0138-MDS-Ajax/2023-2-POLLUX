@@ -24,25 +24,25 @@ theme:
     code: "sans-serif"
 
   palette:
-    - scheme: default
+    - scheme:  jungle
       toggle:
         icon: material/toggle-switch-off-outline 
         name: Switch to dark mode
-      primary: lime
+      primary: green
       accent:  indigo
 
-    - scheme: slate 
+    - scheme: slate
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode    
-      primary: lime
-      accent:  indigo
+
+
+extra_css:
+  - stylesheets/extra.css
 
 nav :
   - Início : index.md
-  - Visão do Produto: 
-    - Documento de Visão: documentoVisao.md
-    - Declaração de Escopo: escopo.md
-    - Documente de Arquitetura: arquitetura.md
+  - Documento de Visão: documentoVisao.md
+  - Declaração de Escopo: declaracaoEscopo.md
   - Sprints : sprints.md
   

@@ -1,10 +1,10 @@
 import React from "react";
-import './styles.css'
+import './Input.css'
 
 function Input (props) {
     return(
-        <div>
-            <input 
+        <div className='input-container'>
+            <input
             type={props.type}
             name={props.name} 
             value={props.value}

@@ -1,6 +1,9 @@
 # 2023-2-POLLUX
 
-<img  align="center" src="../2023-2-POLLUX/Frontend/src/assets/images/bannerReadme.png" height='300px' width='600px'>
+<p align="center">
+  <img src="./Frontend/src/assets/images/bannerReadme.png" height='350px'>
+</p>
+
 
 # Sobre
 O *nome indefinido* tem como objetivo simplificar o processo de escolha de docentes ao longo do curso para os alunos da FGA, fornecendo uma plataforma centralizada para avaliação e pesquisa de professores, permitindo que os alunos tomem decisões mais informadas ao escolher seus cursos.

@@ -24,17 +24,19 @@ theme:
     code: "sans-serif"
 
   palette:
-    - scheme:  jungle
+    - scheme: default
       toggle:
         icon: material/toggle-switch-off-outline 
         name: Switch to dark mode
-      primary: green
+      primary: lime
       accent:  indigo
 
     - scheme: slate
       toggle:
         icon: material/toggle-switch
-        name: Switch to light mode    
+        name: Switch to light mode   
+      primary: lime
+      accent:  indigo 
 
 
 extra_css:

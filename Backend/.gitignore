@@ -1,2 +1,19 @@
-# dependencies
-/node_modules
+# Ignorar arquivos e pastas gerados automaticamente
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# Ignorar arquivos de ambiente (normalmente definidos em .env)
+.env
+
+# Ignorar arquivos de build
+/build
+/dist
+
+# Ignorar logs e arquivos temporários
+*.log
+*.tmp
+
+# Ignorar arquivos específicos
+config.js

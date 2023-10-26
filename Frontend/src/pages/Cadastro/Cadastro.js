@@ -25,12 +25,16 @@ function Cadastro() {
   const [senha, setSenha] = useState("");
   const [confirmedSenha, setConfirmedSenha] = useState("");
 
+  const [error, setError] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
+
   const handleRegister = async (e) => {
     e.preventDefault();
 
     if (email !== "" && senha !== "") {
       if (senha != confirmedSenha) {
-        console.log("As senhas não coincidem!!");
+        setError("As senhas não coincidem.");
+        setErrorPassword(true);
         return;
       }
 
@@ -49,55 +53,75 @@ function Cadastro() {
         );
         console.log(response);
       } catch (error) {
-        console.log(error);
+        console.error(error); 
       }
     } else {
-      console.log("Preencha todos os campos!");
+      setErrorPassword(false); 
+      setError("Preencha todos os campos.");
     }
   };
 
   return (
     <div className="login">
       <div className="left-section">
-        <h1 className="signup-title">Crie sua conta</h1>
+        <div className="form-container">
+          <h1 className="signup-title">Crie sua conta</h1>
 
-        <Input type="text" name="nome" placeholder="Nome" onChange={setNome} />
-        <Input
-          type="text"
-          nome="email"
-          placeholder="Email"
-          onChange={setEmail}
-        />
-        <DropDown
-          options={cursos}
-          defaultOption="Selecione seu curso"
-          onChange={setCurso}
-        />
-        <Input
-          name="periodo"
-          placeholder="Período de entrada"
-          onChange={setPeriodo}
-        />
-        <Input
-          type="password"
-          name="senha"
-          placeholder="Senha"
-          onChange={setSenha}
-        />
-        <Input
-          type="password"
-          name="confirmedSenha"
-          placeholder="Confirmar senha"
-          onChange={setConfirmedSenha}
-        />
-        <SignButton placeholder="Criar" onClick={handleRegister} />
+          <Input 
+          type="text" 
+          name="nome" 
+          placeholder="Nome" 
+          onChange={setNome}
+          />
 
-        <p>
-          Já possui uma conta?{" "}
-          <Link to="/Login" className="link">
-            Entrar
-          </Link>
-        </p>
+          <Input
+            type="text"
+            nome="email"
+            placeholder="Email"
+            onChange={setEmail}
+          />
+
+          <DropDown
+            options={cursos}
+            defaultOption="Selecione seu curso"
+            onChange={setCurso}
+          />
+
+          <Input
+            name="periodo"
+            placeholder="Período de entrada"
+            onChange={setPeriodo}
+          />
+
+          <Input
+            type="password"
+            name="senha"
+            placeholder="Senha"
+            onChange={setSenha}
+            error={errorPassword}
+          />
+
+          <Input
+            type="password"
+            name="confirmedSenha"
+            placeholder="Confirmar senha"
+            onChange={setConfirmedSenha}
+            error={errorPassword}
+          />
+
+          <p className={`error-message ${error ? "shake" : ""}`} style={{ display: error ? "block" : "none"}}>{error}</p>
+
+
+          <SignButton placeholder="Criar" onClick={handleRegister} />
+
+          <p className="sign-text">
+            Já possui uma conta?{" "}
+            <Link to="/Login" className="sign-link">
+              Entrar
+            </Link>
+          </p>
+
+        </div>
       </div>
       <div className="right-section">
         <img src={femaleCharacter}></img>

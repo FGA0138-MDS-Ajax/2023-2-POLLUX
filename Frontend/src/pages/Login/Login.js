@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 //styles
 import "./Login.css";
@@ -12,6 +12,8 @@ function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
+  const [error, setError] = useState("");
+
   const handleLogin = async (e) => {
     e.preventDefault();
   
@@ -23,13 +25,16 @@ function Login() {
   
       try {
         const response = await axios.post('http://localhost:3000/login', data);
-        console.log(response.status);
+        if(response.status === 200){
+          console.log('SENHA CORRETA')
+        }
       } catch (error) {
         console.error(error);
+        setError('Email ou senha incorretos.');
       }
       
     } else {
-      alert('Por favor, preencha todos os campos!');
+      setError('Preencha todos os campos.');
     }
   };
   
@@ -37,32 +42,42 @@ function Login() {
   return (
     <div className="login">
       <div className="left-section">
-        <h1>Bem Vindo!</h1>
+        <div className="form-container">
+          <h1>Bem Vindo!</h1>
 
-        <Input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={setEmail}
-        />
-        <Input
-          type="password"
-          name="senha"
-          placeholder="Senha"
-          onChange={setSenha}
-        />
-        <SignButton placeholder="Entrar" onClick={handleLogin} />
+          <Input
+            type="email"
+            name="email"
+            placeholder="Email"
+            onChange={setEmail}
+            error={error}
+          />
 
-        <p>
-          Não possui uma conta?{" "}
-          <Link to="/Cadastro" className="link">
-            Registre-se
-          </Link>
-        </p>
+          <Input
+            type="password"
+            name="senha"
+            placeholder="Senha"
+            onChange={setSenha}
+            error={error}
+          />
+
+          <p className={`error-message ${error ? 'shake' : ''}`} style={{ display: error ? "block" : "none"}}>{error}</p>
+        
+          <SignButton placeholder="Entrar" onClick={handleLogin} />
+
+          <p className="sign-text">
+            Não possui uma conta?{" "}
+            <Link to="/Cadastro" className="sign-link">
+              Registre-se
+            </Link>
+          </p>
+        </div>
       </div>
+
       <div className="right-section">
         <img src={femaleCharacter}></img>
       </div>
+
     </div>
   );
 }

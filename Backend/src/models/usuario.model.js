@@ -1,26 +1,27 @@
 import { ObjectId } from 'mongodb';
-// eslint-disable-next-line import/no-extraneous-dependencies
-
 import connection from './mongoConnection';
 
-const getAll = async () => {
-  const db = await connection();
-  return db.collection('usuarios').find().toArray();
+let db;
+
+const connectDB = async () => {
+  if (!db) {
+    db = await connection();
+  }
 };
+
+const getAll = async () => db.collection('usuarios').find().limit(50).toArray();
 
 const newUser = async ({
   email, senha, nome, curso, periodo,
 }) => {
-  const db = await connection();
   const user = await db.collection('usuarios').insertOne({
     email, senha, nome, curso, periodo,
   });
-  const { isertedId: id } = user;
+  const { insertedId: id } = user;
   return { email, _id: id };
 };
 
 const userExists = async ({ email, id }) => {
-  const db = await connection();
   let user = null;
   if (id) {
     user = await db.collection('usuarios').findOne({ _id: new ObjectId(id) });
@@ -31,22 +32,16 @@ const userExists = async ({ email, id }) => {
 };
 
 const deleta = async ({ id }) => {
-  const db = await connection();
   await db.collection('usuarios').deleteOne({ _id: new ObjectId(id) });
   return { id };
 };
 
 const update = async ({ id, email, senha }) => {
-  const db = await connection();
   await db.collection('usuarios').updateOne({ _id: new ObjectId(id) }, { $set: { email, senha } });
   return { id, email };
 };
 
-const login = async ({ email, senha }) => {
-  const db = await connection();
-  const user = await db.collection('usuarios').findOne({ email, senha });
-  return user;
-};
+const login = async ({ email, senha }) => db.collection('usuarios').findOne({ email, senha });
 
 const requestLogin = async (req, res) => {
   const { email, senha } = req.body;
@@ -60,3 +55,5 @@ const requestLogin = async (req, res) => {
 export {
   getAll, login, newUser, userExists, deleta, update, requestLogin,
 };
+
+connectDB();

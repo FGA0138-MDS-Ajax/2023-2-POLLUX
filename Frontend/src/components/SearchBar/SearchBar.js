@@ -4,11 +4,14 @@ import { FaSearch } from 'react-icons/fa';
 import './SearchBar.css'
 
 
-function SearchBar () {
+function SearchBar (props) {
     return(
         <div className='input-wrapper'>
             <FaSearch id='search-icon'></FaSearch>
-            <input placeholder='Pesquise seu professor'></input>
+            <input 
+                placeholder={props.placeholder}
+                onChange={(e) => props.onChange(e.target.value)}
+            ></input>
         </div>
     )
 }

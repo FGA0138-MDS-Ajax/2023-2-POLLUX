@@ -1,0 +1,18 @@
+.card-wrapper {
+    width: calc(25% - 10px); /* Three cards per row with 10px spacing */
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    overflow:hidden; 
+    border-radius: 8px;
+  }
+  
+  .card-wrapper img {
+    width: 100%;
+    max-height: 512px;
+    object-fit: cover;
+  }
+  

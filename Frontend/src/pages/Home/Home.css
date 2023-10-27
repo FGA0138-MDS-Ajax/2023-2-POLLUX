@@ -1,18 +1,20 @@
+.home-wrapper{
+  padding: 20vh 25vh 0 25vh;
+}
+
 .search-bar-container {
-  padding-top: 20vh;
-  width: 70%;
-  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-width: 200px;
 }
 
-.search-bar-results{
+.search-bar-results {
   margin-top: 8vh;
-  height: 35vh;
+}
+
+.teacher-grid {
   display: flex;
-  align-items: center;
-  justify-self: center; 
-  background-color: blueviolet;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }

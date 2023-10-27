@@ -9,21 +9,21 @@ function Home () {
     const [teacher, setTeacher] = useState([]); 
     
     const teachersData = [
-        { nome: 'Professor 1', src: '../../assets/images/avatarAnimals/001-cat.png' },
-        { nome: 'Professor 2', imageUrl: 'https://picsum.photos/24/24' },
-        { nome: 'Professor 3', imageUrl: 'https://picsum.photos/32/32' },
-        { nome: 'Professor 1', imageUrl: 'https://picsum.photos/200/200' },
-        { nome: 'Professor 2', imageUrl: 'https://picsum.photos/200/200' },
-        { nome: 'Professor 3', imageUrl: 'https://picsum.photos/200/200' },
-        { nome: 'Professor 1', imageUrl: 'https://picsum.photos/200/200' },
-        { nome: 'Professor 2', imageUrl: 'https://picsum.photos/200/200' },
-        { nome: 'Professor 3', imageUrl: 'https://picsum.photos/200/200' },
-        
-        // Add more teachers' data here
+        { nome: 'Professor 1'},
+        { nome: 'Professor 2'},
+        { nome: 'Professor 3'},
+        { nome: 'Professor 4'},
+        { nome: 'Professor 1'},
+        { nome: 'Professor 2'},
+        { nome: 'Professor 3'},
+        { nome: 'Professor 4'},
+        { nome: 'Professor 1'},
+        { nome: 'Professor 2'},
+        { nome: 'Professor 3'},
+        { nome: 'Professor 4'},
       ];
 
-    console.log(teacher);  
-
+      
     return(
         <div>
             <Header></Header>
@@ -37,7 +37,7 @@ function Home () {
                 
                 <div className="search-bar-results">
                     <div className='teacher-grid'>
-                        {teachersData.map((teacherData, index) => (
+                        {teachersData.map((teacher, index) => (
                             <TeacherCard key={index}/>
                         ))}
                     </div>

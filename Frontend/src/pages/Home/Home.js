@@ -21,6 +21,10 @@ function Home () {
         { nome: 'Professor 2'},
         { nome: 'Professor 3'},
         { nome: 'Professor 4'},
+        { nome: 'Professor 1'},
+        { nome: 'Professor 2'},
+        { nome: 'Professor 3'},
+        { nome: 'Professor 4'},
       ];
 
       

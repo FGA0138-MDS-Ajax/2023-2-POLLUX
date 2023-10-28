@@ -8,8 +8,14 @@ function TeacherCard() {
 
   return (
     <div className='card-wrapper'>
-      <img src={randomAvatarUrl} alt="Professor"/>
-      <h2>Professor</h2>
+      <div className='card-image-wrapper'>
+        <img src={randomAvatarUrl} alt="Professor"/>
+      </div>
+      <h2>Professor {randomIndex}</h2>
+      <div className='tag-wrapper'>
+        <span className='tag'>Matéria X</span>
+        <span className='tag'>Matéria Y</span>
+      </div>
     </div>
   );
 }

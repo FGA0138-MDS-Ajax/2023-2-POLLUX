@@ -8,16 +8,13 @@ const connectDB = async () => {
   }
 };
 
-// Função para buscar todos os professores
-const getAllProfessors = async () => db.collection('professores').find().limit(50).toArray();
+const getAllProfessors = async () => db.collection('professores').find().toArray();
 
-// Função para procurar professores pelo nome
 const findProfessorByName = async (nome) => {
   try {
-    const professores = await db.collection('professores').find({ nomes: new RegExp(nome, 'i') }).toArray();
+    const professores = await db.collection('professores').find({ nome: new RegExp(nome, 'i') }).toArray();
     return professores;
   } catch (error) {
-    console.error(error);
     return [];
   }
 };

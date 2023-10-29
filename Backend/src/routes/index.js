@@ -1,4 +1,3 @@
-/* eslint-disable import/named */
 import { Router } from 'express';
 import { requestLogin } from '../models/usuario.model';
 import {

@@ -7,7 +7,6 @@ header{
     align-items: center;
     width: 100%;
     padding: 10px 3%;
-    border-bottom: 1px solid rgba(0, 0 ,0 , 0.25);
     font-weight: 500; 
     font-size: 16px;
 }
@@ -22,13 +21,13 @@ header ul {
 
 header .link{
     cursor: pointer; 
-    color: #435334; 
+    color: #2B2D42; 
     text-decoration: none;
     transition: 0.25s ease;
 }
 
 header .link:hover{
-    color: blue;
+    color: #EF233C;
 }
 
 header .sign-in{

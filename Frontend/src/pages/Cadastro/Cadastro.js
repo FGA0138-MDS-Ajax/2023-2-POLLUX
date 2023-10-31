@@ -4,6 +4,7 @@ import axios from "axios";
 //styles
 import "../Login/Login.css";
 import femaleCharacter from '../../assets/images/female-character.jpg'
+import loginImage from '../../assets/images/login-image-1.jpg'
 //components
 import Input from "../../components/Input/Input";
 import SignButton from "../../components/SignButton/SignButton";
@@ -124,7 +125,7 @@ function Cadastro() {
         </div>
       </div>
       <div className="right-section">
-        <img src={femaleCharacter}></img>
+        <img src={loginImage}></img>
       </div>
     </div>
   );

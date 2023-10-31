@@ -1,5 +1,4 @@
 .input-wrapper{
-    background-color: rgba(158, 179, 132, 0.2); 
     height: 4rem;
     width: 100%;
     border-radius: 10px;
@@ -7,7 +6,7 @@
     box-shadow: 0 0 8px #ddd;
     display: flex;
     align-items: center;
-    border: 1px solid rgba(0, 0 ,0 , 0.25);;
+    border: 1px solid rgba(0, 0 ,0 , 0.3);;
 }
 
 .input-wrapper input{
@@ -31,6 +30,11 @@
     font-size: 1.4em;
     background-color: transparent;
     cursor: pointer;
+    transition: 0.25s ease;
+}
+
+#search-icon:hover{
+    color: #EF233C;
 }
 
 

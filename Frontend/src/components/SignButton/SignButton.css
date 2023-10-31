@@ -1,5 +1,5 @@
 button{
-    background-color:  rgb(98, 121, 70);
+    background-color:  #EF233C;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     height: auto;
@@ -13,6 +13,6 @@ button{
 }
 
 button:hover{
-    background-color: #9EB384 ;
+    background-color: #D90429 ;
 }
 

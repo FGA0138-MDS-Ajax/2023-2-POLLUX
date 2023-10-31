@@ -5,20 +5,23 @@
   cursor: pointer;
   border-radius: 20px;
   transition: ease 0.3s;
-  background-color: #fff;
+  background-color: #EDF2F4;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center
 }
 
 .card-wrapper:hover{
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color:  rgba(43, 45, 66, 0.2)
 }
 
 .card-image-wrapper{
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: transparent;
 }
+
 .card-wrapper img {
   margin-bottom: 10px;
   height: 160px;
@@ -26,7 +29,7 @@
 }
 
 .card-wrapper h2{
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: 600;
   color: #555; 
   line-height: 1.2em;
@@ -41,33 +44,4 @@
   line-height: 1.2em;
   margin-bottom: 10px;
   background-color: transparent;
-  
-}
-
-.tag-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
-  background-color: transparent;
-}
-
-.tag {
-  color: #000; 
-  height: 40px;
-  font-size: 0.8em;
-  padding: 3px 10px;
-  border-radius: 7px;
-  margin-right: 10px;
-  margin-bottom: 5px;
-}
-
-/* Estilos para a primeira tag */
-.tag:nth-child(1) {
-  background-color: #f2c94c;
-}
-
-/* Estilos para a segunda tag */
-.tag:nth-child(2) {
-  background-color: #ff6b6b;
 }

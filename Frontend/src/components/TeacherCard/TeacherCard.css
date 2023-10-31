@@ -1,12 +1,12 @@
 .card-wrapper {
-  width: calc(20% - 10px); /* Three cards per row with 10px spacing */
-  margin-bottom: 20px;
+  width: calc(25% - 10px); /* Three cards per row with 10px spacing */
   padding: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   border-radius: 20px;
   transition: ease 0.3s;
-  background-color: #fff
+  background-color: #fff;
+  overflow: hidden;
 }
 
 .card-wrapper:hover{
@@ -41,16 +41,21 @@
   line-height: 1.2em;
   margin-bottom: 10px;
   background-color: transparent;
+  
 }
 
 .tag-wrapper {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
   background-color: transparent;
 }
 
 .tag {
   color: #000; 
+  height: 40px;
+  font-size: 0.8em;
   padding: 3px 10px;
   border-radius: 7px;
   margin-right: 10px;

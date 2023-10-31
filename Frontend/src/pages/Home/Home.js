@@ -1,54 +1,58 @@
-import React, { useState } from "react"
-import Header from "../../components/Header/Header"
-import SearchBar from '../../components/SearchBar/SearchBar'
-import TeacherCard from '../../components/TeacherCard/TeacherCard'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+// components
+import Header from "../../components/Header/Header";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import TeacherCard from "../../components/TeacherCard/TeacherCard";
 //styles
-import './Home.css'
+import "./Home.css";
+ 
+function Home() {
+  const [teachers, setTeachers] = useState([]);
+  
+  const handleInputChange = (e) => {
+      e.preventDefault();
+      const { value } = e.target;
+  
+      if (!value) {
+          setTeachers([]);
+          return;
+      }
 
-function Home () {
-    const [teacher, setTeacher] = useState([]); 
-    
-    const teachersData = [
-        { nome: 'Professor 1'},
-        { nome: 'Professor 2'},
-        { nome: 'Professor 3'},
-        { nome: 'Professor 4'},
-        { nome: 'Professor 1'},
-        { nome: 'Professor 2'},
-        { nome: 'Professor 3'},
-        { nome: 'Professor 4'},
-        { nome: 'Professor 1'},
-        { nome: 'Professor 2'},
-        { nome: 'Professor 3'},
-        { nome: 'Professor 4'},
-        { nome: 'Professor 1'},
-        { nome: 'Professor 2'},
-        { nome: 'Professor 3'},
-        { nome: 'Professor 4'},
-      ];
+      axios.get(`http://localhost:3000/professores/search?nome=${value}`)
+          .then(response => {
+              setTeachers(response.data);
+              console.log(teachers);
+          })
+          .catch(error => {
+              console.error(error);
+          });
+  };
 
-      
-    return(
-        <div>
-            <Header></Header>
-            <div className="home-wrapper">
-                <div className="search-bar-container">
-                    <SearchBar
-                        onChange={setTeacher}
-                        placeholder="Digite o nome do professor"
-                    />
-                </div>
-                
-                <div className="search-bar-results">
-                    <div className='teacher-grid'>
-                        {teachersData.map((teacher, index) => (
-                            <TeacherCard key={index}/>
-                        ))}
-                    </div>
-                </div>
-            </div>
+  return (
+    <div>
+      <Header></Header>
+      <div className="home-wrapper">
+        <div className="search-bar-container">
+          <SearchBar 
+            onChange={handleInputChange}
+            placeholder="Digite o nome do professor"
+          />
         </div>
-    )
+        <div className="search-bar-results">
+          <div className="teacher-grid">
+            {teachers.map((teacher, index) => (
+              <TeacherCard
+                key={index}
+                nome={teacher.nome}
+                disciplina={teacher.disciplina}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default Home
+export default Home;

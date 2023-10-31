@@ -1,20 +1,22 @@
-import React from 'react' 
-import { FaSearch } from 'react-icons/fa';
+// SearchBar.js
+import React, { useState } from "react";
+import axios from 'axios';
+
+import { FaSearch } from "react-icons/fa";
 //styles
-import './SearchBar.css'
+import "./SearchBar.css";
 
-
-function SearchBar (props) {
-    return(
-        <div className='input-wrapper'>
-            <FaSearch id='search-icon'></FaSearch>
-            <input 
-                placeholder={props.placeholder}
-                onChange={(e) => props.onChange(e.target.value)}
-            ></input>
-        </div>
-    )
+function SearchBar({ onChange, placeholder }) {
+   
+  return (
+    <div className="input-wrapper">
+      <FaSearch id="search-icon"/>
+      <input
+        placeholder={placeholder}
+        onChange={(e) => onChange(e)}
+      />
+    </div>
+  );
 }
 
-export default SearchBar
-
+export default SearchBar;

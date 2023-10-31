@@ -13,12 +13,12 @@ header{
 }
 header ul {
     display: flex; 
+    list-style: none;
 }
 
-header ul li {
-    margin-left: 100px;
+header ul {
+    gap: 70px;
 }
-
 
 header .link{
     cursor: pointer; 

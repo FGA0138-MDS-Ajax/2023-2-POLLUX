@@ -1,9 +1,21 @@
+.home-wrapper{
+  padding: 20vh 25vh 0 25vh;
+}
+
 .search-bar-container {
-    padding-top: 20vh;
-    width: 70%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 200px;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 200px;
+}
+
+.search-bar-results {
+  margin-top: 8vh;
+}
+
+.teacher-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
+}

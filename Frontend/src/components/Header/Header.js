@@ -6,8 +6,6 @@ import './Header.css'
 function Header () {
     return(
         <header>
-            <Link to="/Home" className="link">
-            </Link>
             <ul>
                 <li><Link to="/Home" className="link">Home</Link></li>
                 <li><Link to="/Materias"className="link">Matérias</Link></li>

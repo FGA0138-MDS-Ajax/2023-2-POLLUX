@@ -1,7 +1,12 @@
 # 2023-2-POLLUX
 
+<p align="center">
+  <img src="./Frontend/src/assets/images/bannerReadme.png" height='350px'>
+</p>
+
+
 # Sobre
-O *nome indefinido* tem como objetivo simplificar o processo de escolha de docentes ao longo do curso para os alunos da FGA, fornecendo uma plataforma centralizada para avaliação e pesquisa de professores, permitindo que os alunos tomem decisões mais informadas ao escolher seus cursos.
+O GamaTrack tem como objetivo simplificar o processo de escolha de docentes ao longo do curso para os alunos da FGA, fornecendo uma plataforma centralizada para avaliação e pesquisa de professores, permitindo que os alunos tomem decisões mais informadas ao escolher seus cursos.
 
 # Principais Recursos 
 - Avaliações de Professores: Os alunos podem compartilhar suas experiências e avaliações sobre os professores, fornecendo informações úteis para outros estudantes.

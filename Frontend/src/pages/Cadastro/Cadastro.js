@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 //styles
 import "../Login/Login.css";
-import femaleCharacter from "../../assets/images/female-character.jpg";
+import femaleCharacter from '../../assets/images/female-character.jpg'
 //components
 import Input from "../../components/Input/Input";
 import SignButton from "../../components/SignButton/SignButton";

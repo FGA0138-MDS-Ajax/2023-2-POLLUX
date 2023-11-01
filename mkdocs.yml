@@ -28,14 +28,14 @@ theme:
       toggle:
         icon: material/toggle-switch-off-outline 
         name: Switch to dark mode
-      primary: lime
+      primary: red
       accent:  indigo
 
     - scheme: slate
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode   
-      primary: lime
+      primary: red
       accent:  indigo 
 
 
@@ -46,5 +46,6 @@ nav :
   - Início : index.md
   - Documento de Visão: documentoVisao.md
   - Declaração de Escopo: declaracaoEscopo.md
+  - Documento de Arquitetura: documentoArquitetura.md
   - Sprints : sprints.md
   

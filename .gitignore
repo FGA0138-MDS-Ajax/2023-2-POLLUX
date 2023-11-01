@@ -2,3 +2,9 @@
 /node_modules
 /.pnp
 .pnp.js
+
+# Ignorar módulos do Node.js no frontend
+Frontend/node_modules/
+
+# Ignorar módulos do Node.js no backend
+Backend/node_modules/

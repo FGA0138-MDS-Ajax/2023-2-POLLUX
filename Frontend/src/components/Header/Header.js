@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 //styles
 import './Header.css'
+import logo from '../../assets/images/logo.png'
 
 function Header () {
     return(
         <header>
+            <h2 className="logo">
+                    GamaTrack
+                </h2>
             <ul>
                 <li><Link to="/Home" className="link">Home</Link></li>
                 <li><Link to="/Materias"className="link">Matérias</Link></li>

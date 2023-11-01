@@ -6,17 +6,28 @@ header{
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 10px 3%;
+    padding: 10px 70px;
     font-weight: 500; 
     font-size: 16px;
 }
-header ul {
-    display: flex; 
-    list-style: none;
+
+header .logo{
+    color: #2B2D42; 
+    transition: 0.25s ease;
+    cursor: pointer;
+}
+
+header .logo:hover{
+    color: #EF233C;
 }
 
 header ul {
-    gap: 70px;
+    display: flex; 
+    justify-content: center;
+    align-self: center;
+    gap: 80px;
+    list-style: none;
+    margin-right: 20px;
 }
 
 header .link{
@@ -34,8 +45,6 @@ header .sign-in{
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-header .sign-in .link{
     padding: 15px;
 }
+

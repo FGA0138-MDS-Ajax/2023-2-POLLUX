@@ -6,6 +6,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import TeacherCard from "../../components/TeacherCard/TeacherCard";
 //styles
 import "./Home.css";
+import { MagicMotion } from "react-magic-motion";
  
 function Home() {
   const [teachers, setTeachers] = useState([]);
@@ -40,15 +41,17 @@ function Home() {
           />
         </div>
         <div className="search-bar-results">
-          <div className="teacher-grid">
-            {teachers.map((teacher, index) => (
-              <TeacherCard
-                key={index}
-                nome={teacher.nome}
-                disciplina={teacher.disciplina}
-              />
-            ))}
-          </div>
+          
+         
+            <div className="teacher-grid">
+              {teachers.map((teacher, index) => (
+                <TeacherCard
+                  key={index}
+                  nome={teacher.nome}
+                  disciplina={teacher.disciplina}
+                />
+              ))}
+            </div> 
         </div>
       </div>
     </div>

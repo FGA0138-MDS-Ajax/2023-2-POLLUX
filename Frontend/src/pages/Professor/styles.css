@@ -7,6 +7,7 @@
   justify-content: flex-start;
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 .teacher-profile img {
@@ -30,10 +31,54 @@
 .teacher-subject{ 
     background-color: #EF233C;
     color: #fff;
-    font-size: 0.9em;
+    font-size: 0.7em;
     font-weight: 600;
-    border-radius: 5px;
+    border-radius: 8px;
     margin-bottom: 10px;
-    padding: 10px;
+    padding: 8px;
     max-width: fit-content;
+}
+
+.teacher-rating{
+  border-radius: 8px;
+  position: absolute;
+  right: 0;
+  margin-right: 40px;
+  row-gap: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circular-progress{
+  position: relative;
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  background: conic-gradient(#04d91d 3.6deg, #ededed 0deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circular-progress::before{
+  content: "";
+  position: absolute;
+  height: 110px;
+  width: 110px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.progress-value{
+  position: relative;
+  font-size: 1.5em;
+  font-weight: 600;
+  color: #2B2D42;
+}
+
+.avaliations-number{
+  font-size: 1.2em;
+  color: #2B2D42;
+  font-weight: 600;
 }

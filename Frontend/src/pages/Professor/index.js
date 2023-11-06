@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 //components
 import Header from '../../components/Header'
@@ -35,6 +35,12 @@ function Professor() {
                             </span>
                         ))}
                     </div>
+                    <div className='teacher-rating'>
+                            <div className='circular-progress'>
+                                <span className='progress-value'>0%</span>
+                            </div>      
+                            <span className='avaliations-number'>0 avaliações</span>
+                    </div>  
                 </div>
             </div>
         </div>

@@ -3,8 +3,8 @@ import './styles.css'
 
 function SignButton(props) {
     return (
-      <div>
-        <button onClick={(e) => props.onClick(e)}>{props.placeholder}</button>
+      <div >
+        <button className="sign-button" onClick={(e) => props.onClick(e)}>{props.placeholder}</button>
       </div>
     );
   }

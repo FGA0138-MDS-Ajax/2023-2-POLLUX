@@ -27,10 +27,12 @@ function Professor() {
                     <div className="teacher-profile">
                         <img src={profile} alt="Professor"/>
                     </div>
-                    <div className="">
+                    <div className="teacher-details">
                         <h1>{teacher.nome}</h1>
                         {teacher.disciplina.map((disciplina, index) => (
-                            <p key={index}>{formatarNomeMateria(disciplina)}</p>
+                            <span key={index} className="teacher-subject">
+                                {formatarNomeMateria(disciplina)}
+                            </span>
                         ))}
                     </div>
                 </div>

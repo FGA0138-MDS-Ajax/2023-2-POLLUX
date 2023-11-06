@@ -4,9 +4,10 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Login from "./pages/Login/Login"
-import Cadastro from "./pages/Cadastro/Cadastro";
-import Home from "./pages/Home/Home"
+import Login from "./pages/Login"
+import Cadastro from "./pages/Cadastro";
+import Home from "./pages/Home"
+import Professor from "./pages/Professor";
 
 export default function AppRoutes() {
     return (
@@ -15,6 +16,7 @@ export default function AppRoutes() {
             <Route path="/Login" element={<Login></Login>}/>
             <Route path="/Cadastro" element={<Cadastro></Cadastro>}/>
             <Route path="/Home" element={<Home></Home>}></Route>
+            <Route path='/Professor' element={<Professor></Professor>}></Route>
         </Routes>       
     </Router>
     );

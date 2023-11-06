@@ -1,0 +1,13 @@
+.teacher-wrapper{
+    padding: 20vh 25vh 0 25vh;
+}
+
+.teacher-header{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.teacher-profile img{
+    height: 200px;
+    margin: 20px;
+}

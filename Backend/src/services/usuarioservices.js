@@ -22,7 +22,7 @@ const criar = async ({
     senha,
     nome,
     curso,
-    periodo
+    periodo,
   });
 
   return user;

@@ -22,15 +22,8 @@ function TeacherCard(props) {
 
   return (
     <div className='card-wrapper'>
-      <div className='card-image-wrapper'>
-        <img src={randomAvatarUrl} alt="Professor"/>
-      </div>
+      <img src={randomAvatarUrl} alt="Professor"/>
       <h2>{formatNome(props.nome)}</h2>
-      <div className='tag-wrapper'>
-        {props.disciplina.slice(0, 2).map((materia, index) => (
-          <span key={index} className='tag'>{formatarNomeMateria(materia)}</span>
-        ))}
-      </div>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import axios from "axios";
 //styles
 import "./Login.css";
 import femaleCharacter from '../../assets/images/female-character.jpg'
+import loginImage from '../../assets/images/login-image-1.jpg'
 //componentes
 import Input from "../../components/Input/Input";
 import SignButton from "../../components/SignButton/SignButton";
@@ -75,7 +76,7 @@ function Login() {
       </div>
 
       <div className="right-section">
-        <img src={femaleCharacter}></img>
+        <img src={loginImage}></img>
       </div>
 
     </div>

@@ -1,13 +1,13 @@
 .login {
     display: flex;
+    justify-self: space-between;
     height: 100vh;
-    color: #435334;
+    color: #2B2D42;
     overflow: hidden;
 }
 
 .left-section {
-    width: 60%; 
-    height: 100%;
+    width: 55vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,18 +41,19 @@
 
 .left-section .sign-link{
     cursor: pointer; 
-    color: #9EB384;
+    color: #D90429;
     text-decoration: none;
     transition: 0.2s ease-in-out;
 }
 
 .left-section .sign-link:hover{
-    color: #435334; 
     text-decoration: underline;
 }
 
 .right-section {
-    width: 40%; 
+    width: 45vw;
+    right: 0;
+    z-index: 1000;
 }
 
 .right-section img {

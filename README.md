@@ -6,7 +6,7 @@
 ## Entregáveis
 - [Documento Visão](/Entregas/Documento%20Visão.pdf)
 - [Declaração de Escopo](/Entregas/Declaração%20de%20Escopo%20do%20Produto.pdf)
-- [Documento de Arquitetura](/Entregas/)
+- [Documento de Arquitetura](/Entregas/Documento%20de%20Arquitetura.pdf)
 
 ## Apresentações
 - [1° Apresentação - Visão do Produto - 04/09/2023](Apresentações/1°%20Apresentação.pdf)

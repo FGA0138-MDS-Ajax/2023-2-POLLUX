@@ -4,7 +4,7 @@ import {
   getAll, createUser, deleteUser, updateUser,
 } from '../controllers/usuariocontroller';
 import { getAllProfessors, findProfessorByName } from '../models/professores.model';
-
+import { findUserById } from '../models/usuario.model';
 const routes = new Router();
 
 routes.get('/', (req, res) => {
@@ -26,6 +26,12 @@ routes.get('/professores/search', async (req, res) => {
   const { nome } = req.query;
   const professores = await findProfessorByName(nome);
   res.send(professores);
+});
+
+routes.get('/usuarios/:id', async (req, res) => {
+  const { id } = req.params;
+  const user = await findUserById(id);
+  res.send(user);
 });
 
 export default routes;

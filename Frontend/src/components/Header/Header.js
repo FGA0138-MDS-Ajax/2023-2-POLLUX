@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 //styles
 import './Header.css'
-import logo from '../../assets/images/logo.png'
 
-function Header () {
+function Header (props) {
     return(
         <header>
             <h2 className="logo">
@@ -16,7 +15,7 @@ function Header () {
                 <li><Link to="/Sobre" className="link">Sobre</Link></li>
             </ul>
             <div className="sign-in">
-                <Link to="/Login" className="link">Entrar</Link>
+                <Link to="/Login" className="link">{props.nomeUsuario}</Link>
             </div>
         </header>
     )

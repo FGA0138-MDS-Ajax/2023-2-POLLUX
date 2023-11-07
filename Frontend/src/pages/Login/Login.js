@@ -10,6 +10,8 @@ import Input from "../../components/Input/Input";
 import SignButton from "../../components/SignButton/SignButton";
 
 function Login() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -26,14 +28,17 @@ function Login() {
   
       try {
         const response = await axios.post('http://localhost:3000/login', data);
-        if(response.status === 200){
-          console.log('SENHA CORRETA')
+        if (response.status === 200 && response.data.user) { // Verifique se a resposta tem um usuário
+          localStorage.setItem('@userId', response.data.user._id);
+          console.log('ID do usuário:', response.data.user._id); // Imprime o ID do usuário no console
+          navigate('/Home');
+        } else {
+          setError('Email ou senha incorretos.');
         }
       } catch (error) {
         console.error(error);
-        setError('Email ou senha incorretos.');
+        setError('Ocorreu um erro ao fazer login.');
       }
-      
     } else {
       setError('Preencha todos os campos.');
     }

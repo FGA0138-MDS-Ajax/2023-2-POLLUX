@@ -6,33 +6,54 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import TeacherCard from "../../components/TeacherCard/TeacherCard";
 //styles
 import "./Home.css";
-import { MagicMotion } from "react-magic-motion";
- 
-function Home() {
-  const [teachers, setTeachers] = useState([]);
-  
-  const handleInputChange = (e) => {
-      e.preventDefault();
-      const { value } = e.target;
-  
-      if (!value) {
-          setTeachers([]);
-          return;
-      }
 
-      axios.get(`http://localhost:3000/professores/search?nome=${value}`)
-          .then(response => {
-              setTeachers(response.data);
-              console.log(teachers);
-          })
-          .catch(error => {
-              console.error(error);
-          });
+function Home() {
+  //recupera os dados do usuário logado
+  const userId = localStorage.getItem('@userId');
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    getUserData(userId);
+  }, [userId]);
+
+  const getUserData = async (userId) => {
+    try {
+      const response = await axios.get(`http://localhost:3000/user/${userId}`);
+      if (response.status === 200 && response.data.user) {
+        const userData = response.data.user;
+        setUserData(userData);
+      } else {
+        console.error('Usuário não encontrado');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  //armazena o professor pesquisado
+  const [teachers, setTeachers] = useState([]);
+
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    const { value } = e.target;
+
+    if (!value) {
+      setTeachers([]);
+      return;
+    }
+
+    axios.get(`http://localhost:3000/professores/search?nome=${value}`)
+      .then(response => {
+        setTeachers(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   return (
     <div>
-      <Header></Header>
+      <Header nomeUsuario={userData ? userData.nome : ''}></Header>
       <div className="home-wrapper">
         <div className="search-bar-container">
           <SearchBar 
@@ -41,17 +62,15 @@ function Home() {
           />
         </div>
         <div className="search-bar-results">
-          
-         
-            <div className="teacher-grid">
-              {teachers.map((teacher, index) => (
-                <TeacherCard
-                  key={index}
-                  nome={teacher.nome}
-                  disciplina={teacher.disciplina}
-                />
-              ))}
-            </div> 
+          <div className="teacher-grid">
+            {teachers.map((teacher, index) => (
+              <TeacherCard
+                key={index}
+                nome={teacher.nome}
+                disciplina={teacher.disciplina}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

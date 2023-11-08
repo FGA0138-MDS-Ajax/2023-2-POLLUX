@@ -20,7 +20,8 @@ O GamaTrack tem como objetivo simplificar o processo de escolha de docentes ao l
 - Sistema de Classificação: Os alunos podem classificar professores com base em diferentes critérios, como clareza na comunicação, disponibilidade, conhecimento do assunto, entre outros.
   
 # Documentação
-A documentação do projeto está dentro da branch docs. 
+Link para o MkDocs do projeto: https://fga0138-mds-ajax.github.io/2023-2-POLLUX/ <br><br>
+Nota: Todas as entregas da disciplina, incluindo documentos, atas e apresentações, estão disponíveis na branch [docs](https://github.com/FGA0138-MDS-Ajax/2023-2-POLLUX/tree/docs).
 
 # Autores
 

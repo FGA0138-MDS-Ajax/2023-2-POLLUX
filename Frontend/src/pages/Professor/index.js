@@ -7,7 +7,7 @@ import './styles.css'
 
 function CircularProgress() {
   const [progressStartValue, setProgressStartValue] = useState(0);
-  const progressEndValue = 74;
+  const progressEndValue = 70;
   const speed = 15;
 
   useEffect(() => {

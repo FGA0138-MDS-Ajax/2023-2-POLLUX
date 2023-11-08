@@ -11,28 +11,31 @@ function Home() {
   //recupera os dados do usuário logado
   const userId = localStorage.getItem('@userId');
   const [userData, setUserData] = useState(null);
-
+  
   useEffect(() => {
-    getUserData(userId);
+    if (userId) {
+      getUserData(userId);
+    }
   }, [userId]);
-
+  
   const getUserData = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:3000/user/${userId}`);
-      if (response.status === 200 && response.data.user) {
-        const userData = response.data.user;
-        setUserData(userData);
+  
+      const response = await axios.get(`http://localhost:3000/usuarios/${userId}`);
+      if (response.data) {
+        console.log(response.data)
+        setUserData(response.data);
       } else {
-        console.error('Usuário não encontrado');
+        console.error('Resposta da API não contém o campo "user" esperado.');
       }
     } catch (error) {
       console.error(error);
     }
   };
-
+  
   //armazena o professor pesquisado
   const [teachers, setTeachers] = useState([]);
-
+  
   const handleInputChange = (e) => {
     e.preventDefault();
     const { value } = e.target;
@@ -53,7 +56,7 @@ function Home() {
 
   return (
     <div>
-      <Header nomeUsuario={userData ? userData.nome : ''}></Header>
+      <Header nomeUsuario={userData ? userData.nome : ''} ></Header>
       <div className="home-wrapper">
         <div className="search-bar-container">
           <SearchBar 

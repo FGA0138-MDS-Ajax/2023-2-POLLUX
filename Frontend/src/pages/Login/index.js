@@ -29,7 +29,6 @@ function Login() {
       try {
         const response = await axios.post('http://localhost:3000/login', data);
         if (response.status === 200 && response.data.user) { 
-        //como eu guardei o id dele, eu preciso de uma funcao que retorna o usuorio pelo id
           localStorage.setItem('@userId', response.data.user._id);
           console.log('ID do usuário:', response.data.user._id); // Imprime o ID do usuário no console
           navigate('/Home');

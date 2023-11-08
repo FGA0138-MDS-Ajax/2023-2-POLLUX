@@ -56,7 +56,7 @@ const requestLogin = async (req, res) => {
 const findUserById = async (id) => {
   try {
     const user = await db.collection('usuarios').findOne({ _id: new ObjectId(id) }, 
-    { projection: { nome: 1, curso: 1, periodo: 1 } });
+   );
     return user;
   } catch (error) {
     console.error(error);

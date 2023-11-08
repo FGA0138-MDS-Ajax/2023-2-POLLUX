@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 // components
-import Header from "../../components/Header/Header";
-import SearchBar from "../../components/SearchBar/SearchBar";
-import TeacherCard from "../../components/TeacherCard/TeacherCard";
+import Header from "../../components/Header";
+import SearchBar from "../../components/SearchBar";
+import TeacherCard from "../../components/TeacherCard";
 //styles
-import "./Home.css";
-
+import "./styles.css";
+ 
 function Home() {
   //recupera os dados do usuário logado
   const userId = localStorage.getItem('@userId');
@@ -62,15 +62,14 @@ function Home() {
           />
         </div>
         <div className="search-bar-results">
-          <div className="teacher-grid">
-            {teachers.map((teacher, index) => (
-              <TeacherCard
-                key={index}
-                nome={teacher.nome}
-                disciplina={teacher.disciplina}
-              />
-            ))}
-          </div>
+            <div className="teacher-grid">
+              {teachers.map((teacher, index) => (
+                <TeacherCard
+                  key={index}
+                  teacher={teacher}
+                />
+              ))}
+            </div> 
         </div>
       </div>
     </div>

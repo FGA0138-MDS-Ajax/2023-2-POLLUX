@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 //styles
-import './Header.css'
+import './styles.css'
 
 function Header (props) {
     return(

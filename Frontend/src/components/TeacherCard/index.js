@@ -1,8 +1,10 @@
 import React from 'react';
-import './TeacherCard.css';
+import { Link, useLocation, useNavigate, navigate } from "react-router-dom";
+//styles
+import './styles.css';
 import avatarUrls from './avatarData.js';
 
-function TeacherCard(props) {
+function TeacherCard({ teacher }) {
   const randomIndex = Math.floor(Math.random() * avatarUrls.length);
   const randomAvatarUrl = avatarUrls[randomIndex];
 
@@ -11,19 +13,17 @@ function TeacherCard(props) {
     const formattedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
     return formattedWords.join(' ');
   }
-
-  function formatarNomeMateria(nome) {
-    const palavras = nome.split(' ');
-    palavras.shift();
-    palavras.shift();
-    const nomeFormatado = palavras.map(palavra => palavra.charAt(0).toUpperCase() + palavra.slice(1)).join(' ');
-    return nomeFormatado;
+  
+  const navigate = useNavigate();
+  
+  const handleClick = () => {
+    navigate('/professor', { state: { professor: teacher, profile: randomAvatarUrl } });
   }
 
   return (
-    <div className='card-wrapper'>
+    <div className='card-wrapper' onClick={handleClick}>
       <img src={randomAvatarUrl} alt="Professor"/>
-      <h2>{formatNome(props.nome)}</h2>
+      <h2>{formatNome(teacher.nome)}</h2>
     </div>
   );
 }

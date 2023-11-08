@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 //styles
-import "./Login.css";
+import "./styles.css";
 import femaleCharacter from '../../assets/images/female-character.jpg'
 import loginImage from '../../assets/images/login-image-1.jpg'
 //componentes
-import Input from "../../components/Input/Input";
-import SignButton from "../../components/SignButton/SignButton";
+import Input from "../../components/Input";
+import SignButton from "../../components/SignButton";
 
 function Login() {
   const navigate = useNavigate();

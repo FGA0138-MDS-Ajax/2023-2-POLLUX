@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 //styles
-import "../Login/Login.css";
+import "../Login/styles.css";
 import femaleCharacter from '../../assets/images/female-character.jpg'
 import loginImage from '../../assets/images/login-image-1.jpg'
 //components
-import Input from "../../components/Input/Input";
-import SignButton from "../../components/SignButton/SignButton";
-import DropDown from "../../components/DropDown/DropDown";
+import Input from "../../components/Input";
+import SignButton from "../../components/SignButton";
+import DropDown from "../../components/DropDown";
 
 function Cadastro() {
   const cursos = [

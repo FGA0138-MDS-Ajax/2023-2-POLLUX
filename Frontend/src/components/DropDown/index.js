@@ -1,5 +1,5 @@
 import React from "react";
-import './DropDown.css'
+import './styles.css'
 
 /*
 Para reutilizar o componente bastar passar o array de elementos nas props

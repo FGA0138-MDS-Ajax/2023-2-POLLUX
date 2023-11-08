@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { FaSearch } from "react-icons/fa";
 //styles
-import "./SearchBar.css";
+import "./styles.css";
 
 function SearchBar({ onChange, placeholder }) {
    

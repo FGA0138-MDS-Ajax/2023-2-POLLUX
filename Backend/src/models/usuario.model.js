@@ -49,11 +49,24 @@ const requestLogin = async (req, res) => {
 
   if (!usuario) return res.status(401).json({ message: 'User not found' });
 
-  return res.status(200).json({ email, senha });
+  return res.status(200).json({ user: usuario }); // Inclua os dados do usuário no JSON de resposta
 };
 
+
+const findUserById = async (id) => {
+  try {
+    const user = await db.collection('usuarios').findOne({ _id: new ObjectId(id) }, 
+   );
+    return user;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+
 export {
-  getAll, login, newUser, userExists, deleta, update, requestLogin,
+  getAll, login, newUser, userExists, deleta, update, requestLogin, findUserById
 };
 
 connectDB();

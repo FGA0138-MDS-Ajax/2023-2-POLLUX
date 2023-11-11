@@ -1,6 +1,16 @@
 [data-md-color-scheme="jungle"] {
-    --md-primary-fg-color:        #007D30; /* Verde Selva */
-    --md-primary-fg-color--light: #8BCC9E; /* Tom mais claro de Verde Selva */
-    --md-primary-fg-color--dark:  #00511E; /* Tom mais escuro de Verde Selva */
-  }
-  
+  --md-primary-fg-color:        #007D30; /* Verde Selva */
+  --md-primary-fg-color--light: #8BCC9E; /* Tom mais claro de Verde Selva */
+  --md-primary-fg-color--dark:  #00511E; /* Tom mais escuro de Verde Selva */
+  --md-background-color:        #FFFFFF; /* Background color for light mode */
+  --md-background-color--dark:  #222222; /* Background color for dark mode */
+}
+
+[data-md-color-scheme="jungle-dark"] {
+  --md-primary-fg-color:        #007D30; /* Verde Selva */
+  --md-primary-fg-color--light: #8BCC9E; /* Tom mais claro de Verde Selva */
+  --md-primary-fg-color--dark:  #00511E; /* Tom mais escuro de Verde Selva */
+  --md-background-color:        #222222; /* Background color for dark mode */
+  --md-background-color--light: #FFFFFF; /* Background color for light mode */
+}
+

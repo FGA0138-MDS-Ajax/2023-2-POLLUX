@@ -1,8 +1,13 @@
 # Declaração de Escopo do Produto
 
-## **1.0 Problema / Sistema de Software**
-Definição da equipe.
+**Histórico de Revisão** 
 
+|**Data** |**Versão** |**Descrição** |**Autor** |
+| - | - | - | - |
+|23/10/2023 |1\.0 |Início do Documento Visão. |Nicollas Gabriel; Samuel Ribeiro; Eric Rabelo; Isaque Colem; Rodrigo Braz |
+|10/11/2023 |2\.0 |Aplicando alterações ao documento de acordo com a correção do professor Ricardo Ajax. |Nicollas Gabriel Samuel Ribeiro Eric Rabelo Isaque Colem Rodrigo Braz |
+
+## **1.0 Problema / Sistema de Software**
 ### **Definição da equipe**
 - Nicollas Gabriel – Responsável por desenvolver funcionalidades e implementação de rotas Backend.
 - Samuel Ribeiro – Responsável pelo desenvolvimento funcionalidades e correções de bugs no Backend.
@@ -11,7 +16,8 @@ Definição da equipe.
 - Eric Rabelo – Responsável pelo desenvolvimento e funcionalidades no Frontend.
 
 ### **Resumo do problema**
-Nosso software representa uma aplicação web que oferece uma abordagem prática e em tempo real para avaliar e pesquisar os professores da FGA. O propósito central desta ferramenta é criar um ambiente seguro e anônimo onde estudantes, tanto novos quanto veteranos, possam compartilhar suas opiniões sobre os professores e as disciplinas ministradas na Faculdade do Gama (FGA).
+Como proporcionar aos estudantes da FGA um sistema eficaz que lhes permita avaliar e acessar avaliações de outros alunos sobre os professores, a fim de facilitar a escolha de suas disciplinas e professores de maneira informada e alinhada com suas
+preferências acadêmicas?
 
 ### **Sistema de Software**
 Este sistema permite que os alunos avaliem os professores e as disciplinas de forma anônima, proporcionando feedback valioso para a melhoria contínua do ensino. Além disso, o “GamaTrack” também oferece aos professores a oportunidade de entender melhor as necessidades e expectativas dos alunos, permitindo-lhes ajustar seus métodos de ensino de acordo.
@@ -53,7 +59,7 @@ Aqui está um breve resumo de como o Scrum foi aplicado:
 
 - **Revisão do Sprint:** No final do Sprint, a equipe se reúne para revisar o trabalho realizado e discutir o que funcionou bem e o que pode ser melhorado.
 
-O uso da metodologia Scrum permitiu à nossa equipe responder rapidamente às mudanças, melhorar continuamente nossos processos e entregar resultados de alta qualidade de forma consistente.
+O uso da metodologia Scrum permitiu à nossa equipe responder rapidamente às mudanças, melhorar continuamente nossos processos e entregar resultados de alta qualidade de forma consistente quando aliadas às práticas técnicas do Extreme Programming (XP) para garantir a qualidade técnica do software.
 
 ## 2.0 Backlog do Produto
 
@@ -110,7 +116,7 @@ O uso da metodologia Scrum permitiu à nossa equipe responder rapidamente às mu
 | Administrador  | Responsável por manter os perfis de acesso da aplicação, criar novos usuários, alterar usuários já existentes, ou excluir usuários (Manter usuários). | Descrever sucintamente as permissões de acesso.           |
 | Usuário Comum  | Pode acessar as principais funcionalidades e utilizar livremente o software. | Acesso às informações e funcionalidades principais.       |
 
-### *2.2 Cenários Funcionais**
+### **2.2 Cenários Funcionais**
 
 | Numeração do Cenário | Nome do Cenário                               | Sprints   |
 | -------------------- | -------------------------------------------- | --------- |
@@ -127,31 +133,32 @@ O uso da metodologia Scrum permitiu à nossa equipe responder rapidamente às mu
 
 | Numeração da Sprint | Nome do Requisito (Cenário / Requisito) | Tipo de Requisito | Priorização do Requisito (Funcional / Não Funcional) | Must, Should, Could | Descrição Sucinta do Requisito | User Stories (U.S.) Associadas |
 | ------------------- | ------------------------------------- | ----------------- | ------------------------------------------------------ | ------------------ | ------------------------------ | ----------------------------- |
-| 1                   | Sprint 5 - Registro de Usuário        | Funcional         | Must                                                 |                    | Os usuários devem ser capazes de criar uma conta no sistema. | US-01 / US-03               |
-| 2                   | Sprint 5 - Login de Usuário            | Funcional         | Must                                                 |                    | Os usuários devem ser capazes de fazer login no sistema. | US-02                        |
-| 3                   | Sprint 6 - Busca de Professores        | Funcional         | Must                                                 |                    | Os usuários devem ser capazes de procurar por professores. | US-05 / US-07               |
-| 7                   | Sprint 7 - Avaliação de Professores     | Funcional         | Must                                                 |                    | Os usuários devem ser capazes de avaliar os professores. | US-08 / US-11 / US-12 / US-13 / US-17 |
-| 8                   | Sprint 6 - Visualização de Outras Avaliações | Funcional   | Must                                                 |                    | Os usuários devem ser capazes de ver avaliações feitas por outros usuários. | US-08 / US-09 / US-14 / US-15 |
-| 5                   | Sprint 8 - Busca de Matérias por Curso | Funcional         | Should                                               |                    | Os usuários devem ser capazes de buscar todas as matérias de uma engenharia específica. | US-06 |
-| 4                   | Sprint 3 - Visualização dos Dados de um Professor Específico | Funcional | Must | | Os usuários devem ser capazes de visualizar dados de um professor específico. | US-07 / US-08 / US-09 / US-10 |
-| 6                   | Sprint 4 - Visualização dos Professores de uma Matéria Específica | Funcional | Should | | Os usuários devem ser capazes de visualizar todos os comentários feitos por outros alunos sobre um professor específico. | US-06 / US-07 |
+| 1                   | Registro de Usuário                    | Funcional         | Must                                                 |                    | Os usuários devem ser capazes de criar uma conta no sistema. | US-01 / US-03               |
+| 2                   | Login de Usuário                       | Funcional         | Must                                                 |                    | Os usuários devem ser capazes de fazer login no sistema. | US-02                        |
+| 3                   | Pesquisa por Professor                  | Funcional         | Must                                                 |                    | Os usuários devem ser capazes de procurar por professores. | US-05 / US-07               |
+| 7                   | Avaliação de um Professor Específico     | Funcional         | Must                                                 |                    | Os usuários devem ser capazes de avaliar os professores. | US-08 / US-11 / US-12 / US-13 / US-17 |
+| 8                   | Visualização de Avaliações de outros Alunos | Funcional     | Must                                                 |                    | Os usuários devem ser capazes de ver avaliações feitas por outros usuários. | US-08 / US-09 / US-14 / US-15 |
+| 5                   | Listagem de Matérias por Engenharia      | Funcional         | Should                                               |                    | Os usuários devem ser capazes de buscar todas as matérias de uma engenharia específica. | US-06 |
+| 4                   | Visualização dos Dados de um Professor Específico | Funcional | Must | | Os usuários devem ser capazes de visualizar dados de um professor específico. | US-07 / US-08 / US-09 / US-10 |
+| 6                   | Visualização dos Professores de uma Matéria Específica | Funcional | Should | | Os usuários devem ser capazes de visualizar todos os comentários feitos por outros alunos sobre um professor específico. | US-06 / US-07 |
 
 ### **2.4 Sprints Previstas**
 
 | Sprint  | Descrição                                      | Objetivos                                | User Stories         |
 | ------- | --------------------------------------------- | ---------------------------------------- | -------------------- |
 | Sprint 1 | Tema 1 - Acesso a aplicação                   | Implementação da funcionalidade de registro e login do usuário. | US-01, US-02, US-03, US-16, US-18 |
-|         |                                                |                                                  |                        |
 | Sprint 2 | Tema 1 - Acesso a aplicação                   | Desenvolvimento do login e cadastro de usuários. | US-18, US-19, US-20 |
-|         |                                                |                                                  |                        |
 | Sprint 3 | Tema 2 - Busca de Professores                | Implementar a funcionalidade de busca de professores. | US-05 |
-|         |                                                |                                                  |                        |
 | Sprint 4 | Tema 2 - Listagem de Matérias por Engenharia | Implementar a funcionalidade de listagem de todas as matérias das engenharias da FGA. | US-06 |
-|         | Tema 3 - Avaliação de Professores            | Implementação de avaliar e comentar anonimamente nos perfis dos professores. | US-07, US-09, US-10, US-11, US-12, US-13, US-14, US-17 |
-|         |                                                |                                                  |                        |
-| Sprint 5 |                                               | Implementar funcionalidades adicionais. |                        |
-|         |                                               |                                                  |                        |
+| Sprint 5 |                                               | Implementar funcionalidades adicionais. |                        | 
 | Sprint 6 | Teste e funcionalidade do projeto            | Fazer todos os testes do software e reparo do código. |                        |
+
+
+| Versão | Funcionalidade | Data Estimada |
+| ------ | -------------- | ------------- |
+|      1.0  |         Perfil dos Professores       |         15/11/2023      |
+|        2.0|         Avaliação dos Professores       |           30/11/2023    |
+|        3.0|            Versão Final    |         15/11/2023      |
 
 
 ## **3.0 Definição de Ready / Done**
@@ -190,6 +197,21 @@ Os critérios de "Ready" indicam as condições que uma tarefa deve atender ante
 
 
 ## **5.0 Casos de Uso**
+
+![](/assets/DiagramaDeCasos%20de%20Uso.png)
+
+Estudante: Este ator tem várias ações que pode realizar.
+Criar uma conta: O estudante pode criar uma nova conta no sistema. 
+Logar no sistema: Após criar uma conta, o estudante pode fazer login no sistema. 
+Buscar professor: O estudante pode buscar diretamente o professor pelo nome.
+Buscar por curso: O estudante também pode buscar por curso, onde serão listadas matérias referentes ao curso escolhido, assim fazendo com o que o estudante tenha uma variedade de opções de professores que dão aquela disciplina.
+Ver avaliações do professor: O estudante pode visualizar detalhes sobre um professor específico. Como opiniões de alunos que já fizeram a disciplina com aquele professor.
+Avaliar professor: O estudante pode avaliar um professor com base em sua experiência. 
+
+Administrador: Este ator tem responsabilidades adicionais.
+Gerenciar avaliações: O administrador pode gerenciar as avaliações feitas pelos estudantes. Visando a segurança e a ética da aplicação.
+Gerenciar contas de usuários: O administrador tem a capacidade de editar as informações de
+usuários. Podendo e criar ou excluir contas, também visando a segurança e ética da aplicação.
 
 ## **6.0 MVP**
 

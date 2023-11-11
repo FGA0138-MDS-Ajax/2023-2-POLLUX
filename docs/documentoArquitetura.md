@@ -1,24 +1,13 @@
-﻿GamaTrack ![](Aspose.Words.2189e231-3b66-4f8b-89ae-efd262cf4a7e.001.png)
-
-**Documento de Arquitetura** 
-
-Versão 1.0 
-
-**Histórico de Revisão** 
+﻿**Histórico de Revisão** 
 
 
-
-|Data** |Versão** |Descrição** |Autor(es)** |
+|Data |Versão |Descrição |Autor(es) |
 | - | - | - | - |
-|02/11/2023** |1\.0 |Versão inicial do documento |Eric Rabelo Nicollas Gabriel Isaque Colem Samuel Ribeiro  Rodrigo Braz |
-|||||
-|||||
-|||||
+|02/11/2023 |1\.0 |Versão inicial do documento |Eric Rabelo; Nicollas Gabriel; Isaque Colem; Samuel Ribeiro;  Rodrigo Braz |
+
 Autores: 
 
-
-
-|Matrícula** |Nome** |Descrição do papel assumido na equipe** |% de contribuição ao trabalho  |
+|Matrícula |Nome |Descrição do papel assumido na equipe |% de contribuição ao trabalho  |
 | - | - | :- | :- |
 |21/1030729 |Eric Rabelo |Desenvolvedor Frontend |20% |
 |22/1022300 |Isaque Colem |Desenvolvedor Frontend |20% |

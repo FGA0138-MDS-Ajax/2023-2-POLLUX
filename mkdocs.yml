@@ -1,4 +1,4 @@
-site_name: Pollux | MDS
+site_name: Pollux | GamaTrack
 
 repo_name: "2023-2-Pollux"
 repo_url: "https://github.com/FGA0138-MDS-Ajax/2023-2-POLLUX"
@@ -16,7 +16,7 @@ theme:
     - content.tabs.link
     - content.code.annotation
     - content.code.copy
-    
+
   language: pt
 
   font:
@@ -24,20 +24,17 @@ theme:
     code: "sans-serif"
 
   palette:
-    - scheme: default
+    - scheme: default 
       toggle:
-        icon: material/toggle-switch-off-outline 
+        icon: material/toggle-switch-off-outline
         name: Switch to dark mode
-      primary: red
-      accent:  indigo
+      primary: lime
 
     - scheme: slate
       toggle:
         icon: material/toggle-switch
-        name: Switch to light mode   
-      primary: red
-      accent:  indigo 
-
+        name: Switch to light mode
+      primary: lime
 
 extra_css:
   - stylesheets/extra.css

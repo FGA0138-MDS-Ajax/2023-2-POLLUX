@@ -1,4 +1,4 @@
-# Pollux
+# GamaTrack
 
 Nosso software representa uma aplicação web que
 oferece uma abordagem prática e em tempo real para avaliar e pesquisar os

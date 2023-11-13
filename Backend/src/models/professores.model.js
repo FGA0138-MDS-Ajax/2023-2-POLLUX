@@ -19,6 +19,23 @@ const findProfessorByName = async (nome) => {
   }
 };
 
-export { getAllProfessors, findProfessorByName };
+const adicionarComentario = async (professorId, texto) => {
+  try {
+    await connectDB();
+    const comentario = {
+      _id: new ObjectId(),
+      professorId: new ObjectId(professorId),
+      texto: texto
+    };
+    const result = await db.collection('comentarios').insertOne(comentario);
+    return result;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+
+export { getAllProfessors, findProfessorByName, adicionarComentario };
 
 connectDB();

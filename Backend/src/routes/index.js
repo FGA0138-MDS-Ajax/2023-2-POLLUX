@@ -34,6 +34,7 @@ routes.get('/usuarios/:id', async (req, res) => {
   res.send(user);
 });
 
+
 routes.post('/comentarios', async (req, res) => {
   const { professorId, texto } = req.body;
   const result = await adicionarComentario(professorId, texto);

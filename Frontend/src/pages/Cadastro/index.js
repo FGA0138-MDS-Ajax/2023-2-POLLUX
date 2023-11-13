@@ -29,6 +29,8 @@ function Cadastro() {
   const [error, setError] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -49,10 +51,13 @@ function Cadastro() {
 
       try {
         const response = await axios.post(
-          "http://localhost:3000/usuario",
-          data
+          "http://localhost:3000/usuario", data
         );
-        console.log(response);
+        if (response.status === 200 && response.data.user) { 
+            localStorage.setItem('@userId', response.data.user._id);
+            console.log('ID do usuário:', response.data.user._id); 
+            navigate('/Home');
+          } 
       } catch (error) {
         console.error(error); 
       }

@@ -1,4 +1,5 @@
 import connection from './mongoConnection';
+import { ObjectId } from 'mongodb';
 
 let db;
 
@@ -19,15 +20,17 @@ const findProfessorByName = async (nome) => {
   }
 };
 
-const adicionarComentario = async (professorId, texto) => {
+const adicionarComentario = async (usuarioId, professorId, texto, nota) => {
   try {
     await connectDB();
     const comentario = {
       _id: new ObjectId(),
+      usuarioId: new ObjectId(usuarioId),
       professorId: new ObjectId(professorId),
-      texto: texto
+      texto: texto,
+      nota : nota,
     };
-    const result = await db.collection('comentarios').insertOne(comentario);
+    const result = await db.collection('avaliacoes').insertOne(comentario);
     return result;
   } catch (error) {
     console.error(error);

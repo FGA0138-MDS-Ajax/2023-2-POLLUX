@@ -1,0 +1,7 @@
+.review-wrapper{
+    margin-top: 20px;
+    height: 180px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;    
+}

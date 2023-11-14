@@ -14,7 +14,7 @@ function Header (props) {
             <ul>
                 <li><Link to="/Home" className="link">Home</Link></li>
                 <li><Link to="/Materias"className="link">Matérias</Link></li>
-                <li><Link to="/Sobre" className="link">Sobre</Link></li>
+                <li><Link to='https://fga0138-mds-ajax.github.io/2023-2-POLLUX/' className="link" target="_blank" rel="noopener noreferrer">Sobre</Link></li>
             </ul>
             <div className="sign-in">
                 <Link to="/Login" className="link">{props.userName}</Link>

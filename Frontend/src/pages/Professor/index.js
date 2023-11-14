@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 //components
 import Header from '../../components/Header'
 import Review from '../../components/Review'
+import ReviewForm from '../../components/ReviewForm'
 //styles
 import './styles.css'
 import { IoMdAdd } from "react-icons/io";
@@ -58,6 +59,12 @@ function Professor() {
     return nomeFormatado;
   }
 
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
+
+  const mostrarOcultarFormulario = () => {
+    setMostrarFormulario(!mostrarFormulario);
+  }
+
   return (
     <div>
       <Header
@@ -82,12 +89,13 @@ function Professor() {
           </div>
         </div>
         <div className='reviews-label'>
-          <h2>Avaliações</h2>
+          <h2>Todas as avaliações</h2>
           <div className='review-button'>
-            <button>Avaliar</button>
+            <button onClick={mostrarOcultarFormulario} >Avaliar</button>
             <IoMdAdd className='review-icon'/> 
           </div>
         </div>
+        <ReviewForm mostrarFormulario={mostrarFormulario} />
         <Review/>
         <Review/>
         <Review/>

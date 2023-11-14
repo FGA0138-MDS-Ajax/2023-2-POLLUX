@@ -20,7 +20,6 @@ function Home() {
   
   const getUserData = async (userId) => {
     try {
-  
       const response = await axios.get(`http://localhost:3000/usuarios/${userId}`);
       if (response.data) {
         console.log(response.data)
@@ -32,7 +31,8 @@ function Home() {
       console.error(error);
     }
   };
-  
+   
+ 
   //armazena o professor pesquisado
   const [teachers, setTeachers] = useState([]);
   
@@ -56,7 +56,9 @@ function Home() {
 
   return (
     <div>
-      <Header nomeUsuario={userData ? userData.nome : ''} ></Header>
+      <Header
+        userName={userData ? userData.nome : ''}
+      ></Header>
       <div className="home-wrapper">
         <div className="search-bar-container">
           <SearchBar 
@@ -70,6 +72,7 @@ function Home() {
                 <TeacherCard
                   key={index}
                   teacher={teacher}
+                  user={userData}
                 />
               ))}
             </div> 

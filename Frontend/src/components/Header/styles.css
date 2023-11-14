@@ -9,6 +9,7 @@ header{
     padding: 10px 70px;
     font-weight: 500; 
     font-size: 16px;
+    border-bottom: 1px solid #00000033;
 }
 
 header .logo{

@@ -53,10 +53,8 @@ function Cadastro() {
         const response = await axios.post(
           "http://localhost:3000/usuario", data
         );
-        if (response.status === 200 && response.data.user) { 
-            localStorage.setItem('@userId', response.data.user._id);
-            console.log('ID do usuário:', response.data.user._id); 
-            navigate('/Home');
+        if (response.status === 200) { 
+            navigate('/Login');
           } 
       } catch (error) {
         console.error(error); 

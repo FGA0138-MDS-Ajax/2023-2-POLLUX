@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 //components
 import Header from '../../components/Header'
+import Review from '../../components/Review'
 //styles
 import './styles.css'
+import { IoMdAdd } from "react-icons/io";
 
 function CircularProgress() {
   const [progressStartValue, setProgressStartValue] = useState(0);
@@ -44,6 +46,7 @@ function Professor() {
   const location = useLocation();
   const teacher = location.state ? location.state.professor : null;
   const profile = location.state ? location.state.profile : null;
+  const user = location.state ? location.state.usuario : null;
 
   function formatarNomeMateria(nome) {
     const palavras = nome.split(' ');
@@ -57,7 +60,9 @@ function Professor() {
 
   return (
     <div>
-      <Header></Header>
+      <Header
+        userName={user ? user.nome : ''}  
+      ></Header>
       <div className="teacher-wrapper">
         <div className="teacher-header">
           <div className="teacher-profile">
@@ -76,6 +81,18 @@ function Professor() {
             <span className="avaliations-number">0 avaliações</span>
           </div>
         </div>
+        <div className='reviews-label'>
+          <h2>Avaliações</h2>
+          <div className='review-button'>
+            <button>Avaliar</button>
+            <IoMdAdd className='review-icon'/> 
+          </div>
+        </div>
+        <Review/>
+        <Review/>
+        <Review/>
+        <Review/>
+        <Review/>
       </div>
     </div>
   );

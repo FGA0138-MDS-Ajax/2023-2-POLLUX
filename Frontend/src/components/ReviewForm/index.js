@@ -6,8 +6,6 @@ function ReviewForm({ mostrarFormulario }) {
       <div>
         {mostrarFormulario && (
           <form className='review-form'>
-            <h2>Formulário de Avaliação</h2>
-            {/* Adicione campos de avaliação ou perguntas aqui */}
             <label htmlFor="nota">Nota:</label>
             <input type="number" id="nota" name="nota" min="1" max="5" required />
   

@@ -68,7 +68,7 @@ function Professor() {
   return (
     <div>
       <Header
-        userName={user ? user.nome : ''}  
+        userName={user.nome}  
       ></Header>
       <div className="teacher-wrapper">
         <div className="teacher-header">
@@ -90,17 +90,12 @@ function Professor() {
         </div>
         <div className='reviews-label'>
           <h2>Todas as avaliações</h2>
-          <div className='review-button'>
-            <button onClick={mostrarOcultarFormulario} >Avaliar</button>
+          <div className='review-button'  onClick={mostrarOcultarFormulario} >
+            <button>Avaliar</button>
             <IoMdAdd className='review-icon'/> 
           </div>
         </div>
-        <ReviewForm mostrarFormulario={mostrarFormulario} />
-        <Review/>
-        <Review/>
-        <Review/>
-        <Review/>
-        <Review/>
+        <ReviewForm mostrarFormulario={mostrarFormulario}/>
       </div>
     </div>
   );

@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
+//styles
 import './styles.css';
+import 'boxicons';
 
 function ReviewForm({ mostrarFormulario }) {
     return (
       <div>
         {mostrarFormulario && (
-          <form className='review-form'>
-            <label htmlFor="nota">Nota:</label>
-            <input type="number" id="nota" name="nota" min="1" max="5" required />
-  
-            <label htmlFor="comentario">Comentário:</label>
-            <textarea id="comentario" name="comentario" rows="4" cols="50"></textarea>
-  
-            <input type="submit" value="Enviar Avaliação" onClick={console.log('review enviada')} />
-          </form>
+           <div className="form-wrapper">
+            <h2>Escreva sua avaliação</h2>
+            <form action='#'>
+              <div className='rating'>
+                <input type='number' name='rating' hidden></input>
+                <box-icon name='star'></box-icon>
+                <box-icon name='star'></box-icon>
+                <box-icon name='star'></box-icon>
+                <box-icon name='star'></box-icon>
+                <box-icon name='star'></box-icon>
+              </div>
+              <textarea name='opnion' cols='30' rows='5'placeholder='Deixe um comentário...'></textarea>
+              <div>
+                <button type='submit' className='submit-review'>Enviar</button>
+                <button className='submit-cancel'>Cancelar</button>
+              </div>
+            </form>
+         </div>
         )}
       </div>
     );

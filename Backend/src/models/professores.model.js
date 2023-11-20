@@ -51,8 +51,18 @@ const adicionarComentario = async (usuarioId, professorId, texto, nota) => {
       nota : notaInt,
       data: new Date(),
     };
+
     const result = await db.collection('avaliacoes').insertOne(comentario);
-    return result;
+    
+    
+    const avaliacoes = await db.collection('avaliacoes').find({ professorId: new ObjectId(professorId) }).toArray();
+    const soma = avaliacoes.reduce((acc, avaliacao) => acc + avaliacao.nota, 0);
+    const media = soma / avaliacoes.length;
+    
+   
+    const porcentagem = media * 20; 
+
+    return { result, media, porcentagem };
   } catch (error) {
     console.error(error);
     return null;
@@ -61,9 +71,10 @@ const adicionarComentario = async (usuarioId, professorId, texto, nota) => {
 const adicionarComentarioAnonimo = async (professorId, texto, nota) => {
   try {
     await connectDB();
-
+   
     const notaInt = parseInt(nota, 10);
-
+    
+    
     if (notaInt < 0 || notaInt > 5) {
       throw new Error('A nota deve ser entre 0 e 5');
     }
@@ -76,12 +87,21 @@ const adicionarComentarioAnonimo = async (professorId, texto, nota) => {
       data: new Date(),
     };
     const result = await db.collection('avaliacoes').insertOne(comentario);
-    return result;
+    
+    
+    const avaliacoes = await db.collection('avaliacoes').find({ professorId: new ObjectId(professorId) }).toArray();
+    const soma = avaliacoes.reduce((acc, avaliacao) => acc + avaliacao.nota, 0);
+    const media = soma / avaliacoes.length;
+    
+   
+    const porcentagem = media * 20; 
+
+    return { result, media, porcentagem };
   } catch (error) {
     console.error(error);
     return null;
   }
-};
+}
 
   
 

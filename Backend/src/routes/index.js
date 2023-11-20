@@ -41,7 +41,7 @@ routes.post('/comentarios', async (req, res) => {
   const { professorId, usuarioId, texto, nota } = req.body;
   const result = await adicionarComentario(professorId, usuarioId, texto, nota);
   if (result) {
-    res.status(200).send({ success: 'Comentário adicionado com sucesso' });
+    res.status(200).send({ success: true, data: result });
   } else {
     res.status(500).send({ error: 'Erro ao adicionar comentário' });
   }

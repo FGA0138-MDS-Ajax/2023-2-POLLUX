@@ -1,9 +1,11 @@
 import { Router } from 'express';
+
 import { requestLogin } from '../models/usuario.model';
 import {
   getAll, createUser, deleteUser, updateUser,
 } from '../controllers/usuariocontroller';
-import { getAllProfessors, findProfessorByName, adicionarComentario } from '../models/professores.model';
+import { getAllProfessors, findProfessorByName, adicionarComentario,
+  findComentariosByProfessorId, getAllAvaliacoes, adicionarComentarioAnonimo} from '../models/professores.model';
 import { findUserById } from '../models/usuario.model';
 const routes = new Router();
 
@@ -44,5 +46,29 @@ routes.post('/comentarios', async (req, res) => {
     res.status(500).send({ error: 'Erro ao adicionar comentário' });
   }
 });
+
+routes.post('/comentario/anonimo', async (req, res) => {
+  const { professorId, texto, nota } = req.body;
+  const result = await adicionarComentarioAnonimo(professorId, texto, nota);
+  if (result) {
+    res.status(200).json({ success: true, data: result });
+  } else {
+    res.status(500).json({ success: false, message: 'Erro ao adicionar comentário' });
+  }
+});
+
+
+routes.get('/comentarios/professor/:id', async (req, res) => {
+  const { id } = req.params;
+  const comentarios = await findComentariosByProfessorId(id);
+  res.send(comentarios);
+});
+
+routes.get('/avaliacoes', async (req, res) => {
+  const avaliacoes = await getAllAvaliacoes();
+  res.send(avaliacoes);
+});
+
+
 
 export default routes;

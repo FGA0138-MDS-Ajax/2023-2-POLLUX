@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+//styles
 import { FaStar } from 'react-icons/fa';
 import './styles.css';
 
-function ReviewForm({ mostrarFormulario }) {
+function ReviewForm({ mostrarFormulario, userid, teacherid }) {
   const [avaliacao, setAvaliacao] = useState(0);
+  const [comentario, setComentario] = useState('');
+  console.log(userid, teacherid)
 
   const handleStarClick = (idx) => {
     setAvaliacao(idx + 1);
-    console.log(avaliacao);
   };
 
   useEffect(() => {
@@ -17,6 +20,32 @@ function ReviewForm({ mostrarFormulario }) {
     }
   }, [mostrarFormulario]);
 
+  const handleAvaliar = async (e) => {
+    e.preventDefault();
+  
+    if (avaliacao !== 0 && comentario !== '') {
+      const data = {
+        professorId: teacherid,
+        usuarioId: userid,  // Alterei para usuarioId, pois é usado no backend
+        texto: comentario,
+        nota: avaliacao,
+      };
+  
+      try {
+        const response = await axios.post('http://localhost:3000/comentarios', data);
+        
+        if (response.data.success) {
+          console.log('Comentário adicionado com sucesso');
+          mostrarFormulario = false;
+        } else {
+          console.error('Erro ao adicionar comentário:', response.data.error);
+        }
+      } catch (error) {
+        console.error('Erro na requisição:', error);
+      }
+    }
+  }
+  
 
   return (
     <div>
@@ -35,9 +64,9 @@ function ReviewForm({ mostrarFormulario }) {
                 ></FaStar>
               ))}
             </div>
-            <textarea name="opnion" cols="30" rows="5" placeholder="Deixe um comentário..."></textarea>
+            <textarea name="opnion" cols="30" rows="5" placeholder="Deixe um comentário..." onChange={(e) => setComentario(e.target.value)}></textarea>
             <div className="button-group">
-              <button type="submit" className="submit review">
+              <button className="submit review" onClick={handleAvaliar}>
                 Enviar
               </button>
               <button className="submit cancel">Cancelar</button>

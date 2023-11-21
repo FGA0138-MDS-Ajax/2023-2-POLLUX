@@ -63,7 +63,7 @@ function Professor() {
 
   const mostrarOcultarFormulario = () => {
     setMostrarFormulario(!mostrarFormulario);
-  }
+}
 
   return (
     <div>
@@ -90,12 +90,16 @@ function Professor() {
         </div>
         <div className='reviews-label'>
           <h2>Todas as avaliações</h2>
-          <div className='review-button'  onClick={mostrarOcultarFormulario} >
+          <div className='review-button' onClick={mostrarOcultarFormulario} >
             <button>Avaliar</button>
             <IoMdAdd className='review-icon'/> 
           </div>
         </div>
-        <ReviewForm mostrarFormulario={mostrarFormulario}/>
+        <ReviewForm 
+          mostrarFormulario={mostrarFormulario}
+          userid={user._id}
+          teacherid={teacher._id}
+        />
       </div>
     </div>
   );

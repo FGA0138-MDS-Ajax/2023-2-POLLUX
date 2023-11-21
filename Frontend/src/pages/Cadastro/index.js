@@ -54,7 +54,7 @@ function Cadastro() {
           "http://localhost:3000/usuario", data
         );
         if (response.status === 200) { 
-            navigate('/Login');
+            navigate('/');
           } 
       } catch (error) {
         console.error(error); 
@@ -120,7 +120,7 @@ function Cadastro() {
 
           <p className="sign-text">
             Já possui uma conta?{" "}
-            <Link to="/Login" className="sign-link">
+            <Link to="/" className="sign-link">
               Entrar
             </Link>
           </p>

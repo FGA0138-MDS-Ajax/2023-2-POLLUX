@@ -36,7 +36,7 @@ function Professor() {
     var progressEndValue = 1;
 
     if(teacher.nota != null){
-      progressEndValue = teacher.nota;
+      progressEndValue =  Math.trunc(teacher.nota);
     }
 
     const speed = 15;

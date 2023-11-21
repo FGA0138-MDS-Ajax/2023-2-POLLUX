@@ -57,8 +57,8 @@ function ReviewForm({ mostrarFormulario, mostrarOcultarFormulario, userid, teach
     <div>
       {mostrarFormulario && (
         <div className="form-wrapper">
-          <h2>Escreva sua avaliação</h2>
-          <form action="#">
+          <div className='form-header'>
+            <h2>Escreva sua avaliação</h2>
             <div className="rating">
               <input type="number" name="rating" value={avaliacao} hidden></input>
               {[...Array(5)].map((_, idx) => (
@@ -70,6 +70,8 @@ function ReviewForm({ mostrarFormulario, mostrarOcultarFormulario, userid, teach
                 ></FaStar>
               ))}
             </div>
+          </div>
+          <form action="#">
             <textarea name="opnion" cols="30" rows="5" placeholder="Deixe um comentário..." onChange={(e) => setComentario(e.target.value)}></textarea>
             <div className="button-group">
               <button className="submit review" onClick={handleAvaliar}>

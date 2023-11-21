@@ -13,7 +13,7 @@ export default function AppRoutes() {
     return (
     <Router>
         <Routes>
-            <Route path="/Login" element={<Login></Login>}/>
+            <Route exact path="/" element={<Login></Login>}/>
             <Route path="/Cadastro" element={<Cadastro></Cadastro>}/>
             <Route path="/Home" element={<Home></Home>}></Route>
             <Route path='/Professor' element={<Professor></Professor>}></Route>

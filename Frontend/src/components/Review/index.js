@@ -1,7 +1,9 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 //styles
-import './styles.css'
+import './styles.css'; 
+import { FaStar } from 'react-icons/fa';
+import avatarUrls from '../../components/TeacherCard/avatarData.js';
 
 function Review({ avaliacaoId, nota, texto, data, userId}) {
 
@@ -26,27 +28,36 @@ function Review({ avaliacaoId, nota, texto, data, userId}) {
       console.error(error);
     }
   };
-   
+
+  const randomIndex = Math.floor(Math.random() * avatarUrls.length);
+  const randomAvatarUrl = avatarUrls[randomIndex];
 
   function formatarData(dataString) {
     const data = new Date(dataString);
-    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return data.toLocaleString('pt-BR', options);
-  }
-    
+}
+
   return (
     <div className='review-wrapper'>
+        <div className='review-avatar'>
+          <img src={randomAvatarUrl} alt='avatar' />
+        </div>
         <div className='review-body'>
           <div className='review-header'>
-              <span>{userData ? userData.nome : ''}</span>
-              <span>Nota: {nota}</span>
+              <h2>{userData ? userData.nome : 'Anônimo'}</h2>
+              <div className='rating'>  
+                {[...Array(5)].map((_, idx) => (
+                    <FaStar
+                        key={idx}
+                        className={`star ${idx < nota ? 'active' : ''}`}
+                    ></FaStar>
+                ))}
+              </div>
           </div>
           <div className='review-info'>
-              <span>Engenharia de {userData ? userData.curso : ''}</span>
-              <p><em>"{texto}"</em></p>
-          </div>
-          <div className='review-footer'>
               <span>{formatarData(data)}</span>
+              <p><em>"{texto}"</em></p>
           </div>
         </div>
     </div>

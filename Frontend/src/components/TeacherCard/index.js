@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate, navigate } from "react-router-dom";
 import './styles.css';
 import avatarUrls from './avatarData.js';
 
-function TeacherCard({ teacher }) {
+function TeacherCard({ teacher, user }) {
   const randomIndex = Math.floor(Math.random() * avatarUrls.length);
   const randomAvatarUrl = avatarUrls[randomIndex];
 
@@ -17,7 +17,7 @@ function TeacherCard({ teacher }) {
   const navigate = useNavigate();
   
   const handleClick = () => {
-    navigate('/professor', { state: { professor: teacher, profile: randomAvatarUrl } });
+    navigate('/professor', { state: { professor: teacher, profile: randomAvatarUrl, usuario: user } });
   }
 
   return (

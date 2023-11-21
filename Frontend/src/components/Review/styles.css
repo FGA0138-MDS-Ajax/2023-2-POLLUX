@@ -1,7 +1,80 @@
 .review-wrapper{
-    margin-top: 20px;
-    height: 180px;
+    display: flex;
+    justify-content: center;
+    margin: 17px 0px;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;    
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 12px;   
+    transition: 0.3s ease;
+    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    padding: 20px 30px; 
+}
+
+.review-wrapper:hover{
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
+.review-avatar{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1em;
+}
+
+.review-avatar img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.review-body{
+    width: 100%;
+    background-color: transparent;
+}
+
+.review-body *{
+    background-color: transparent;
+}
+
+.review-body .review-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.review-header .rating {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    grid-gap: 0.5rem;
+    font-size: 1.5rem;
+  }
+  
+.review-header .rating .star {
+    color: #aaa; 
+}
+
+.review-header .rating .star.active {
+    color: #FFBD13;
+}
+
+.review-header .rating .star:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.review-body .review-info span{
+    color: #aaa;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-right: 1em;
+}
+
+.review-body .review-info p{
+    font-size: 1rem;
+    margin-top: 2em;
+    font-weight: 500;
 }

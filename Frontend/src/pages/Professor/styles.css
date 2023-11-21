@@ -1,5 +1,5 @@
 .teacher-wrapper {
-  padding: 20vh 25vh 0 25vh;
+  padding: 15vh 25vh 0 25vh;
 }
 
 .teacher-header {
@@ -81,4 +81,48 @@
   font-size: 1.2em;
   color: #2B2D42;
   font-weight: 600;
+}
+
+.reviews-label{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.reviews-label h2{
+  font-size: 1.8em;
+  font-weight: 400;
+}
+
+.review-button{
+  display: flex;
+  background-color: #EF233C;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 7px;
+  border-radius: 5px;
+  transition: .3s ease;
+  color: #ededed;
+}
+
+.review-button:hover{
+  background-color: #D90429;
+  cursor: pointer; 
+
+}
+
+.review-button button{
+  color: #ededed; 
+  cursor: pointer;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  font-size: 1em;
+}
+
+.review-button .review-icon{
+  font-size: 1.2em;
+  background-color: transparent;
 }

@@ -19,3 +19,18 @@
   justify-content: flex-start;
   gap: 10px;
 }
+
+/* Estilizando a barra de rolagem */
+body::-webkit-scrollbar {
+  width: 12px; /* A largura da barra de rolagem */
+}
+
+/* Estilizando o pega-pedaço (thumb) da barra de rolagem */
+body::-webkit-scrollbar-thumb {
+  background-color: #888; /* Cor do pega-pedaço */
+}
+
+/* Fazendo a barra de rolagem sempre visível, mesmo sem overflow */
+body {
+  overflow-y: scroll;
+}

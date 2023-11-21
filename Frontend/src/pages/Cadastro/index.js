@@ -53,10 +53,8 @@ function Cadastro() {
         const response = await axios.post(
           "http://localhost:3000/usuario", data
         );
-        if (response.status === 200 && response.data.user) { 
-            localStorage.setItem('@userId', response.data.user._id);
-            console.log('ID do usuário:', response.data.user._id); 
-            navigate('/Home');
+        if (response.status === 200) { 
+            navigate('/');
           } 
       } catch (error) {
         console.error(error); 
@@ -122,7 +120,7 @@ function Cadastro() {
 
           <p className="sign-text">
             Já possui uma conta?{" "}
-            <Link to="/Login" className="sign-link">
+            <Link to="/" className="sign-link">
               Entrar
             </Link>
           </p>

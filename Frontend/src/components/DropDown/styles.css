@@ -1,4 +1,4 @@
-select{
+.eng-dropdown select{
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 5px;
     height: auto;
@@ -10,16 +10,16 @@ select{
     cursor: pointer
 }
 
-select:focus{
+.eng-dropdown select:focus{
     outline: none;
 }
 
-option{
+.eng-dropdown option{
     color: #2B2D42;
     padding: 5px;
 }
 
-option:checked {
+.eng-dropdown option:checked {
     background-color: #EF233C; /* Cor de fundo quando selecionado */
     color: #fff; /* Cor do texto quando selecionado */
 }

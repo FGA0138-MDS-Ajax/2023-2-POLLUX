@@ -4,10 +4,12 @@ import axios from 'axios';
 import { FaStar } from 'react-icons/fa';
 import './styles.css';
 
-function ReviewForm({ mostrarFormulario, userid, teacherid }) {
+function ReviewForm({ mostrarFormulario, mostrarOcultarFormulario, userid, teacherid }) {
   const [avaliacao, setAvaliacao] = useState(0);
-  const [comentario, setComentario] = useState('');
-  console.log(userid, teacherid)
+  const [comentario, setComentario] = useState('');  
+  const [enviado, setEnviado] = useState(false);
+  const [enviando, setEnviando] = useState(false);
+
 
   const handleStarClick = (idx) => {
     setAvaliacao(idx + 1);
@@ -17,35 +19,42 @@ function ReviewForm({ mostrarFormulario, userid, teacherid }) {
     // Defina avaliacao de volta para 0 quando mostrarFormulario muda
     if (!mostrarFormulario) {
       setAvaliacao(0);
+      setEnviado(false); // Reseta o estado de envio ao fechar o formulário
     }
   }, [mostrarFormulario]);
 
   const handleAvaliar = async (e) => {
     e.preventDefault();
-  
-    if (avaliacao !== 0 && comentario !== '') {
+
+    if (avaliacao !== 0 && comentario !== '' && !enviando) {
+      setEnviando(true);
+
       const data = {
         professorId: teacherid,
-        usuarioId: userid,  // Alterei para usuarioId, pois é usado no backend
+        usuarioId: userid,
         texto: comentario,
         nota: avaliacao,
       };
-  
+
       try {
         const response = await axios.post('http://localhost:3000/comentarios', data);
         
         if (response.data.success) {
-          console.log('Comentário adicionado com sucesso');
-          mostrarFormulario = false;
+          mostrarOcultarFormulario();
+      
+            window.location.reload();
+      
+
         } else {
           console.error('Erro ao adicionar comentário:', response.data.error);
         }
       } catch (error) {
         console.error('Erro na requisição:', error);
+      } finally{
+        setEnviando(false);
       }
     }
   }
-  
 
   return (
     <div>
@@ -69,7 +78,7 @@ function ReviewForm({ mostrarFormulario, userid, teacherid }) {
               <button className="submit review" onClick={handleAvaliar}>
                 Enviar
               </button>
-              <button className="submit cancel">Cancelar</button>
+              <button className="submit cancel" onClick={mostrarOcultarFormulario}>Cancelar</button>
             </div>
           </form>
         </div>

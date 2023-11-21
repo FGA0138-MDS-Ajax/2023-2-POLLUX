@@ -117,6 +117,7 @@ function Professor() {
         </div>
         <ReviewForm 
           mostrarFormulario={mostrarFormulario}
+          mostrarOcultarFormulario={mostrarOcultarFormulario}
           userid={user._id}
           teacherid={teacher._id}
         />

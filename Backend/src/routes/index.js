@@ -40,7 +40,7 @@ routes.get('/usuarios/:id', async (req, res) => {
 
 routes.post('/comentarios', async (req, res) => {
   const { professorId, usuarioId, texto, nota } = req.body;
-  const result = await adicionarComentario(professorId, usuarioId, texto, nota);
+  const result = await adicionarComentario(usuarioId, professorId, texto, nota);
   if (result) {
     res.status(200).send({ success: true, data: result });
   } else {
@@ -57,7 +57,6 @@ routes.post('/comentario/anonimo', async (req, res) => {
     res.status(500).json({ success: false, message: 'Erro ao adicionar comentário' });
   }
 });
-
 
 routes.get('/comentarios/professor/:id', async (req, res) => {
   const { id } = req.params;

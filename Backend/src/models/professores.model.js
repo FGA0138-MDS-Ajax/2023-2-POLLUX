@@ -64,7 +64,7 @@ const adicionarComentario = async (usuarioId, professorId, texto, nota) => {
 
     const updateResult = await updateProfessor({ professorId });
 
-    return { result, media, porcentagem };
+    return { result, media, porcentagem, updateResult };
   } catch (error) {
     console.error(error);
     return null;

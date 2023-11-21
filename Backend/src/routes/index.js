@@ -5,7 +5,8 @@ import {
   getAll, createUser, deleteUser, updateUser,
 } from '../controllers/usuariocontroller';
 import { getAllProfessors, findProfessorByName, adicionarComentario,
-  findComentariosByProfessorId, getAllAvaliacoes, adicionarComentarioAnonimo} from '../models/professores.model';
+         findComentariosByProfessorId, getAllAvaliacoes, 
+         adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor} from '../models/professores.model';
 import { findUserById } from '../models/usuario.model';
 const routes = new Router();
 
@@ -67,6 +68,26 @@ routes.get('/comentarios/professor/:id', async (req, res) => {
 routes.get('/avaliacoes', async (req, res) => {
   const avaliacoes = await getAllAvaliacoes();
   res.send(avaliacoes);
+});
+
+routes.get('/professor/:id/media', async (req, res) => {
+  const { id } = req.params;
+  const { media, porcentagem } = await calcularMediaNotas(id);
+  if (media !== null) {
+    res.status(200).json({ success: true, media, porcentagem });
+  } else {
+    res.status(500).json({ success: false, message: 'Erro ao calcular a média das notas' });
+  }
+});
+
+routes.put('/professor/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await updateProfessor({ professorId: id });
+  if (result) {
+    res.status(200).json({ success: true, data: result });
+  } else {
+    res.status(500).json({ success: false, message: 'Erro ao atualizar professor' });
+  }
 });
 
 

@@ -102,10 +102,46 @@ const adicionarComentarioAnonimo = async (professorId, texto, nota) => {
     return null;
   }
 }
+const calcularMediaNotas = async (professorId) => {
+  try {
 
+    await connectDB();
+    const avaliacoes = await db.collection('avaliacoes').find({ professorId: new ObjectId(professorId) }).toArray();
+    const soma = avaliacoes.reduce((acc, avaliacao) => acc + avaliacao.nota, 0);
+    const media = soma / avaliacoes.length;
+    const porcentagem = media * 20; 
+    
+    return { media, porcentagem };
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+const updateProfessor = async ({ professorId }) => {
+  try {
+    const result = await calcularMediaNotas(professorId);
+
+    if (!result) {
+      throw new Error('Error calculating media and porcentagem.');
+    }
+
+    const { porcentagem } = result;
+
+    await db.collection('professores').updateOne(
+      { _id: new ObjectId(professorId) },
+      { $set: { nota: porcentagem } }
+    );
+    console.log(result);
+    return { nota: porcentagem };
+  } catch (error) {
+    console.error(error.message);
+    return null;
+  }
+};
   
 
 export { getAllProfessors, findProfessorByName, adicionarComentario, 
-  findComentariosByProfessorId, getAllAvaliacoes, adicionarComentarioAnonimo };
+  findComentariosByProfessorId, getAllAvaliacoes, adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor };
 
 connectDB();

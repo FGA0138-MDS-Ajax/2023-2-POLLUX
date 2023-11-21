@@ -62,6 +62,8 @@ const adicionarComentario = async (usuarioId, professorId, texto, nota) => {
    
     const porcentagem = media * 20; 
 
+    const updateResult = await updateProfessor({ professorId });
+
     return { result, media, porcentagem };
   } catch (error) {
     console.error(error);
@@ -73,7 +75,6 @@ const adicionarComentarioAnonimo = async (professorId, texto, nota) => {
     await connectDB();
    
     const notaInt = parseInt(nota, 10);
-    
     
     if (notaInt < 0 || notaInt > 5) {
       throw new Error('A nota deve ser entre 0 e 5');
@@ -88,20 +89,21 @@ const adicionarComentarioAnonimo = async (professorId, texto, nota) => {
     };
     const result = await db.collection('avaliacoes').insertOne(comentario);
     
-    
     const avaliacoes = await db.collection('avaliacoes').find({ professorId: new ObjectId(professorId) }).toArray();
     const soma = avaliacoes.reduce((acc, avaliacao) => acc + avaliacao.nota, 0);
     const media = soma / avaliacoes.length;
     
-   
     const porcentagem = media * 20; 
 
-    return { result, media, porcentagem };
+   
+    const updateResult = await updateProfessor({ professorId });
+
+    return { result, media, porcentagem, updateResult };
   } catch (error) {
     console.error(error);
     return null;
   }
-}
+};
 const calcularMediaNotas = async (professorId) => {
   try {
 
@@ -132,7 +134,7 @@ const updateProfessor = async ({ professorId }) => {
       { _id: new ObjectId(professorId) },
       { $set: { nota: porcentagem } }
     );
-    console.log(result);
+    
     return { nota: porcentagem };
   } catch (error) {
     console.error(error.message);

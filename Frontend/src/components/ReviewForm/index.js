@@ -41,10 +41,7 @@ function ReviewForm({ mostrarFormulario, mostrarOcultarFormulario, userid, teach
         
         if (response.data.success) {
           mostrarOcultarFormulario();
-      
-            window.location.reload();
-      
-
+          window.location.reload();
         } else {
           console.error('Erro ao adicionar comentário:', response.data.error);
         }

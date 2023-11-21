@@ -1,7 +1,44 @@
 .review-wrapper{
     margin-top: 20px;
-    height: 180px;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.1);
     border-radius: 10px;    
+    transition: 0.3s ease;
+}
+
+.review-wrapper:hover{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+.review-body{
+    width: 100%;
+    padding: 10px 20px; 
+    background-color: transparent;
+}
+
+.review-body *{
+    background-color: transparent;
+}
+
+.review-body .review-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.review-body .review-info{
+    background-color: transparent;
+}
+
+.review-body .review-info p{
+    margin-top: 2em; 
+}
+
+
+.review-body .review-footer{
+    margin-top: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: end;
 }

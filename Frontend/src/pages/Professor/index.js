@@ -76,7 +76,7 @@ function Professor() {
   useEffect(() => {
     axios.get(`http://localhost:3000/comentarios/professor/${teacher._id}`)
       .then(response => {
-        setAvaliacoes(response.data);
+        setAvaliacoes(response.data.reverse());
       })
       .catch(error => {
         console.error('Error fetching comments:', error);

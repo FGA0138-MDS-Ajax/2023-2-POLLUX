@@ -93,7 +93,7 @@ const adicionarComentarioAnonimo = async (professorId, texto, nota) => {
     const soma = avaliacoes.reduce((acc, avaliacao) => acc + avaliacao.nota, 0);
     const media = soma / avaliacoes.length;
     
-    const porcentagem = media * 20; 
+    const porcentagem = Math.round(media * 20); 
 
    
     const updateResult = await updateProfessor({ professorId });
@@ -111,7 +111,7 @@ const calcularMediaNotas = async (professorId) => {
     const avaliacoes = await db.collection('avaliacoes').find({ professorId: new ObjectId(professorId) }).toArray();
     const soma = avaliacoes.reduce((acc, avaliacao) => acc + avaliacao.nota, 0);
     const media = soma / avaliacoes.length;
-    const porcentagem = media * 20; 
+    const porcentagem = Math.round(media * 20);
     
     return { media, porcentagem };
   } catch (error) {

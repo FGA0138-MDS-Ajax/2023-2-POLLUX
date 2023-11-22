@@ -48,7 +48,7 @@ function Login() {
     <div className="login">
       <div className="left-section">
         <div className="form-container">
-          <h1>Bem Vindo!</h1>
+          <h1>Bem vindo!</h1>
 
           <Input
             type="email"
@@ -80,7 +80,8 @@ function Login() {
       </div>
 
       <div className="right-section">
-        <img src={loginImage}></img>
+        <h1 className="gamatrack">GamaTrack</h1>
+        <p className="typing-text">Avalie seus professores</p>
       </div>
 
     </div>

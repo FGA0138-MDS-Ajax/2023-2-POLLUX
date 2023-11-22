@@ -6,16 +6,15 @@
     height: 100%;
     padding: 10em 2em;
     border-radius: 10px;
-    background-color: #aaa;
-    color:  #fff;
+    background-color: #8D99AE   ;
+    color:  #EDF2F4;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
     overflow: hidden;
 }
 .course-card:hover{
     width: 30%;
-    background-color: #7f8c8d;
-    color: red;
+    background-color: #2B2D42;
 }
 
 .course-card *{

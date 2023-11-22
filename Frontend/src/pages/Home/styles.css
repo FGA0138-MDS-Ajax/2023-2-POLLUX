@@ -66,16 +66,16 @@
 }
 
 /* Estilizando a barra de rolagem */
-body::-webkit-scrollbar {
+.home-wrapper::-webkit-scrollbar {
   width: 12px; /* A largura da barra de rolagem */
 }
 
 /* Estilizando o pega-pedaço (thumb) da barra de rolagem */
-body::-webkit-scrollbar-thumb {
+.home-wrapper::-webkit-scrollbar-thumb {
   background-color: #888; /* Cor do pega-pedaço */
 }
 
 /* Fazendo a barra de rolagem sempre visível, mesmo sem overflow */
-body {
+.home-wrapper {
   overflow-y: scroll;
 }

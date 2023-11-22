@@ -128,7 +128,8 @@ function Cadastro() {
         </div>
       </div>
       <div className="right-section">
-        <img src={loginImage}></img>
+        <h1>GamaTrack</h1>
+        <p>Avalie seus professores</p>
       </div>
     </div>
   );

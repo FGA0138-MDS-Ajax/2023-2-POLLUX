@@ -4,6 +4,7 @@ import axios from "axios";
 import Header from "../../components/Header";
 import SearchBar from "../../components/SearchBar";
 import TeacherCard from "../../components/TeacherCard";
+import CourseCard from "../../components/CourseCard";
 //styles
 import "./styles.css";
  
@@ -11,6 +12,7 @@ function Home() {
   //recupera os dados do usuário logado
   const userId = localStorage.getItem('@userId');
   const [userData, setUserData] = useState(null);
+  const [value, setValue] = useState('');
   
   useEffect(() => {
     if (userId) {
@@ -32,13 +34,13 @@ function Home() {
     }
   };
    
- 
   //armazena o professor pesquisado
   const [teachers, setTeachers] = useState([]);
   
   const handleInputChange = (e) => {
     e.preventDefault();
-    const { value } = e.target;
+    const value = e.target.value;
+    setValue(value);
 
     if (!value) {
       setTeachers([]);
@@ -66,17 +68,41 @@ function Home() {
             placeholder="Digite o nome do professor"
           />
         </div>
-        <div className="search-bar-results">
-            <div className="teacher-grid">
-              {teachers.map((teacher, index) => (
-                <TeacherCard
-                  key={index}
-                  teacher={teacher}
-                  user={userData}
-                />
-              ))}
-            </div> 
+        <div className={`courses-container ${ value ? 'hidden' : ''}`}>
+          <div class="linha-divisoria">
+            <span>ou pesquise por curso</span>
+          </div>
+          <div className="courses-wrapper">
+            <CourseCard
+              coursename="Software"
+            />
+            <CourseCard 
+              coursename="Aeroespacial"
+            />
+            <CourseCard 
+              coursename="Energia"
+            />
+            <CourseCard
+              coursename="Automotiva"
+            />
+            <CourseCard 
+              coursename="Eletrônica"
+            />
+          </div>
         </div>
+        { value && (
+          <div className="search-bar-results">
+              <div className="teacher-grid">
+                {teachers.map((teacher, index) => (
+                  <TeacherCard
+                    key={index}
+                    teacher={teacher}
+                    user={userData}
+                  />
+                ))}
+              </div> 
+          </div>
+        )}
       </div>
     </div>
   );

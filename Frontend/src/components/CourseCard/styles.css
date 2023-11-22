@@ -1,0 +1,28 @@
+.course-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%; 
+    height: 100%;
+    padding: 10em 2em;
+    border-radius: 10px;
+    background-color: #aaa;
+    color:  #fff;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+}
+.course-card:hover{
+    width: 30%;
+    background-color: #7f8c8d;
+    color: red;
+}
+
+.course-card *{
+    background-color: transparent;
+}
+
+.course-card .course-name{
+    font-weight: 600;
+    text-align: center;
+}

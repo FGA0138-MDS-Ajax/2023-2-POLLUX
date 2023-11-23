@@ -25,6 +25,13 @@ function Professor() {
     return nomeFormatado;
   }
 
+ 
+  // Exemplo de uso:
+  const nomeMateria = "Exemplo de Nome da Matéria";
+  const nomeFormatado = formatarNomeMateria(nomeMateria);
+  console.log(nomeFormatado); // Saída: "ENM"
+  
+
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
 
   const mostrarOcultarFormulario = () => {

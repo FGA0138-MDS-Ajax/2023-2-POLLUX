@@ -1,11 +1,12 @@
 import React from "react";
 //styles
-import "./styles.css";
+import "../SubjectsCaurosel/styles.css";
+
 
 function Subject() {
     return (
         <div className="subject-container">
-            <h1>Matéria</h1>
+            <h3 className="subject-name">Matéria</h3>
         </div>
     );
 }

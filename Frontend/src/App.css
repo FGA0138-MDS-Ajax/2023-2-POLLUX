@@ -18,4 +18,8 @@ body {
       monospace;
   }
 
+  ::-webkit-scrollbar {
+    width: 0; /* Largura da barra de rolagem */
+} 
+
 

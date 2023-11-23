@@ -75,18 +75,23 @@ function Home() {
           <div className="courses-wrapper">
             <CourseCard
               coursename="Software"
+              user={userData}
             />
             <CourseCard 
               coursename="Aeroespacial"
+              user={userData}
             />
             <CourseCard 
               coursename="Energia"
+              user={userData}
             />
             <CourseCard
               coursename="Automotiva"
+              user={userData}
             />
             <CourseCard 
               coursename="Eletrônica"
+              user={userData}
             />
           </div>
         </div>

@@ -105,7 +105,7 @@ function Professor() {
           </div>
           <div className="teacher-rating">
             <CircularProgress />
-            <span className="avaliations-number">0 avaliações</span>
+            <span className="avaliations-number">{avaliacoes.length} avaliações</span>
           </div>
         </div>
         <div className='reviews-label'>

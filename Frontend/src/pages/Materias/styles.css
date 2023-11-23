@@ -1,0 +1,15 @@
+.subjects-wrapper{
+    padding: 15vh 25vh 0 25vh;
+}
+
+.subjects-wrapper .course-name{
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.subjects-wrapper h3{
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}

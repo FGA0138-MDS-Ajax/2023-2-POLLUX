@@ -1,0 +1,7 @@
+.carousel{
+    display: flex;
+    white-space: nowrap;
+    overflow: scroll;
+    scroll-behavior: smooth; 
+    gap: 1em;
+}

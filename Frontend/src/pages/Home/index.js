@@ -37,8 +37,6 @@ function Home() {
     }
   };
 
-  //armazena o professor pesquisado
-
   const handleInputChange = (e) => {
     e.preventDefault();
     const value = e.target.value;
@@ -105,7 +103,7 @@ function Home() {
         {!loading && value && teachers.length === 0 && (
           <div className="empty-container">
             <img src={bat404}></img>
-            <span>Ops! Nenhum professor encontrado com esse nome. <br/>Tem certeza que sua busca está correta?</span>
+            <span>Ops! Nenhum professor encontrado com esse nome.<br/>Tem certeza que sua busca está correta?</span>
           </div>
         )}
         {!loading && value && teachers.length > 0 && (

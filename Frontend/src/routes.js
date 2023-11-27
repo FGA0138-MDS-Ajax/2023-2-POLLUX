@@ -10,6 +10,7 @@ import Cadastro from "./pages/Cadastro";
 import Home from "./pages/Home"
 import Professor from "./pages/Professor";
 import Materias from "./pages/Materias";
+import ProfessoresMateria from "./pages/ProfessoresMateria";
 
 export default function AppRoutes() {
     return (
@@ -20,6 +21,7 @@ export default function AppRoutes() {
             <Route path="/Home" element={<Home></Home>}></Route>
             <Route path='/Professor' element={<Professor></Professor>}></Route>
             <Route path='/Materias' element={<Materias></Materias>}></Route>
+            <Route path='/ProfessoresMateria' element={<ProfessoresMateria></ProfessoresMateria>}></Route>
         </Routes>       
     </Router>
     );

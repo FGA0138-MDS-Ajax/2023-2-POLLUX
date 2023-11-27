@@ -23,14 +23,7 @@ function Professor() {
       (palavra) => palavra.charAt(0).toUpperCase() + palavra.slice(1)
     ).join(' ');
     return nomeFormatado;
-  }
-
- 
-  // Exemplo de uso:
-  const nomeMateria = "Exemplo de Nome da Matéria";
-  const nomeFormatado = formatarNomeMateria(nomeMateria);
-  console.log(nomeFormatado); // Saída: "ENM"
-  
+  }  
 
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
 

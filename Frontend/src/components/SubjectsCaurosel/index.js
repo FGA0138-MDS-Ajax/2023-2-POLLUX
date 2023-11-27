@@ -6,7 +6,7 @@ import "./styles.css";
 //importar arrows para o carrusel do react-icons
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-function SubjectsCarousel() {
+function SubjectsCarousel({ user }) {
     const carousel = useRef(null);
 
     const swipeLeft = (e) => {
@@ -18,22 +18,41 @@ function SubjectsCarousel() {
         e.preventDefault();
         carousel.current.scrollLeft -= carousel.current.offsetWidth;
     };
-  
-
+    console.log(user ? 'SUBJECTS CAROUSEL OK' + user.nome : '')
     return (
         <div className="carousel-wrapper">
             <IoIosArrowBack className="arrow" onClick={swipeRight}/>
             <div className="carousel" ref={carousel}>
-                <Subject/>
-                <Subject/>
-                <Subject/>
-                <Subject/>
-                <Subject/>
-                <Subject/>
-                <Subject/>
-                <Subject/>
-                <Subject/>
-                <Subject/>
+                <Subject>
+                    user={user.nome}
+                </Subject>
+                <Subject>
+                    user={user}
+                </Subject>
+                <Subject>
+                    user={user}
+                </Subject>
+                <Subject>
+                    user={user}
+                </Subject>
+                <Subject>
+                    user={user}
+                </Subject>
+                <Subject>
+                    user={user}
+                </Subject>
+                <Subject>
+                    user={user}
+                </Subject>
+                <Subject>
+                    user={user}
+                </Subject>
+                <Subject>
+                    user={user}
+                </Subject>
+                <Subject>
+                    user={user}
+                </Subject>
             </div>
             <IoIosArrowForward className="arrow" onClick={swipeLeft}/>
         </div>

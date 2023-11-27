@@ -5,7 +5,6 @@ import "./styles.css";
 
 function CourseCard({coursename, user}){
     const navigate = useNavigate();
-
     function handleClick(){
         navigate("/materias", {state: {coursename: coursename, user: user}});
     }

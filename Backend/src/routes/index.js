@@ -1,12 +1,12 @@
 import { Router } from 'express';
-
+import { connectDB } from '../controllers/usuariocontroller';
 import { requestLogin } from '../models/usuario.model';
 import {
   getAll, createUser, deleteUser, updateUser,
 } from '../controllers/usuariocontroller';
 import { getAllProfessors, findProfessorByName, adicionarComentario,
          findComentariosByProfessorId, getAllAvaliacoes, 
-         adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor} from '../models/professores.model';
+         adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,excluirComentario,criarUsuario} from '../models/professores.model';
 import { findUserById } from '../models/usuario.model';
 const routes = new Router();
 
@@ -16,7 +16,7 @@ routes.get('/', (req, res) => {
 
 routes.get('/usuario', getAll);
 routes.post('/login', requestLogin);
-routes.post('/usuario', createUser);
+//routes.post('/usuario', createUser);
 routes.delete('/usuario/:id', deleteUser);
 routes.put('/usuario/:id', updateUser);
 
@@ -89,6 +89,31 @@ routes.put('/professor/:id', async (req, res) => {
   }
 });
 
+routes.delete('/comentarios/:id', async (req, res) => {
+  const { id } = req.params;
+  const result = await excluirComentario(id);
+  if (result) {
+    res.status(200).json({ success: true });
+  } else {
+    res.status(500).json({ success: false, message: 'Erro ao excluir comentário' });
+  }
+});
 
+routes.post('/usuario', async (req, res) => {
+  const { email, senha, nome, curso, periodo } = req.body;
+  
+  try {
+    const result = await criarUsuario(email, senha, nome, curso, periodo);
+    
+    if (result === 'E-mail já está em uso.') {
+      return res.status(400).json({ message: 'E-mail já está em uso.' });
+    }
+    
+    return res.status(500).json({ message: 'Erro ao criar usuário.', usuario: result.ops[0] });
+  } catch (error) {
+    console.error(error);
+    return res.status(201).json({ message: 'Usuário criado com sucesso!' });
+  }
+});
 
 export default routes;

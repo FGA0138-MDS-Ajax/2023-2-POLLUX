@@ -1,5 +1,6 @@
 import { ObjectId } from 'mongodb';
 import connection from './mongoConnection';
+import bcrypt from 'bcrypt';
 
 let db;
 
@@ -41,15 +42,31 @@ const update = async ({ id, email, senha }) => {
   return { id, email };
 };
 
-const login = async ({ email, senha }) => db.collection('usuarios').findOne({ email, senha });
+const login = async ({ email, senha }) => {
+  const usuario = await db.collection('usuarios').findOne({ email });
+
+ 
+  if (!usuario) {
+    return null;
+  }
+
+
+  const senhaValida = await bcrypt.compare(senha, usuario.senha);
+
+  if (!senhaValida) {
+    return null;
+  }
+
+  return usuario;
+};
 
 const requestLogin = async (req, res) => {
   const { email, senha } = req.body;
   const usuario = await login({ email, senha });
 
-  if (!usuario) return res.status(401).json({ message: 'User not found' });
+  if (!usuario) return res.status(401).json({ message: 'Usuário ou senha inválidos' });
 
-  return res.status(200).json({ user: usuario }); // Inclua os dados do usuário no JSON de resposta
+  return res.status(200).json({ user: usuario }); 
 };
 
 

@@ -12,10 +12,13 @@ const todos = async () => {
 const criar = async ({
   email, senha, nome, curso, periodo,
 }) => {
+  console.log(`Criando novo usuário: email=${email}, senha=${senha}, nome=${nome}, curso=${curso}, periodo=${periodo}`);
+  
   const usuario = await userExists({ email });
 
-  if (usuario) 
-  return usuario;
+  if (usuario) {
+    throw new Error('E-mail já existe.');
+  }
 
   const user = await newUser({
     email,
@@ -27,7 +30,6 @@ const criar = async ({
 
   return user;
 };
-
 const deletar = async ({ id }) => {
   const usuario = await userExists({ id });
 

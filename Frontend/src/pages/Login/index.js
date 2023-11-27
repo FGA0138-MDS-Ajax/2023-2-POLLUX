@@ -33,7 +33,6 @@ function Login() {
         if (response.status === 200 && response.data.user) { 
           setUser({userId: response.data.user._id, userName:  response.data.user.nome, userCurso: response.data.user.curso});
           localStorage.setItem('@userId', response.data.user._id);
-          console.log('ID do usuário:', response.data.user._id); // Imprime o ID do usuário no console
           navigate('/Home');
         } 
 

@@ -33,14 +33,14 @@ function Cadastro() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
+  
     if (email !== "" && senha !== "") {
-      if (senha != confirmedSenha) {
+      if (senha !== confirmedSenha) {
         setError("As senhas não coincidem.");
         setErrorPassword(true);
         return;
       }
-
+  
       const data = {
         email: email,
         senha: senha,
@@ -48,22 +48,24 @@ function Cadastro() {
         curso: curso,
         periodo: periodo,
       };
-
+  
       try {
-        const response = await axios.post(
-          "http://localhost:3000/usuario", data
-        );
-        if (response.status === 200) { 
-            navigate('/');
-          } 
+        const response = await axios.post("http://localhost:3000/usuario", data);
+        if (response.status === 201) {
+          // Redireciona o usuário para "/"
+          alert("Usuário criado com sucesso!");
+          navigate('/');
+        } 
       } catch (error) {
-        console.error(error); 
+        console.error(error);
+        setError("Este email já está registrado. Tente outro.");
       }
     } else {
-      setErrorPassword(false); 
+      setErrorPassword(false);
       setError("Preencha todos os campos.");
     }
   };
+  
 
   return (
     <div className="login">

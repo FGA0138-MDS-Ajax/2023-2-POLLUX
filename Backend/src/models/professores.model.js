@@ -158,6 +158,30 @@ const criarUsuario = async (email, senha, nome, curso, periodo) => {
   }
 };
 
+const autenticarUsuario = async (email, senha) => {
+  try {
+    await connectDB();
+    
+    
+    const usuario = await db.collection('usuarios').findOne({ email });
+    if (!usuario) {
+      return 'Usuário não encontrado.';
+    }
+    
+    
+    const senhaValida = await bcrypt.compare(senha, usuario.senha);
+    if (!senhaValida) {
+      return 'Senha inválida.';
+    }
+    
+   
+    return usuario;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 const calcularMediaNotas = async (professorId) => {
   try {
 
@@ -199,6 +223,6 @@ const updateProfessor = async ({ professorId }) => {
 
 export { getAllProfessors, findProfessorByName, adicionarComentario, 
   findComentariosByProfessorId, getAllAvaliacoes, 
-  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario };
+  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario, autenticarUsuario };
 
 connectDB();

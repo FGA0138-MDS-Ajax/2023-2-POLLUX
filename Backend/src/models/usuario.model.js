@@ -1,5 +1,6 @@
 import { ObjectId } from 'mongodb';
 import connection from './mongoConnection';
+import bcrypt from 'bcrypt';
 
 let db;
 
@@ -14,25 +15,20 @@ const getAll = async () => db.collection('usuarios').find().limit(50).toArray();
 const newUser = async ({
   email, senha, nome, curso, periodo,
 }) => {
-  console.log(`Criando novo usuário: email=${email}, senha=${senha}, nome=${nome}, curso=${curso}, periodo=${periodo}`);
-  
   const user = await db.collection('usuarios').insertOne({
     email, senha, nome, curso, periodo,
   });
-  
   const { insertedId: id } = user;
   return { email, _id: id };
 };
 
 const userExists = async ({ email, id }) => {
-  console.log(`Verificando se o usuário existe: email=${email}, id=${id}`);
   let user = null;
   if (id) {
     user = await db.collection('usuarios').findOne({ _id: new ObjectId(id) });
-  } else if (email) {
+  } else {
     user = await db.collection('usuarios').findOne({ email });
   }
-  console.log(`Usuário encontrado: ${JSON.stringify(user)}`);
   return user;
 };
 
@@ -46,15 +42,31 @@ const update = async ({ id, email, senha }) => {
   return { id, email };
 };
 
-const login = async ({ email, senha }) => db.collection('usuarios').findOne({ email, senha });
+const login = async ({ email, senha }) => {
+  const usuario = await db.collection('usuarios').findOne({ email });
+
+ 
+  if (!usuario) {
+    return null;
+  }
+
+
+  const senhaValida = await bcrypt.compare(senha, usuario.senha);
+
+  if (!senhaValida) {
+    return null;
+  }
+
+  return usuario;
+};
 
 const requestLogin = async (req, res) => {
   const { email, senha } = req.body;
   const usuario = await login({ email, senha });
 
-  if (!usuario) return res.status(401).json({ message: 'User not found' });
+  if (!usuario) return res.status(401).json({ message: 'Usuário ou senha inválidos' });
 
-  return res.status(200).json({ user: usuario }); // Inclua os dados do usuário no JSON de resposta
+  return res.status(200).json({ user: usuario }); 
 };
 
 

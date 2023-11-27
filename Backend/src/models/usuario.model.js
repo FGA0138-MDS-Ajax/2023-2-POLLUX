@@ -14,20 +14,25 @@ const getAll = async () => db.collection('usuarios').find().limit(50).toArray();
 const newUser = async ({
   email, senha, nome, curso, periodo,
 }) => {
+  console.log(`Criando novo usuário: email=${email}, senha=${senha}, nome=${nome}, curso=${curso}, periodo=${periodo}`);
+  
   const user = await db.collection('usuarios').insertOne({
     email, senha, nome, curso, periodo,
   });
+  
   const { insertedId: id } = user;
   return { email, _id: id };
 };
 
 const userExists = async ({ email, id }) => {
+  console.log(`Verificando se o usuário existe: email=${email}, id=${id}`);
   let user = null;
   if (id) {
     user = await db.collection('usuarios').findOne({ _id: new ObjectId(id) });
-  } else {
+  } else if (email) {
     user = await db.collection('usuarios').findOne({ email });
   }
+  console.log(`Usuário encontrado: ${JSON.stringify(user)}`);
   return user;
 };
 

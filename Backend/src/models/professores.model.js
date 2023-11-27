@@ -1,5 +1,6 @@
 import connection from './mongoConnection';
 import { ObjectId } from 'mongodb';
+import bcrypt from 'bcrypt';
 
 let db;
 
@@ -104,6 +105,59 @@ const adicionarComentarioAnonimo = async (professorId, texto, nota) => {
     return null;
   }
 };
+
+const excluirComentario = async (_Id) => {
+  try {
+    await connectDB();
+    
+    const result = await db.collection('avaliacoes').deleteOne({ _id: new ObjectId(_Id) });
+    
+    if (result.deletedCount === 0) {
+      throw new Error('Comentário não encontrado.');
+    }
+    
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+const criarUsuario = async (email, senha, nome, curso, periodo) => {
+  try {
+    await connectDB();
+    
+    // Verificar se o e-mail já existe
+    const usuarioExistente = await db.collection('usuarios').findOne({ email });
+    if (usuarioExistente) {
+      return 'E-mail já está em uso.';
+    }
+    
+    // Criptografar a senha
+    const saltRounds = 10;
+    const senhaHash = await bcrypt.hash(senha, saltRounds);
+    
+    // Criar novo usuário
+    const usuario = {
+      _id: new ObjectId(),
+      email,
+      senha: senhaHash,
+      nome,
+      curso,
+      periodo,
+      dataCriacao: new Date(),
+    };
+    
+    // Inserir o usuário no banco de dados
+    const result = await db.collection('usuarios').insertOne(usuario);
+    
+    return result;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 const calcularMediaNotas = async (professorId) => {
   try {
 
@@ -144,6 +198,7 @@ const updateProfessor = async ({ professorId }) => {
   
 
 export { getAllProfessors, findProfessorByName, adicionarComentario, 
-  findComentariosByProfessorId, getAllAvaliacoes, adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor };
+  findComentariosByProfessorId, getAllAvaliacoes, 
+  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario };
 
 connectDB();

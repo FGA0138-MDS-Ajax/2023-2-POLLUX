@@ -2,6 +2,7 @@
 import {
   todos, criar, deletar, atualizar,
 } from '../services/usuarioservices';
+import bcrypt from 'bcrypt';
 
 const getAll = async (req, res) => {
   const users = await todos();
@@ -19,6 +20,8 @@ const getAll = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
+  console.log(req.body);
+
   const {
     email,
     senha,
@@ -27,10 +30,52 @@ const createUser = async (req, res) => {
     periodo
   } = req.body;
 
-  const { email: mail, _id } = await criar({
-    email, senha, nome, curso, periodo,
-  });
-  return res.status(200).json({ mail, _id });
+  console.log(`Criando novo usuário: email=${email}, senha=${senha}, nome=${nome}, curso=${curso}, periodo=${periodo}`);
+
+  try {
+    const { email: mail, _id } = await criar({
+      email, senha, nome, curso, periodo,
+    });
+    return res.status(200).json({ mail, _id });
+  } catch (error) {
+    // Envia uma resposta de erro ao cliente
+    return res.status(400).json({ error: error.message });
+  }
+};
+
+const criarUsuario = async (email, senha, nome, curso, periodo) => {
+  try {
+    await connectDB();
+    
+    // Verificar se o e-mail já existe
+    const usuarioExistente = await db.collection('usuarios').findOne({ email });
+    if (usuarioExistente) {
+      return 'E-mail já está em uso.';
+    }
+    
+    // Criptografar a senha
+    const saltRounds = 10;
+    const senhaHash = await bcrypt.hash(senha, saltRounds);
+    
+    // Criar novo usuário
+    const usuario = {
+      _id: new ObjectId(),
+      email,
+      senha: senhaHash,
+      nome,
+      curso,
+      periodo,
+      dataCriacao: new Date(),
+    };
+    
+    // Inserir o usuário no banco de dados
+    const result = await db.collection('usuarios').insertOne(usuario);
+    
+    return result;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 };
 
 const deleteUser = async (req, res) => {
@@ -50,5 +95,5 @@ const updateUser = async (req, res) => {
 const login = async () => null;
 
 export {
-  getAll, login, createUser, deleteUser, updateUser,
+  getAll, login, createUser, deleteUser, updateUser, criarUsuario 
 };

@@ -30,7 +30,7 @@
     color: #EDF2F4;
     padding: 2.7em 6em;
     cursor: pointer;
-    width: calc((100% / 4) - 1em); /* Ajustado para exibir apenas 3 matérias */
+    width: calc((100% / 3) - 1em); /* Ajustado para exibir apenas 3 matérias */
     border-radius: 8px;
     transition: 0.3s ease-out;
     margin: 0 0.5em;
@@ -45,8 +45,7 @@
 }
 
 .subject-container .subject-name{
-    font-size: 1.4rem;
-    font-weight: 600;
+    max-width: 20ch; /* Substitua por seu valor desejado */
 }
 
 

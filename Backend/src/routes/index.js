@@ -117,7 +117,6 @@ routes.post('/usuario', async (req, res) => {
   }
 });
 
-
 routes.get('/materias/:id', async (req, res) => {
   const { id } = req.params;
   try {

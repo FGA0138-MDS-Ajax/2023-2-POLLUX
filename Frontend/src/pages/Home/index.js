@@ -69,28 +69,33 @@ function Home() {
           <SearchBar onChange={handleInputChange} placeholder="Digite o nome do professor" />
         </div>
         <div className={`courses-container ${value ? 'hidden' : ''}`}>
-          <div class="linha-divisoria">
+          <div className="linha-divisoria">
             <span>ou pesquise por curso</span>
           </div>
           <div className="courses-wrapper">
             <CourseCard
               coursename="Software"
+              courseId="65602ef83c98a94616db5f06"
               user={userData}
             />
             <CourseCard 
               coursename="Aeroespacial"
+              courseId="65602ef83c98a94616db5f02"
               user={userData}
             />
             <CourseCard 
               coursename="Energia"
+              courseId="65602ef83c98a94616db5f05"
               user={userData}
             />
             <CourseCard
               coursename="Automotiva"
+              courseId="65602ef83c98a94616db5f03"
               user={userData}
             />
             <CourseCard 
               coursename="Eletrônica"
+              courseId="65602ef83c98a94616db5f04"
               user={userData}
             />
           </div>

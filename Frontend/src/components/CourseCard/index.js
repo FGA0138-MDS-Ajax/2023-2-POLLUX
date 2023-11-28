@@ -3,10 +3,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 //styles
 import "./styles.css";
 
-function CourseCard({coursename, user}){
+function CourseCard({coursename, user, courseId}){
     const navigate = useNavigate();
     function handleClick(){
-        navigate("/materias", {state: {coursename: coursename, user: user}});
+        navigate("/materias", {state: {coursename: coursename, user: user, courseId: courseId}});
     }
 
     return(

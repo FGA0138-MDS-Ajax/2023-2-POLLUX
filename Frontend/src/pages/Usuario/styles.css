@@ -1,0 +1,21 @@
+.user-wrapper {
+    padding: 15vh 25vh 0 25vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-wrapper h1{
+    font-size: 2em;
+    font-weight: 500;
+    color: #2B2D42; 
+    line-height: 1.2em;
+    text-transform: uppercase;
+}
+
+.user-wrapper .linha-divisoria {
+    width: 100%;
+    height: 1px; /* A espessura da linha */
+    background-color: rgba(0,0,0,0.1) /* Cor da linha */
+}
+

@@ -66,7 +66,6 @@ header .visible-list {
     box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, .2);
     text-align: right;
     font-size: 1em;
-    min-width: 140px;
     padding: 10px;
     display: none;
     user-select: none;
@@ -76,12 +75,15 @@ header .visible-list {
     display: block;
 }
 
-header .visible-list li{
+header .visible-list .dropdown-link{
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
     background-color: transparent;
     padding: 10px;
     transition: 0.3s ease;
+    color: #fff;
 }
-header .visible-list li:hover{
+header .visible-list .dropdown-link:hover{
     color: #EF233C;
 }

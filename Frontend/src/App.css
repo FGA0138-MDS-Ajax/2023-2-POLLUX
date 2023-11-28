@@ -5,17 +5,18 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'MinhaFonte';
+  src: url('./assets/fonts/Inter.ttf') format('truetype');
+}
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
-  }
+  font-family: 'MinhaFonte';
+}
+
+
+::-webkit-scrollbar {
+  width: 0; /* Largura da barra de rolagem */
+} 
 
 

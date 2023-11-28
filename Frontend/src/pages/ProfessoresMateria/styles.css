@@ -1,0 +1,28 @@
+.teachers-subject-wrapper {
+    padding: 15vh 25vh 0 25vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.teachers-subject-wrapper h1{
+    font-size: 2em;
+    font-weight: 500;
+    color: #2B2D42; 
+    line-height: 1.2em;
+    text-transform: uppercase;
+}
+
+.teachers-subject-wrapper .linha-divisoria {
+    width: 100%;
+    height: 1px; /* A espessura da linha */
+    background-color: rgba(0,0,0,0.1) /* Cor da linha */
+}
+
+.teachers-subject-wrapper .teacher-grid{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;    
+}

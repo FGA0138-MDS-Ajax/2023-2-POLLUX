@@ -1,13 +1,14 @@
 import { Router } from 'express';
-import { connectDB } from '../controllers/usuariocontroller';
+
 import { requestLogin } from '../models/usuario.model';
 import {
-  getAll, createUser, deleteUser, updateUser,
+  getAll, deleteUser, updateUser,
 } from '../controllers/usuariocontroller';
 import { getAllProfessors, findProfessorByName, adicionarComentario,
          findComentariosByProfessorId, getAllAvaliacoes, 
-         adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,excluirComentario,criarUsuario} from '../models/professores.model';
+         adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,excluirComentario,criarUsuario, findProfessorById} from '../models/professores.model';
 import { findUserById } from '../models/usuario.model';
+import {findMateriaById, getAllMaterias} from'../models/materia.model';
 const routes = new Router();
 
 routes.get('/', (req, res) => {
@@ -113,6 +114,41 @@ routes.post('/usuario', async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(201).json({ message: 'Usuário criado com sucesso!' });
+  }
+});
+
+routes.get('/materias/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const materia = await findMateriaById(id);
+    if (materia) {
+      res.json(materia);
+    } else {
+      res.status(404).json({ error: 'Matéria não encontrada.' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao buscar matéria.' });
+  }
+});
+
+routes.get('/materias', async (req, res) => {
+  try {
+    const materias = await getAllMaterias();
+    res.json(materias);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao buscar matérias.' });
+  }
+});
+
+routes.get('/professores/:id', async (req, res) => {
+  const { id } = req.params;
+  const professor = await findProfessorById(id);
+  if (professor) {
+    res.status(200).json({ success: true, data: professor });
+  } else {
+    res.status(500).json({ success: false, message: 'Erro ao procurar professor' });
   }
 });
 

@@ -52,15 +52,53 @@
 
 .right-section {
     width: 45vw;
-    right: 0;
+    height: 100%;
+    border-radius: 100px 0 0 100px;
+    background-color: #D90429  ;
+    color: #EDF2F4;
     z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 13em 0 0 5em;
 }
 
-.right-section img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+.right-section *{
+    background-color: transparent;
 }
+
+.right-section h1{
+    font-size: 4rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+
+}
+
+.right-section p{
+    margin-top: 20px;
+    width: 350px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    font-size: 1.4rem;
+    
+    animation: typing 3s steps(30), blink 0.5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #EDF2F4;
+}
+
+@keyframes typing {
+    from {
+      width: 0
+    }
+  }
+  
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+ 
 
 .shake {
     animation: shake 1s;

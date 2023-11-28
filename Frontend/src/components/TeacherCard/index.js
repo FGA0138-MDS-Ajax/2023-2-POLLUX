@@ -13,17 +13,21 @@ function TeacherCard({ teacher, user }) {
     const formattedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
     return formattedWords.join(' ');
   }
-  
+    
   const navigate = useNavigate();
   
   const handleClick = () => {
     navigate('/professor', { state: { professor: teacher, profile: randomAvatarUrl, usuario: user } });
   }
 
+  console.log(teacher)
+
   return (
     <div className='card-wrapper' onClick={handleClick}>
       <img src={randomAvatarUrl} alt="Professor"/>
-      <h2>{formatNome(teacher.nome)}</h2>
+      <div className='card-info'>
+        <h2>{formatNome(teacher.nome)}</h2>
+      </div>
     </div>
   );
 }

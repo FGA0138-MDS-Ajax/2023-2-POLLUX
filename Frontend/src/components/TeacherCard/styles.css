@@ -1,6 +1,5 @@
 .card-wrapper {
-  width: calc(25% - 10px); /* Three cards per row with 10px spacing */
-  padding: 15px;
+  width: calc(25% - 10px); 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   border-radius: 20px;
@@ -10,15 +9,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center
+  text-align: center;
+  margin: 5px;
+}
+
+.card-wrapper * {
+  background-color: transparent;
 }
 
 .card-wrapper:hover{
   background-color:  rgba(0, 0, 0, 0.2);
-}
-
-.card-image-wrapper{
-  background-color: transparent;
 }
 
 .card-wrapper img {
@@ -27,20 +27,20 @@
   background-color: transparent;
 }
 
+.card-info{
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  margin-top: 10px;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+}
+
 .card-wrapper h2{
   font-size: 1.2em;
   font-weight: 600;
   color: #2B2D42; 
   line-height: 1.2em;
-  margin-bottom: 10px;
-  background-color: transparent;
-}
-
-.card-wrapper p{
-  font-weight: 500;
-  opacity: 0.5;
-  font-size: 0.9em;
-  line-height: 1.2em;
-  margin-bottom: 10px;
-  background-color: transparent;
 }

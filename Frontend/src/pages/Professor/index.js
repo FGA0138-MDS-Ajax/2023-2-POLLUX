@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { useUserContext } from '../../context/UserContext';
 //components
 import Header from '../../components/Header'
 import Review from '../../components/Review'
@@ -14,6 +15,7 @@ function Professor() {
   const teacher = location.state ? location.state.professor : null;
   const profile = location.state ? location.state.profile : null;
   const user = location.state ? location.state.usuario : null;
+  const {userId} = useUserContext(); 
 
   function formatarNomeMateria(nome) {
     const palavras = nome.split(' ');
@@ -23,7 +25,7 @@ function Professor() {
       (palavra) => palavra.charAt(0).toUpperCase() + palavra.slice(1)
     ).join(' ');
     return nomeFormatado;
-  }
+  }  
 
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
 
@@ -87,9 +89,7 @@ function Professor() {
 
   return (
     <div>
-      <Header
-        userName={user.nome}  
-      ></Header>
+      <Header/>
       <div className="teacher-wrapper">
         <div className="teacher-header">
           <div className="teacher-profile">
@@ -105,7 +105,7 @@ function Professor() {
           </div>
           <div className="teacher-rating">
             <CircularProgress />
-            <span className="avaliations-number">0 avaliações</span>
+            <span className="avaliations-number">{avaliacoes.length} avaliações</span>
           </div>
         </div>
         <div className='reviews-label'>
@@ -118,7 +118,7 @@ function Professor() {
         <ReviewForm 
           mostrarFormulario={mostrarFormulario}
           mostrarOcultarFormulario={mostrarOcultarFormulario}
-          userid={user._id}
+          userid={userId}
           teacherid={teacher._id}
         />
         {avaliacoes.map((avaliacao, index) => (

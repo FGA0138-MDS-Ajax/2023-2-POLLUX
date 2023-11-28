@@ -2,10 +2,10 @@ import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 //styles
 import './styles.css'; 
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaRegTrashAlt } from 'react-icons/fa';
 import avatarUrls from '../../components/TeacherCard/avatarData.js';
 
-function Review({ avaliacaoId, nota, texto, data, userId}) {
+function Review({ avaliacaoId, nota, texto, data, userId, deleteOption}) {
 
   const [userData, setUserData] = useState(null);
   
@@ -59,6 +59,15 @@ function Review({ avaliacaoId, nota, texto, data, userId}) {
               <span>{formatarData(data)}</span>
               <p><em>"{texto}"</em></p>
           </div>
+          { deleteOption && (
+            <div className='review-footer'>
+              <div className="delete">
+                <FaRegTrashAlt></FaRegTrashAlt>
+                <button>Excluir este comentário</button>
+              </div>
+            </div>
+          )}
+        
         </div>
     </div>
   );

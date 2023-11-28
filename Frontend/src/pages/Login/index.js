@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useUserContext } from "../../context/UserContext";
 //styles
 import "./styles.css";
 import femaleCharacter from '../../assets/images/female-character.jpg'
@@ -11,6 +12,7 @@ import SignButton from "../../components/SignButton";
 
 function Login() {
   const navigate = useNavigate();
+  const {setUser} = useUserContext();
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -29,8 +31,8 @@ function Login() {
       try {
         const response = await axios.post('http://localhost:3000/login', data);
         if (response.status === 200 && response.data.user) { 
+          setUser({userId: response.data.user._id, userName:  response.data.user.nome, userCurso: response.data.user.curso});
           localStorage.setItem('@userId', response.data.user._id);
-          console.log('ID do usuário:', response.data.user._id); // Imprime o ID do usuário no console
           navigate('/Home');
         } 
 
@@ -48,7 +50,7 @@ function Login() {
     <div className="login">
       <div className="left-section">
         <div className="form-container">
-          <h1>Bem Vindo!</h1>
+          <h1>Bem vindo!</h1>
 
           <Input
             type="email"
@@ -80,7 +82,8 @@ function Login() {
       </div>
 
       <div className="right-section">
-        <img src={loginImage}></img>
+        <h1 className="gamatrack">GamaTrack</h1>
+        <p className="typing-text">Avalie seus professores</p>
       </div>
 
     </div>

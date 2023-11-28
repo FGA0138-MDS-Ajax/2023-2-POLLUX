@@ -14,54 +14,67 @@ function Materias() {
     const [subjects, setSubjects] = useState([]);
     const [loading, setLoading] = useState(false);
 
-   
-    axios.get(`http://localhost:3000/materias/${courseId}`)
-        .then(response => {
-        setSubjects(response.data);
-        })
-        .catch(error => {
-        console.error('Error fetching comments:', error);
-        });
-  
+    useEffect(() => {
+        setLoading(true)
+        axios
+            .get(`http://localhost:3000/materias/${courseId}`)
+            .then((response) => {
+                setSubjects(response.data);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error('Error fetching comments:', error);
+                setLoading(false);
+            });
+    }, [courseId]); // Add courseId as a dependency for useEffect
+
     return (
         <div>
             <Header/>
             <div className='subjects-wrapper'>  
-                <h1 className='course-name'>{course}</h1> 
-                
-                <SubjectsCaurosel
-                    subjects={subjects.semestres ? subjects.semestres.semestre_1 : []}
-                ></SubjectsCaurosel>            
-                <SubjectsCaurosel
-                    subjects={subjects.semestres ? subjects.semestres.semestre_2 : []}
-                ></SubjectsCaurosel>            
-                <SubjectsCaurosel
-                    subjects={subjects.semestres ? subjects.semestres.semestre_3 : []}
-                ></SubjectsCaurosel>            
-                <SubjectsCaurosel
-                    subjects={subjects.semestres ? subjects.semestres.semestre_4 : []}
-                ></SubjectsCaurosel>            
-                <SubjectsCaurosel
-                    subjects={subjects.semestres ? subjects.semestres.semestre_5 : []}
-                ></SubjectsCaurosel>            
-                <SubjectsCaurosel
-                    subjects={subjects.semestres ? subjects.semestres.semestre_6 : []}
-                ></SubjectsCaurosel>            
-                <SubjectsCaurosel
-                    subjects={subjects.semestres ? subjects.semestres.semestre_7 : []}
-                ></SubjectsCaurosel>            
-                <SubjectsCaurosel
-                    subjects={subjects.semestres ? subjects.semestres.semestre_8 : []}
-                ></SubjectsCaurosel>            
-                <SubjectsCaurosel
-                    subjects={subjects.semestres ? subjects.semestres.semestre_9 : []}
-                ></SubjectsCaurosel>            
-                <SubjectsCaurosel
-                    subjects={subjects.semestres ? subjects.semestres.semestre_10 : []}
-                ></SubjectsCaurosel>            
-                <SubjectsCaurosel
-                    subjects={subjects.semestres ? subjects.semestres.optativas : []}
-                ></SubjectsCaurosel>            
+                <h1 className='course-name'>{course}</h1>
+                {loading && (
+                    <div className="loading-container">
+                        <div className="loading-spinner"></div>
+                    </div>
+                )}
+                {!loading && (
+                    <div>        
+                        <SubjectsCaurosel
+                            subjects={subjects.semestres ? subjects.semestres.semestre_1 : []}
+                        ></SubjectsCaurosel>            
+                        <SubjectsCaurosel
+                            subjects={subjects.semestres ? subjects.semestres.semestre_2 : []}
+                        ></SubjectsCaurosel>            
+                        <SubjectsCaurosel
+                            subjects={subjects.semestres ? subjects.semestres.semestre_3 : []}
+                        ></SubjectsCaurosel>            
+                        <SubjectsCaurosel
+                            subjects={subjects.semestres ? subjects.semestres.semestre_4 : []}
+                        ></SubjectsCaurosel>            
+                        <SubjectsCaurosel
+                            subjects={subjects.semestres ? subjects.semestres.semestre_5 : []}
+                        ></SubjectsCaurosel>            
+                        <SubjectsCaurosel
+                            subjects={subjects.semestres ? subjects.semestres.semestre_6 : []}
+                        ></SubjectsCaurosel>            
+                        <SubjectsCaurosel
+                            subjects={subjects.semestres ? subjects.semestres.semestre_7 : []}
+                        ></SubjectsCaurosel>            
+                        <SubjectsCaurosel
+                            subjects={subjects.semestres ? subjects.semestres.semestre_8 : []}
+                        ></SubjectsCaurosel>            
+                        <SubjectsCaurosel
+                            subjects={subjects.semestres ? subjects.semestres.semestre_9 : []}
+                        ></SubjectsCaurosel>            
+                        <SubjectsCaurosel
+                            subjects={subjects.semestres ? subjects.semestres.semestre_10 : []}
+                        ></SubjectsCaurosel>            
+                        <SubjectsCaurosel
+                            subjects={subjects.semestres ? subjects.semestres.optativas : []}
+                        ></SubjectsCaurosel>            
+                    </div>
+                )} 
             </div>
         </div>
     );

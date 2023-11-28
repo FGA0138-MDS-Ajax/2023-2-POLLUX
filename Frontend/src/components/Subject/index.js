@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 //styles
 import "../SubjectsCaurosel/styles.css";
 
@@ -13,11 +14,25 @@ function formatarNomeMateria(nome) {
     return nomeFormatado;
 } 
 
-function Subject({ user, subject }) {
+function Subject({ subject }) {
     const navigate = useNavigate();
-    const handleClick = () => {
-        navigate('/professoresmateria', { state: { user: user, subject: subject}});
-      }
+    const [professores, setProfessores] = useState([]);
+
+    const handleClick = async () => {
+        try {
+            const professorPromises = subject.professorId.map(async (professorId) => {
+            const response = await axios.get(`http://localhost:3000/professores/${professorId}`);
+            return response.data;
+          });
+    
+          const professoresData = await Promise.all(professorPromises);
+          setProfessores(professoresData);
+    
+          navigate('/professoresmateria', { state: { subject: subject, professores: professoresData} });
+        } catch (error) {
+          console.error('Error fetching professors:', error);
+        }
+      };
 
     return (
         <div className="subject-container" onClick={handleClick}>

@@ -224,7 +224,6 @@ const findProfessorById = async (id) => {
   try {
     await connectDB();
     const professor = await db.collection('professores').findOne({ _id: new ObjectId(id) });
-    console.log(professor);  // Adicione esta linha
     return professor;
   } catch (error) {
     console.error(error);

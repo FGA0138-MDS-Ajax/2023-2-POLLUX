@@ -18,8 +18,6 @@ function SubjectsCarousel({ user, subjects}) {
         e.preventDefault();
         carousel.current.scrollLeft -= carousel.current.offsetWidth;
     };
-
-    console.log(subjects);
    
     return (
         <div className="carousel-wrapper">

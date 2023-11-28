@@ -11,10 +11,7 @@ function ProfessoresMateria() {
 
   return (
     <>
-      <Header
-        userName={user ? user.nome : 'sei la irmao'}  
-      ></Header>
-     
+      <Header></Header>
     </>
   );
 }

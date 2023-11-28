@@ -23,7 +23,9 @@ function SubjectsCarousel({ user, subjects}) {
    
     return (
         <div className="carousel-wrapper">
-            <IoIosArrowBack className="arrow" onClick={swipeRight}/>
+            <div className="arrow left" >
+                <IoIosArrowBack className='arrow-icon'Click={swipeRight}/>
+            </div>
             <div className="carousel" ref={carousel}>
                 {subjects.map((subject) => (
                     <Subject
@@ -32,7 +34,9 @@ function SubjectsCarousel({ user, subjects}) {
                     ></Subject>
                 ))}
             </div>
-            <IoIosArrowForward className="arrow" onClick={swipeLeft}/>
+            <div className="arrow right" >
+                <IoIosArrowForward className='arrow-icon' onClick={swipeLeft}/>
+            </div>
         </div>
     );
 }

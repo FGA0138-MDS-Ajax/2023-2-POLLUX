@@ -10,10 +10,10 @@ import './styles.css';
 function Materias() {
     const location = useLocation();
     const course = location.state ? location.state.coursename : null;
-    const user = location.state ? location.state.user : null;
     const courseId = location.state ? location.state.courseId : null;
-
     const [subjects, setSubjects] = useState([]);
+    const [loading, setLoading] = useState(false);
+
    
     axios.get(`http://localhost:3000/materias/${courseId}`)
         .then(response => {
@@ -25,54 +25,41 @@ function Materias() {
   
     return (
         <div>
-            <Header
-                userName={user ? user.nome : ''}
-            ></Header>
+            <Header/>
             <div className='subjects-wrapper'>  
                 <h1 className='course-name'>{course}</h1> 
-                <h3 className='semester'>1º Semestre</h3>
+                
                 <SubjectsCaurosel
-                    user={user}
                     subjects={subjects.semestres ? subjects.semestres.semestre_1 : []}
                 ></SubjectsCaurosel>            
                 <SubjectsCaurosel
-                    user={user}
                     subjects={subjects.semestres ? subjects.semestres.semestre_2 : []}
                 ></SubjectsCaurosel>            
                 <SubjectsCaurosel
-                    user={user}
                     subjects={subjects.semestres ? subjects.semestres.semestre_3 : []}
                 ></SubjectsCaurosel>            
                 <SubjectsCaurosel
-                    user={user}
                     subjects={subjects.semestres ? subjects.semestres.semestre_4 : []}
                 ></SubjectsCaurosel>            
                 <SubjectsCaurosel
-                    user={user}
                     subjects={subjects.semestres ? subjects.semestres.semestre_5 : []}
                 ></SubjectsCaurosel>            
                 <SubjectsCaurosel
-                    user={user}
                     subjects={subjects.semestres ? subjects.semestres.semestre_6 : []}
                 ></SubjectsCaurosel>            
                 <SubjectsCaurosel
-                    user={user}
                     subjects={subjects.semestres ? subjects.semestres.semestre_7 : []}
                 ></SubjectsCaurosel>            
                 <SubjectsCaurosel
-                    user={user}
                     subjects={subjects.semestres ? subjects.semestres.semestre_8 : []}
                 ></SubjectsCaurosel>            
                 <SubjectsCaurosel
-                    user={user}
                     subjects={subjects.semestres ? subjects.semestres.semestre_9 : []}
                 ></SubjectsCaurosel>            
                 <SubjectsCaurosel
-                    user={user}
                     subjects={subjects.semestres ? subjects.semestres.semestre_10 : []}
                 ></SubjectsCaurosel>            
                 <SubjectsCaurosel
-                    user={user}
                     subjects={subjects.semestres ? subjects.semestres.optativas : []}
                 ></SubjectsCaurosel>            
             </div>

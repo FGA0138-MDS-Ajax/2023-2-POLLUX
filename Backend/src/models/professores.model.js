@@ -219,10 +219,22 @@ const updateProfessor = async ({ professorId }) => {
     return null;
   }
 };
-  
+
+const findProfessorById = async (id) => {
+  try {
+    await connectDB();
+    const professor = await db.collection('professores').findOne({ _id: new ObjectId(id) });
+    console.log(professor);  // Adicione esta linha
+    return professor;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
 
 export { getAllProfessors, findProfessorByName, adicionarComentario, 
   findComentariosByProfessorId, getAllAvaliacoes, 
-  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario, autenticarUsuario };
+  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario, autenticarUsuario, findProfessorById };
 
 connectDB();

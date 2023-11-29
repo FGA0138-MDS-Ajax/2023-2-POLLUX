@@ -34,6 +34,17 @@ const findComentariosByProfessorId = async (professorId) => {
   }
 };
 
+const findComentariosByUsuarioId = async (usuarioId) => {
+  try {
+    await connectDB();
+    const comentarios = await db.collection('avaliacoes').find({ usuarioId: new ObjectId(usuarioId) }).toArray();  
+    return comentarios;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
 const adicionarComentario = async (usuarioId, professorId, texto, nota) => {
   try {
     await connectDB();
@@ -234,6 +245,6 @@ const findProfessorById = async (id) => {
 
 export { getAllProfessors, findProfessorByName, adicionarComentario, 
   findComentariosByProfessorId, getAllAvaliacoes, 
-  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario, autenticarUsuario, findProfessorById };
+  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario, autenticarUsuario, findProfessorById, findComentariosByUsuarioId};
 
 connectDB();

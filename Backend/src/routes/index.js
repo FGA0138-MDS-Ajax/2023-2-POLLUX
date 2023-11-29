@@ -6,7 +6,7 @@ import {
 } from '../controllers/usuariocontroller';
 import { getAllProfessors, findProfessorByName, adicionarComentario,
          findComentariosByProfessorId, getAllAvaliacoes, 
-         adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,excluirComentario,criarUsuario, findProfessorById} from '../models/professores.model';
+         adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,excluirComentario,criarUsuario, findProfessorById, findComentariosByUsuarioId} from '../models/professores.model';
 import { findUserById } from '../models/usuario.model';
 import {findMateriaById, getAllMaterias} from'../models/materia.model';
 const routes = new Router();
@@ -150,6 +150,12 @@ routes.get('/professores/:id', async (req, res) => {
   } else {
     res.status(500).json({ success: false, message: 'Erro ao procurar professor' });
   }
+});
+
+routes.get('/comentarios/usuario/:id', async (req, res) => {
+  const { id } = req.params;
+  const comentarios = await findComentariosByUsuarioId(id);
+  res.send(comentarios);
 });
 
 export default routes;

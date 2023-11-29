@@ -8,7 +8,7 @@ import { getAllProfessors, findProfessorByName, adicionarComentario,
          findComentariosByProfessorId, getAllAvaliacoes, 
          adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,excluirComentario,criarUsuario, findProfessorById, findComentariosByUsuarioId} from '../models/professores.model';
 import { findUserById } from '../models/usuario.model';
-import {findMateriaById, getAllMaterias} from'../models/materia.model';
+import {findMateriaById, getAllMaterias, findMateriaByEngenharia} from'../models/materia.model';
 const routes = new Router();
 
 routes.get('/', (req, res) => {
@@ -40,8 +40,8 @@ routes.get('/usuarios/:id', async (req, res) => {
 
 
 routes.post('/comentarios', async (req, res) => {
-  const { professorId, usuarioId, texto, nota } = req.body;
-  const result = await adicionarComentario(usuarioId, professorId, texto, nota);
+  const { professorId, usuarioId, texto, nota, perguntas } = req.body;
+  const result = await adicionarComentario(usuarioId, professorId, texto, nota, perguntas);
   if (result) {
     res.status(200).send({ success: true, data: result });
   } else {
@@ -129,6 +129,16 @@ routes.get('/materias/:id', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao buscar matéria.' });
+  }
+});
+
+routes.get('/materia/:engenharia', async (req, res) => {
+  const { engenharia } = req.params;
+  const materia = await findMateriaByEngenharia(engenharia);
+  if (materia) {
+    res.status(200).send({ success: true, data: materia });
+  } else {
+    res.status(404).send({ error: 'Materia não encontrada' });
   }
 });
 

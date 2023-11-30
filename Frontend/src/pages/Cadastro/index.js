@@ -57,8 +57,7 @@ function Cadastro() {
         );
         if (response.status === 201) {
           // Redireciona o usuário para "/"
-          alert("Usuário criado com sucesso!");
-          navigate("/");
+          alert("Verifique seu email.");
         }
       } catch (error) {
         console.error(error);

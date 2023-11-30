@@ -8,6 +8,7 @@ import femaleCharacter from '../../assets/images/female-character.jpg'
 import loginImage from '../../assets/images/login-image-1.jpg'
 //componentes
 import Input from "../../components/Input";
+import InputPassword from "../../components/InputPassword";
 import SignButton from "../../components/SignButton";
 
 function Login() {
@@ -58,7 +59,7 @@ function Login() {
             error={error}
           />
 
-          <Input
+          <InputPassword
             type="password"
             name="senha"
             placeholder="Senha"

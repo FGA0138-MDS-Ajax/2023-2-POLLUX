@@ -3,10 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 //styles
 import "../Login/styles.css";
-import femaleCharacter from '../../assets/images/female-character.jpg'
-import loginImage from '../../assets/images/login-image-1.jpg'
+import femaleCharacter from "../../assets/images/female-character.jpg";
+import loginImage from "../../assets/images/login-image-1.jpg";
 //components
 import Input from "../../components/Input";
+import InputPassword from "../../components/InputPassword";
 import SignButton from "../../components/SignButton";
 import DropDown from "../../components/DropDown";
 
@@ -33,14 +34,14 @@ function Cadastro() {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-  
+
     if (email !== "" && senha !== "") {
       if (senha !== confirmedSenha) {
         setError("As senhas não coincidem.");
         setErrorPassword(true);
         return;
       }
-  
+
       const data = {
         email: email,
         senha: senha,
@@ -48,14 +49,17 @@ function Cadastro() {
         curso: curso,
         periodo: periodo,
       };
-  
+
       try {
-        const response = await axios.post("http://localhost:3000/usuario", data);
+        const response = await axios.post(
+          "http://localhost:3000/usuario",
+          data
+        );
         if (response.status === 201) {
           // Redireciona o usuário para "/"
           alert("Usuário criado com sucesso!");
-          navigate('/');
-        } 
+          navigate("/");
+        }
       } catch (error) {
         console.error(error);
         setError("Este email já está registrado. Tente outro.");
@@ -65,7 +69,6 @@ function Cadastro() {
       setError("Preencha todos os campos.");
     }
   };
-  
 
   return (
     <div className="login">
@@ -73,11 +76,11 @@ function Cadastro() {
         <div className="form-container">
           <h1 className="signup-title">Crie sua conta</h1>
 
-          <Input 
-          type="text" 
-          name="nome" 
-          placeholder="Nome" 
-          onChange={setNome}
+          <Input
+            type="text"
+            name="nome"
+            placeholder="Nome"
+            onChange={setNome}
           />
 
           <Input
@@ -99,7 +102,7 @@ function Cadastro() {
             onChange={setPeriodo}
           />
 
-          <Input
+          <InputPassword
             type="password"
             name="senha"
             placeholder="Senha"
@@ -107,7 +110,7 @@ function Cadastro() {
             error={errorPassword}
           />
 
-          <Input
+          <InputPassword
             type="password"
             name="confirmedSenha"
             placeholder="Confirmar senha"
@@ -115,8 +118,12 @@ function Cadastro() {
             error={errorPassword}
           />
 
-          <p className={`error-message ${error ? "shake" : ""}`} style={{ display: error ? "block" : "none"}}>{error}</p>
-
+          <p
+            className={`error-message ${error ? "shake" : ""}`}
+            style={{ display: error ? "block" : "none" }}
+          >
+            {error}
+          </p>
 
           <SignButton placeholder="Criar" onClick={handleRegister} />
 
@@ -126,7 +133,6 @@ function Cadastro() {
               Entrar
             </Link>
           </p>
-
         </div>
       </div>
       <div className="right-section">

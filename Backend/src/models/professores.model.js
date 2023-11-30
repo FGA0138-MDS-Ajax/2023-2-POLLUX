@@ -188,17 +188,17 @@ const criarUsuario = async (email, senha, nome, curso, periodo) => {
   try {
     await connectDB();
     
-    
+    // Verificar se o e-mail já existe
     const usuarioExistente = await db.collection('usuarios').findOne({ email });
     if (usuarioExistente) {
       return 'E-mail já está em uso.';
     }
     
-    
+    // Criptografar a senha
     const saltRounds = 10;
     const senhaHash = await bcrypt.hash(senha, saltRounds);
     
-    
+    // Criar novo usuário
     const usuario = {
       _id: new ObjectId(),
       email,
@@ -209,9 +209,13 @@ const criarUsuario = async (email, senha, nome, curso, periodo) => {
       dataCriacao: new Date(),
       emailVerificado: false,
     };
-    
-    
+
+    // Enviar e-mail de autenticação
+    await enviarEmailAutenticacao(usuario._id, email);
+
+    // Inserir o usuário no banco de dados
     const result = await db.collection('usuarios').insertOne(usuario);
+    
 
     return result;
   } catch (error) {

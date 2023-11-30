@@ -170,4 +170,16 @@ routes.get('/comentarios/usuario/:id', async (req, res) => {
   res.send(comentarios);
 });
 
+routes.get('/verificar-email', async (req, res) => {
+  const { token } = req.query;
+
+  try {
+    const result = await verificarEmail(token);
+    return res.send(result);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send('Erro ao verificar o e-mail.');
+  }
+});
+
 export default routes;

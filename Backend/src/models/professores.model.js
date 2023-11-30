@@ -34,7 +34,18 @@ const findComentariosByProfessorId = async (professorId) => {
   }
 };
 
-const adicionarComentario = async (usuarioId, professorId, texto, nota) => {
+const findComentariosByUsuarioId = async (usuarioId) => {
+  try {
+    await connectDB();
+    const comentarios = await db.collection('avaliacoes').find({ usuarioId: new ObjectId(usuarioId) }).toArray();  
+    return comentarios;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+const adicionarComentario = async (usuarioId, professorId, texto, nota, perguntas) => {
   try {
     await connectDB();
 
@@ -43,6 +54,14 @@ const adicionarComentario = async (usuarioId, professorId, texto, nota) => {
     if (notaInt < 0 || notaInt > 5) {
       throw new Error('A nota deve ser entre 0 e 5');
     }
+
+    // Validação das notas das perguntas
+    perguntas.forEach(pergunta => {
+      pergunta.nota = parseInt(pergunta.nota, 10); // Convertendo a nota para um inteiro
+      if (pergunta.nota < 0 || pergunta.nota > 5) {
+        throw new Error('A nota da pergunta deve ser entre 0 e 5');
+      }
+    });
     
     const comentario = {
       _id: new ObjectId(),
@@ -50,6 +69,7 @@ const adicionarComentario = async (usuarioId, professorId, texto, nota) => {
       professorId: new ObjectId(professorId),
       texto: texto,
       nota : notaInt,
+      perguntas: perguntas, // Adicionando as perguntas ao comentário
       data: new Date(),
     };
 
@@ -71,6 +91,15 @@ const adicionarComentario = async (usuarioId, professorId, texto, nota) => {
     return null;
   }
 };
+
+const perguntas = [
+  { texto: 'Pergunta 1', nota: 5 },
+  { texto: 'Pergunta 2', nota: 4 },
+  { texto: 'Pergunta 3', nota: 3 },
+  { texto: 'Pergunta 4', nota: 2 },
+  { texto: 'Pergunta 5', nota: 1 },
+];
+
 const adicionarComentarioAnonimo = async (professorId, texto, nota) => {
   try {
     await connectDB();
@@ -127,17 +156,17 @@ const criarUsuario = async (email, senha, nome, curso, periodo) => {
   try {
     await connectDB();
     
-    // Verificar se o e-mail já existe
+    
     const usuarioExistente = await db.collection('usuarios').findOne({ email });
     if (usuarioExistente) {
       return 'E-mail já está em uso.';
     }
     
-    // Criptografar a senha
+    
     const saltRounds = 10;
     const senhaHash = await bcrypt.hash(senha, saltRounds);
     
-    // Criar novo usuário
+    
     const usuario = {
       _id: new ObjectId(),
       email,
@@ -148,7 +177,7 @@ const criarUsuario = async (email, senha, nome, curso, periodo) => {
       dataCriacao: new Date(),
     };
     
-    // Inserir o usuário no banco de dados
+    
     const result = await db.collection('usuarios').insertOne(usuario);
     
     return result;
@@ -234,6 +263,6 @@ const findProfessorById = async (id) => {
 
 export { getAllProfessors, findProfessorByName, adicionarComentario, 
   findComentariosByProfessorId, getAllAvaliacoes, 
-  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario, autenticarUsuario, findProfessorById };
+  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario, autenticarUsuario, findProfessorById, findComentariosByUsuarioId};
 
 connectDB();

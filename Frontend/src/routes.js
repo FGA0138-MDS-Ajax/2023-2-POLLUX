@@ -3,7 +3,10 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Navigate, 
+  Outlet
 } from "react-router-dom";
+import { IsAuthenticated } from "./utils/auth";
 
 import Login from "./pages/Login"
 import Cadastro from "./pages/Cadastro";
@@ -13,17 +16,25 @@ import Materias from "./pages/Materias";
 import ProfessoresMateria from "./pages/ProfessoresMateria";
 import Usuario from "./pages/Usuario";
 
+const PrivateRoutes = () => {
+    return(
+        IsAuthenticated() ? <Outlet/> : <Navigate to="/"/>
+    )
+}
+
 export default function AppRoutes() {
     return (
     <Router>
         <Routes>
             <Route exact path="/" element={<Login></Login>}/>
             <Route path="/Cadastro" element={<Cadastro></Cadastro>}/>
-            <Route path="/Home" element={<Home></Home>}></Route>
-            <Route path='/Professor' element={<Professor></Professor>}></Route>
-            <Route path='/Materias' element={<Materias></Materias>}></Route>
-            <Route path='/ProfessoresMateria' element={<ProfessoresMateria></ProfessoresMateria>}></Route>
-            <Route path='/Usuario' element={<Usuario></Usuario>}></Route>
+            <Route element={<PrivateRoutes />}>
+                <Route element={<Home/>} path="/home" exact/>
+                <Route element={<Professor/>} path="/professor" exact/>
+                <Route element={<Materias/>} path="/materias" exact/>
+                <Route element={<ProfessoresMateria/>} path="/professoresmaterias" exact/>
+                <Route element={<Usuario/>} path="/usuario" exact/>
+            </Route>
         </Routes>       
     </Router>
     );

@@ -6,11 +6,10 @@ import {
 } from '../controllers/usuariocontroller';
 import { getAllProfessors, findProfessorByName, adicionarComentario,
          findComentariosByProfessorId, getAllAvaliacoes, 
-         adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,excluirComentario,criarUsuario, findProfessorById} from '../models/professores.model';
+         adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,excluirComentario,criarUsuario, findProfessorById, findComentariosByUsuarioId} from '../models/professores.model';
 import { findUserById } from '../models/usuario.model';
-import {findMateriaById, getAllMaterias} from'../models/materia.model';
+import {findMateriaById, getAllMaterias, findMateriaByEngenharia} from'../models/materia.model';
 import { verificarEmail } from '../models/professores.model';
-
 const routes = new Router();
 
 routes.get('/', (req, res) => {
@@ -42,8 +41,8 @@ routes.get('/usuarios/:id', async (req, res) => {
 
 
 routes.post('/comentarios', async (req, res) => {
-  const { professorId, usuarioId, texto, nota } = req.body;
-  const result = await adicionarComentario(usuarioId, professorId, texto, nota);
+  const { professorId, usuarioId, texto, nota, perguntas } = req.body;
+  const result = await adicionarComentario(usuarioId, professorId, texto, nota, perguntas);
   if (result) {
     res.status(200).send({ success: true, data: result });
   } else {
@@ -135,6 +134,16 @@ routes.get('/materias/:id', async (req, res) => {
   }
 });
 
+routes.get('/materia/:engenharia', async (req, res) => {
+  const { engenharia } = req.params;
+  const materia = await findMateriaByEngenharia(engenharia);
+  if (materia) {
+    res.status(200).send({ success: true, data: materia });
+  } else {
+    res.status(404).send({ error: 'Materia não encontrada' });
+  }
+});
+
 routes.get('/materias', async (req, res) => {
   try {
     const materias = await getAllMaterias();
@@ -155,15 +164,10 @@ routes.get('/professores/:id', async (req, res) => {
   }
 });
 
-routes.get('/verificar-email', async (req, res) => {
-  const { token } = req.query;
-
-  try {
-    const result = await verificarEmail(token);
-    return res.send(result);
-  } catch (error) {
-    console.error(error);
-    return res.status(500).send('Erro ao verificar o e-mail.');
-  }
+routes.get('/comentarios/usuario/:id', async (req, res) => {
+  const { id } = req.params;
+  const comentarios = await findComentariosByUsuarioId(id);
+  res.send(comentarios);
 });
+
 export default routes;

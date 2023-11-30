@@ -1,8 +1,9 @@
 /* eslint-disable import/named */
+import bcrypt from 'bcrypt';
 import {
   todos, criar, deletar, atualizar,
 } from '../services/usuarioservices';
-import bcrypt from 'bcrypt';
+import { ObjectId } from 'mongodb';
 
 const getAll = async (req, res) => {
   const users = await todos();
@@ -43,6 +44,7 @@ const createUser = async (req, res) => {
   }
 };
 
+
 const criarUsuario = async (email, senha, nome, curso, periodo) => {
   try {
     await connectDB();
@@ -70,7 +72,10 @@ const criarUsuario = async (email, senha, nome, curso, periodo) => {
     
     // Inserir o usuário no banco de dados
     const result = await db.collection('usuarios').insertOne(usuario);
+
+    // Enviar e-mail de autenticação
     
+
     return result;
   } catch (error) {
     console.error(error);

@@ -9,6 +9,8 @@ import { getAllProfessors, findProfessorByName, adicionarComentario,
          adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,excluirComentario,criarUsuario, findProfessorById} from '../models/professores.model';
 import { findUserById } from '../models/usuario.model';
 import {findMateriaById, getAllMaterias} from'../models/materia.model';
+import { verificarEmail } from '../models/professores.model';
+
 const routes = new Router();
 
 routes.get('/', (req, res) => {
@@ -109,11 +111,12 @@ routes.post('/usuario', async (req, res) => {
     if (result === 'E-mail já está em uso.') {
       return res.status(400).json({ message: 'E-mail já está em uso.' });
     }
+    return res.status(201).json({ message: 'Usuário criado com sucesso!' });
     
-    return res.status(500).json({ message: 'Erro ao criar usuário.', usuario: result.ops[0] });
   } catch (error) {
     console.error(error);
-    return res.status(201).json({ message: 'Usuário criado com sucesso!' });
+    return res.status(500).json({ message: 'Erro ao criar usuário.', usuario: result.ops[0] });
+
   }
 });
 
@@ -152,4 +155,15 @@ routes.get('/professores/:id', async (req, res) => {
   }
 });
 
+routes.get('/verificar-email', async (req, res) => {
+  const { token } = req.query;
+
+  try {
+    const result = await verificarEmail(token);
+    return res.send(result);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send('Erro ao verificar o e-mail.');
+  }
+});
 export default routes;

@@ -6,7 +6,8 @@ import {
 } from '../controllers/usuariocontroller';
 import { getAllProfessors, findProfessorByName, adicionarComentario,
          findComentariosByProfessorId, getAllAvaliacoes, 
-         adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,excluirComentario,criarUsuario, findProfessorById, findComentariosByUsuarioId} from '../models/professores.model';
+         adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,excluirComentario, 
+         criarUsuario, findProfessorById, findComentariosByUsuarioId, inserirEmail, redefinirSenha} from '../models/professores.model';
 import { findUserById } from '../models/usuario.model';
 import {findMateriaById, getAllMaterias, findMateriaByEngenharia} from'../models/materia.model';
 import { verificarEmail } from '../models/professores.model';
@@ -181,6 +182,30 @@ routes.get('/verificar-email', async (req, res) => {
     console.error(error);
     const successMessage = encodeURIComponent('Erro ao verificar o e-mail');
     return res.redirect(`http://localhost:3001/sucess`);
+  }
+});
+
+routes.post('/inserir-email', async (req, res) => {
+  const { id, email } = req.body;
+
+  try {
+    const result = await inserirEmail(id, email);
+    res.send('E-mail inserido com sucesso!');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Ocorreu um erro ao inserir o e-mail.');
+  }
+});
+
+routes.post('/redefinir-senha', async (req, res) => {
+  const { id, novaSenha } = req.body;
+
+  try {
+    const result = await redefinirSenha(id, novaSenha);
+    res.send('Senha redefinida com sucesso!');
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Ocorreu um erro ao redefinir a senha.');
   }
 });
 

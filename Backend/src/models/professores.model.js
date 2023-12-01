@@ -58,9 +58,9 @@ const adicionarComentario = async (usuarioId, professorId, texto, nota, pergunta
       throw new Error('A nota deve ser entre 0 e 5');
     }
 
-    // Validação das notas das perguntas
+    
     perguntas.forEach(pergunta => {
-      pergunta.nota = parseInt(pergunta.nota, 10); // Convertendo a nota para um inteiro
+      pergunta.nota = parseInt(pergunta.nota, 10); 
       if (pergunta.nota < 0 || pergunta.nota > 5) {
         throw new Error('A nota da pergunta deve ser entre 0 e 5');
       }
@@ -72,7 +72,7 @@ const adicionarComentario = async (usuarioId, professorId, texto, nota, pergunta
       professorId: new ObjectId(professorId),
       texto: texto,
       nota : notaInt,
-      perguntas: perguntas, // Adicionando as perguntas ao comentário
+      perguntas: perguntas, 
       data: new Date(),
     };
 
@@ -188,17 +188,17 @@ const criarUsuario = async (email, senha, nome, curso, periodo) => {
   try {
     await connectDB();
     
-    // Verificar se o e-mail já existe
+    
     const usuarioExistente = await db.collection('usuarios').findOne({ email });
     if (usuarioExistente) {
       return 'E-mail já está em uso.';
     }
     
-    // Criptografar a senha
+   
     const saltRounds = 10;
     const senhaHash = await bcrypt.hash(senha, saltRounds);
     
-    // Criar novo usuário
+    
     const usuario = {
       _id: new ObjectId(),
       email,
@@ -210,10 +210,10 @@ const criarUsuario = async (email, senha, nome, curso, periodo) => {
       emailVerificado: false,
     };
 
-    // Enviar e-mail de autenticação
+    
     await enviarEmailAutenticacao(usuario._id, email);
 
-    // Inserir o usuário no banco de dados
+    
     const result = await db.collection('usuarios').insertOne(usuario);
     
 
@@ -224,14 +224,14 @@ const criarUsuario = async (email, senha, nome, curso, periodo) => {
   }
 };
 
-// Adicione isso ao seu arquivo professores.model.js
+
 const verificarEmail = async (token) => {
   try {
     await connectDB();
     const decoded = jwt.verify(token, segredo);
 
     if (decoded.verificarEmail) {
-      // Marcar o campo emailVerificado como true no banco de dados
+     
       await db.collection('usuarios').updateOne(
         { _id: new ObjectId(decoded.userId) },
         { $set: { emailVerificado: true } }
@@ -247,6 +247,99 @@ const verificarEmail = async (token) => {
   }
 };
 
+const inserirEmail = async (id, email) => {
+  try {
+
+    await connectDB();
+
+    console.log('Atualizando o e-mail do usuário no banco de dados...');
+    const result = await db.collection('usuarios').updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { email } }
+    );
+    
+    await iniciarRedefinicaoSenha(id, email);
+
+    return result;
+  } catch (error) {
+    console.error('Ocorreu um erro:', error);
+    return null;
+  }
+};
+
+const iniciarRedefinicaoSenha = async (id, email) => {
+  try {
+    await connectDB();
+
+   
+    const usuario = await db.collection('usuarios').findOne({ _id: new ObjectId(id) });
+    if (!usuario) {
+      return 'Usuário não encontrado.';
+    }
+
+
+    const token = jwt.sign({ userId: id, redefinirSenha: true }, segredo, { expiresIn: '1h' });
+
+
+    const linkRedefinicao = `http://localhost:3000/redefinir-senha?token=${token}`;
+
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port : 587,
+      auth: {
+        user: 'polluxmds@gmail.com', 
+        pass: 'jehz uocr bsen wgtn'
+      }
+    });
+
+    const mailOptions = {
+      from: 'polluxmds@gmail.com',
+      to: email,
+      subject: 'Redefinição de Senha',
+      text: `Clique no link a seguir para redefinir sua senha: ${linkRedefinicao}`,
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log('E-mail de redefinição de senha enviado com sucesso');
+
+    return 'E-mail de redefinição de senha enviado.';
+  } catch (error) {
+    console.error(error);
+    return 'Erro ao iniciar a redefinição de senha.';
+  }
+};
+
+const redefinirSenha = async (id, novaSenha) => {
+  try {
+    console.log('Conectando ao banco de dados...');
+    await connectDB();
+    console.log('Conexão bem-sucedida.');
+
+    console.log('Verificando se o usuário existe...');
+    const usuarioExistente = await db.collection('usuarios').findOne({ _id: new ObjectId(id) });
+    if (!usuarioExistente) {
+      console.log('Usuário não encontrado.');
+      return 'Usuário não encontrado.';
+    }
+
+    console.log('Criptografando a nova senha...');
+    const saltRounds = 10;
+    const senhaHash = await bcrypt.hash(novaSenha, saltRounds);
+    console.log('Nova senha criptografada com sucesso.');
+
+    console.log('Atualizando a senha do usuário no banco de dados...');
+    const result = await db.collection('usuarios').updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { senha: senhaHash } }
+    );
+    console.log('Senha do usuário atualizada com sucesso.');
+
+    return result;
+  } catch (error) {
+    console.error('Ocorreu um erro:', error);
+    return null;
+  }
+};
 
 const autenticarUsuario = async (email, senha) => {
   try {
@@ -324,6 +417,7 @@ const findProfessorById = async (id) => {
 
 export { getAllProfessors, findProfessorByName, adicionarComentario, 
   findComentariosByProfessorId, getAllAvaliacoes, 
-  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario, autenticarUsuario, findProfessorById, findComentariosByUsuarioId, verificarEmail};
+  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario, autenticarUsuario, findProfessorById, 
+  findComentariosByUsuarioId, verificarEmail, inserirEmail, redefinirSenha };
 
 connectDB();

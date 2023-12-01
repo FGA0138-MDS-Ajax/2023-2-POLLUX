@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useUserContext } from "../../context/UserContext";
@@ -8,26 +8,26 @@ import femaleCharacter from '../../assets/images/female-character.jpg'
 import loginImage from '../../assets/images/login-image-1.jpg'
 //componentes
 import Input from "../../components/Input";
+import InputPassword from "../../components/InputPassword";
 import SignButton from "../../components/SignButton";
 
 function Login() {
   const navigate = useNavigate();
-  const {setUser} = useUserContext();
+  const { setUser } = useUserContext();
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-
   const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
+
     if (email !== '' && senha !== '') {
       const data = {
         email: email,
         senha: senha
       };
-            
+
       try {
         const response = await axios.post('http://localhost:3000/login', data);
         if (response.status === 200 && response.data.user) { 
@@ -35,7 +35,6 @@ function Login() {
           localStorage.setItem('@userId', response.data.user._id);
           navigate('/Home');
         } 
-
       } catch (error) {
         console.error(error);
         setError('Email ou senha incorretos.');
@@ -44,7 +43,7 @@ function Login() {
       setError('Preencha todos os campos.');
     }
   };
-  
+
 
   return (
     <div className="login">
@@ -60,7 +59,7 @@ function Login() {
             error={error}
           />
 
-          <Input
+          <InputPassword
             type="password"
             name="senha"
             placeholder="Senha"

@@ -28,7 +28,7 @@ function Subject({ subject }) {
           const professoresData = await Promise.all(professorPromises);
           setProfessores(professoresData);
     
-          navigate('/professoresmateria', { state: { subject: subject, professores: professoresData} });
+          navigate('/professoresmaterias', { state: { subject: subject, professores: professoresData} });
         } catch (error) {
           console.error('Error fetching professors:', error);
         }

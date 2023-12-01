@@ -9,6 +9,7 @@ import { getAllProfessors, findProfessorByName, adicionarComentario,
          adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,excluirComentario,criarUsuario, findProfessorById, findComentariosByUsuarioId} from '../models/professores.model';
 import { findUserById } from '../models/usuario.model';
 import {findMateriaById, getAllMaterias, findMateriaByEngenharia} from'../models/materia.model';
+import { verificarEmail } from '../models/professores.model';
 const routes = new Router();
 
 routes.get('/', (req, res) => {
@@ -109,11 +110,12 @@ routes.post('/usuario', async (req, res) => {
     if (result === 'E-mail já está em uso.') {
       return res.status(400).json({ message: 'E-mail já está em uso.' });
     }
+    return res.status(201).json({ message: 'Usuário criado com sucesso!' });
     
-    return res.status(500).json({ message: 'Erro ao criar usuário.', usuario: result.ops[0] });
   } catch (error) {
     console.error(error);
-    return res.status(201).json({ message: 'Usuário criado com sucesso!' });
+    return res.status(500).json({ message: 'Erro ao criar usuário.', usuario: result.ops[0] });
+
   }
 });
 
@@ -166,6 +168,20 @@ routes.get('/comentarios/usuario/:id', async (req, res) => {
   const { id } = req.params;
   const comentarios = await findComentariosByUsuarioId(id);
   res.send(comentarios);
+});
+
+routes.get('/verificar-email', async (req, res) => {
+  const { token } = req.query;
+
+  try {
+    const result = await verificarEmail(token);
+    const successMessage = encodeURIComponent('E-mail verificado com sucesso');
+    return res.redirect(`http://localhost:3001/sucess`);
+  } catch (error) {
+    console.error(error);
+    const successMessage = encodeURIComponent('Erro ao verificar o e-mail');
+    return res.redirect(`http://localhost:3001/sucess`);
+  }
 });
 
 export default routes;

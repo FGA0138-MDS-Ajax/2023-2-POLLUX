@@ -1,12 +1,12 @@
 import './App.css';
 import UserProvider from './context/UserContext';
-import Routes from './routes'; 
+import AppRoutes from './routes'; 
 
 function App() {
   return (
     <UserProvider>
       <div className="App">
-        <Routes></Routes>
+        <AppRoutes></AppRoutes>
       </div>
     </UserProvider>
   );

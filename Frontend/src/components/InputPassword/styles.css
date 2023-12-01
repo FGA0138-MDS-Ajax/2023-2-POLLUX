@@ -1,0 +1,25 @@
+.password-container{
+    position: relative;
+}
+
+.password-container input{
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    height: auto;
+    padding: 12px 30px 12px 30px; 
+    width: 18rem; 
+    font-size: 16px;
+    color: #2B2D42;
+    margin-top: 10px;
+}
+
+.password-container .eye{
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    cursor: pointer;
+    right: 7%;
+    top: 40%;
+}
+

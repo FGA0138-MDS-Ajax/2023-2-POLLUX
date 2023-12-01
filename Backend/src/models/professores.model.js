@@ -1,8 +1,11 @@
 import connection from './mongoConnection';
 import { ObjectId } from 'mongodb';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import nodemailer from 'nodemailer';
 
 let db;
+const segredo = 'chave';
 
 const connectDB = async () => {
   if (!db) {
@@ -151,22 +154,51 @@ const excluirComentario = async (_Id) => {
     return null;
   }
 };
+const enviarEmailAutenticacao = async (id, userEmail) => {
+  const token = jwt.sign({ userId: id, verificarEmail: true}, segredo, { expiresIn: '1h' });
+
+  const linkAutenticacao = `http://localhost:3000/verificar-email?token=${token}`;
+
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port : 587,
+    auth: {
+      user: 'polluxmds@gmail.com', 
+      pass: 'jehz uocr bsen wgtn'
+    }
+  });
+
+  const mailOptions = {
+    from: 'polluxmds@gmail.com',
+    to: userEmail,
+    subject: 'Link de Autenticação',
+    text: `Clique no link a seguir para autenticar: ${linkAutenticacao}`,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log('E-mail enviado com sucesso');
+  } catch (error) {
+    console.error(error);
+    throw new Error('Erro ao enviar o e-mail');
+  }
+};
 
 const criarUsuario = async (email, senha, nome, curso, periodo) => {
   try {
     await connectDB();
     
-    
+    // Verificar se o e-mail já existe
     const usuarioExistente = await db.collection('usuarios').findOne({ email });
     if (usuarioExistente) {
       return 'E-mail já está em uso.';
     }
     
-    
+    // Criptografar a senha
     const saltRounds = 10;
     const senhaHash = await bcrypt.hash(senha, saltRounds);
     
-    
+    // Criar novo usuário
     const usuario = {
       _id: new ObjectId(),
       email,
@@ -175,17 +207,46 @@ const criarUsuario = async (email, senha, nome, curso, periodo) => {
       curso,
       periodo,
       dataCriacao: new Date(),
+      emailVerificado: false,
     };
-    
-    
+
+    // Enviar e-mail de autenticação
+    await enviarEmailAutenticacao(usuario._id, email);
+
+    // Inserir o usuário no banco de dados
     const result = await db.collection('usuarios').insertOne(usuario);
     
+
     return result;
   } catch (error) {
     console.error(error);
     return null;
   }
 };
+
+// Adicione isso ao seu arquivo professores.model.js
+const verificarEmail = async (token) => {
+  try {
+    await connectDB();
+    const decoded = jwt.verify(token, segredo);
+
+    if (decoded.verificarEmail) {
+      // Marcar o campo emailVerificado como true no banco de dados
+      await db.collection('usuarios').updateOne(
+        { _id: new ObjectId(decoded.userId) },
+        { $set: { emailVerificado: true } }
+      );
+
+      return 'E-mail verificado com sucesso!';
+    } else {
+      return 'Token inválido para verificação de e-mail.';
+    }
+  } catch (error) {
+    console.error(error);
+    throw new Error('Erro ao verificar o e-mail.');
+  }
+};
+
 
 const autenticarUsuario = async (email, senha) => {
   try {
@@ -263,6 +324,6 @@ const findProfessorById = async (id) => {
 
 export { getAllProfessors, findProfessorByName, adicionarComentario, 
   findComentariosByProfessorId, getAllAvaliacoes, 
-  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario, autenticarUsuario, findProfessorById, findComentariosByUsuarioId};
+  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario, autenticarUsuario, findProfessorById, findComentariosByUsuarioId, verificarEmail};
 
 connectDB();

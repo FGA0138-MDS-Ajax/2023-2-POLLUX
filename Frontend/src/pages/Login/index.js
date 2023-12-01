@@ -4,8 +4,6 @@ import axios from "axios";
 import { useUserContext } from "../../context/UserContext";
 //styles
 import "./styles.css";
-import femaleCharacter from '../../assets/images/female-character.jpg'
-import loginImage from '../../assets/images/login-image-1.jpg'
 //componentes
 import Input from "../../components/Input";
 import InputPassword from "../../components/InputPassword";

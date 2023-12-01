@@ -3,8 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 //styles
 import "../Login/styles.css";
-import femaleCharacter from "../../assets/images/female-character.jpg";
-import loginImage from "../../assets/images/login-image-1.jpg";
 //components
 import Input from "../../components/Input";
 import InputPassword from "../../components/InputPassword";
@@ -29,6 +27,7 @@ function Cadastro() {
 
   const [error, setError] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
+  const [sendValue, setSendValue] = useState(false);
 
   const navigate = useNavigate();
 
@@ -56,8 +55,10 @@ function Cadastro() {
           data
         );
         if (response.status === 201) {
-          alert("Enviamos um email de confirmação para você.");
-          navigate("/");
+          setSendValue(true);
+          setTimeout(() => {
+            navigate("/");
+          }, 4000);
         }
       } catch (error) {
         console.error(error);
@@ -72,66 +73,79 @@ function Cadastro() {
   return (
     <div className="login">
       <div className="left-section">
+        
         <div className="form-container">
-          <h1 className="signup-title">Crie sua conta</h1>
+          {sendValue ? (
+            <>
+              <h2 className="signup-title">Enviamos um link de verificação para o seu email.</h2>  
+              <p>Estamos te redirecionando para a página de login...</p>  
+            </>
+          ) : (
+            <>
+              <h1 >Crie sua conta</h1>
 
-          <Input
-            type="text"
-            name="nome"
-            placeholder="Nome"
-            onChange={setNome}
-          />
+              <Input
+                type="text"
+                name="nome"
+                placeholder="Nome"
+                onChange={setNome}
+              />
 
-          <Input
-            type="text"
-            nome="email"
-            placeholder="Email"
-            onChange={setEmail}
-          />
+              <Input
+                type="text"
+                nome="email"
+                placeholder="Email"
+                onChange={setEmail}
+              />
 
-          <DropDown
-            options={cursos}
-            defaultOption="Selecione seu curso"
-            onChange={setCurso}
-          />
+              <DropDown
+                options={cursos}
+                defaultOption="Selecione seu curso"
+                onChange={setCurso}
+              />
 
-          <Input
-            name="periodo"
-            placeholder="Período de entrada"
-            onChange={setPeriodo}
-          />
+              <Input
+                name="periodo"
+                placeholder="Período de entrada"
+                onChange={setPeriodo}
+              />
 
-          <InputPassword
-            type="password"
-            name="senha"
-            placeholder="Senha"
-            onChange={setSenha}
-            error={errorPassword}
-          />
+              <InputPassword
+                type="password"
+                name="senha"
+                placeholder="Senha"
+                onChange={setSenha}
+                error={errorPassword}
+              />
 
-          <InputPassword
-            type="password"
-            name="confirmedSenha"
-            placeholder="Confirmar senha"
-            onChange={setConfirmedSenha}
-            error={errorPassword}
-          />
+              <InputPassword
+                type="password"
+                name="confirmedSenha"
+                placeholder="Confirmar senha"
+                onChange={setConfirmedSenha}
+                error={errorPassword}
+              />
 
-          <p
-            className={`error-message ${error ? "shake" : ""}`}
-            style={{ display: error ? "block" : "none" }}
-          >
-            {error}
-          </p>
+              <p
+                className={`error-message ${error ? "shake" : ""}`}
+                style={{ display: error ? "block" : "none" }}
+              >
+                {error}
+              </p>
 
-          <SignButton placeholder="Criar" onClick={handleRegister} />
+              <SignButton placeholder="Criar" onClick={handleRegister} />
 
-          <p className="sign-text">
-            Já possui uma conta?{" "}
-            <Link to="/" className="sign-link">
-              Entrar
-            </Link>
-          </p>
+              <p className="sign-text">
+                Já possui uma conta?{" "}
+                <Link to="/" className="sign-link">
+                  Entrar
+                </Link>
+              </p>
+            </>
+          )
+
+          }
+         
         </div>
       </div>
       <div className="right-section">

@@ -45,11 +45,14 @@ const update = async ({ id, email, senha }) => {
 const login = async ({ email, senha }) => {
   const usuario = await db.collection('usuarios').findOne({ email });
 
- 
+
   if (!usuario) {
     return null;
   }
 
+  if (!usuario.emailVerificado) {
+    return null;
+  }
 
   const senhaValida = await bcrypt.compare(senha, usuario.senha);
 

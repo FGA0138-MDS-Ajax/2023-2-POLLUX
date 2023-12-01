@@ -15,6 +15,7 @@ import Professor from "./pages/Professor";
 import Materias from "./pages/Materias";
 import ProfessoresMateria from "./pages/ProfessoresMateria";
 import Usuario from "./pages/Usuario";
+import SucessValidation from "./pages/SucessValidation";
 
 const PrivateRoutes = () => {
     return(
@@ -28,6 +29,7 @@ export default function AppRoutes() {
         <Routes>
             <Route exact path="/" element={<Login></Login>}/>
             <Route path="/Cadastro" element={<Cadastro></Cadastro>}/>
+            <Route element={<SucessValidation></SucessValidation>} path="/sucess" exact/>
             <Route element={<PrivateRoutes />}>
                 <Route element={<Home/>} path="/home" exact/>
                 <Route element={<Professor/>} path="/professor" exact/>

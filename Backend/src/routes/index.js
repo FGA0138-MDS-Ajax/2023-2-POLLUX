@@ -175,10 +175,12 @@ routes.get('/verificar-email', async (req, res) => {
 
   try {
     const result = await verificarEmail(token);
-    return res.send(result);
+    const successMessage = encodeURIComponent('E-mail verificado com sucesso');
+    return res.redirect(`http://localhost:3001/sucess`);
   } catch (error) {
     console.error(error);
-    return res.status(500).send('Erro ao verificar o e-mail.');
+    const successMessage = encodeURIComponent('Erro ao verificar o e-mail');
+    return res.redirect(`http://localhost:3001/sucess`);
   }
 });
 

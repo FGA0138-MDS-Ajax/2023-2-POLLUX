@@ -56,8 +56,8 @@ function Cadastro() {
           data
         );
         if (response.status === 201) {
-          // Redireciona o usuário para "/"
-          alert("Verifique seu email.");
+          alert("Enviamos um email de confirmação para você.");
+          navigate("/");
         }
       } catch (error) {
         console.error(error);

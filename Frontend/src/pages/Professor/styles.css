@@ -50,38 +50,6 @@
   align-items: center;
 }
 
-.circular-progress{
-  position: relative;
-  height: 130px;
-  width: 130px;
-  border-radius: 50%;
-  background: conic-gradient(#04d91d 3.6deg, #ededed 0deg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.circular-progress::before{
-  content: "";
-  position: absolute;
-  height: 110px;
-  width: 110px;
-  border-radius: 50%;
-  background-color: #fff;
-}
-
-.progress-value{
-  position: relative;
-  font-size: 1.5em;
-  font-weight: 600;
-  color: #2B2D42;
-}
-
-.avaliations-number{
-  font-size: 1.2em;
-  color: #2B2D42;
-  font-weight: 600;
-}
 
 .reviews-label{
   display: flex;
@@ -97,7 +65,7 @@
 
 .review-button{
   display: flex;
-  background-color: #EF233C;
+  background-color: #53D769;
   justify-content: center;
   align-items: center;
   gap: 6px;
@@ -108,7 +76,7 @@
 }
 
 .review-button:hover{
-  background-color: #D90429;
+  background-color: #46C263;
   cursor: pointer; 
 
 }

@@ -30,6 +30,19 @@ function Review({ avaliacaoId, nota, texto, data, userId, deleteOption}) {
     }
   };
 
+  const deleteReview = async () => {
+    try {
+      const response = await instance.delete(`/comentarios/${avaliacaoId}`);
+      if (response.data) {
+        window.location.reload();
+      } else {
+        console.error('Resposta da API não contém o campo "user" esperado.');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const randomIndex = Math.floor(Math.random() * avatarUrls.length);
   const randomAvatarUrl = avatarUrls[randomIndex];
 
@@ -37,7 +50,7 @@ function Review({ avaliacaoId, nota, texto, data, userId, deleteOption}) {
     const data = new Date(dataString);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return data.toLocaleString('pt-BR', options);
-}
+  }
 
   return (
     <div className='review-wrapper'>
@@ -62,7 +75,7 @@ function Review({ avaliacaoId, nota, texto, data, userId, deleteOption}) {
           </div>
           { deleteOption && (
             <div className='review-footer'>
-              <div className="delete">
+              <div className="delete" onClick={deleteReview}>
                 <FaRegTrashAlt></FaRegTrashAlt>
                 <button>Excluir este comentário</button>
               </div>

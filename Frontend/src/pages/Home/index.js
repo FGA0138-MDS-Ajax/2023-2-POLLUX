@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import instance from "../../services/instance";
 // components
 import Header from "../../components/Header";
 import SearchBar from "../../components/SearchBar";
@@ -25,7 +26,7 @@ function Home() {
 
   const getUserData = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:3000/usuarios/${userId}`);
+      const response = await instance.get(`/usuarios/${userId}`);
       if (response.data) {
         console.log(response.data);
         setUserData(response.data);

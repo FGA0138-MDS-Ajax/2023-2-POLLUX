@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { useUserContext } from '../../context/UserContext';
+import instance from '../../services/instance';
 //components
 import Header from '../../components/Header'
 import Review from '../../components/Review'
@@ -76,7 +77,7 @@ function Professor() {
   const [avaliacoes, setAvaliacoes] = useState([]); // Alterei para avaliacoes, pois é usado no backend
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/comentarios/professor/${teacher._id}`)
+    instance.get(`/comentarios/professor/${teacher._id}`)
       .then(response => {
         setAvaliacoes(response.data.reverse());
       })

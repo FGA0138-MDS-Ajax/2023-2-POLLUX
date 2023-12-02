@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
+import instance from '../../services/instance';
 //styles
 import './styles.css'; 
 import { FaStar, FaRegTrashAlt } from 'react-icons/fa';
@@ -17,7 +18,7 @@ function Review({ avaliacaoId, nota, texto, data, userId, deleteOption}) {
   
   const getUserData = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:3000/usuarios/${userId}`);
+      const response = await instance.get(`/usuarios/${userId}`);
       if (response.data) {
         console.log(response.data)
         setUserData(response.data);

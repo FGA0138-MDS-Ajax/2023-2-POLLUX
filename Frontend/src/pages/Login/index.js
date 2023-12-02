@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useUserContext } from "../../context/UserContext";
+import instance from "../../services/instance";
 //styles
 import "./styles.css";
 //componentes
@@ -27,7 +28,7 @@ function Login() {
       };
 
       try {
-        const response = await axios.post('http://localhost:3000/login', data);
+        const response = await instance.post('http://localhost:3000/login', data);
         if (response.status === 200 && response.data.user) { 
           setUser({userId: response.data.user._id, userName:  response.data.user.nome, userCurso: response.data.user.curso});
           localStorage.setItem('@userId', response.data.user._id);

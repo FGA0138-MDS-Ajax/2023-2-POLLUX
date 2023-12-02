@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import instance from '../../services/instance';
 //components
 import Header from '../../components/Header'
 import SubjectsCaurosel from '../../components/SubjectsCaurosel';
@@ -16,8 +17,8 @@ function Materias() {
 
     useEffect(() => {
         setLoading(true)
-        axios
-            .get(`http://localhost:3000/materias/${courseId}`)
+        instance
+            .get(`/materias/${courseId}`)
             .then((response) => {
                 setSubjects(response.data);
                 setLoading(false);

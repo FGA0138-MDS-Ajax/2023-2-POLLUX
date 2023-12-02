@@ -28,7 +28,7 @@ function Login() {
       };
 
       try {
-        const response = await instance.post('http://localhost:3000/login', data);
+        const response = await instance.post('/login', data);
         if (response.status === 200 && response.data.user) { 
           setUser({userId: response.data.user._id, userName:  response.data.user.nome, userCurso: response.data.user.curso});
           localStorage.setItem('@userId', response.data.user._id);

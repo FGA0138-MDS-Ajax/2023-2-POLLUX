@@ -30,7 +30,7 @@ function Login() {
       try {
         const response = await instance.post('/login', data);
         if (response.status === 200 && response.data.user) { 
-          setUser({userId: response.data.user._id, userName:  response.data.user.nome, userCurso: response.data.user.curso});
+          setUser({userId: response.data.user._id, userName:  response.data.user.nome, userCurso: response.data.user.curso, userAvatar: response.data.user.fotoUrl});
           localStorage.setItem('@userId', response.data.user._id);
           navigate('/Home');
         } 

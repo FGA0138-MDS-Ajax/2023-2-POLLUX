@@ -176,11 +176,11 @@ routes.get('/verificar-email', async (req, res) => {
   try {
     const result = await verificarEmail(token);
     const successMessage = encodeURIComponent('E-mail verificado com sucesso');
-    return res.redirect(`http://localhost:3001/sucess`);
+    return res.redirect(`https://gamatrack-pollux.vercel.app/sucess`);
   } catch (error) {
     console.error(error);
     const successMessage = encodeURIComponent('Erro ao verificar o e-mail');
-    return res.redirect(`http://localhost:3001/sucess`);
+    return res.redirect(`https://gamatrack-pollux.vercel.app/sucess`);
   }
 });
 

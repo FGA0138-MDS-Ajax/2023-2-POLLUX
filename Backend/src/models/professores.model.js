@@ -157,7 +157,7 @@ const excluirComentario = async (_Id) => {
 const enviarEmailAutenticacao = async (id, userEmail) => {
   const token = jwt.sign({ userId: id, verificarEmail: true}, segredo, { expiresIn: '1h' });
 
-  const linkAutenticacao = `http://localhost:3000/verificar-email?token=${token}`;
+  const linkAutenticacao = `https://gamatrack.onrender.com/verificar-email?token=${token}`;
 
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',

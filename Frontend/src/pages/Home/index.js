@@ -50,8 +50,8 @@ function Home() {
 
     setLoading(true);
 
-    axios
-      .get(`http://localhost:3000/professores/search?nome=${value}`)
+    instance
+      .get(`professores/search?nome=${value}`)
       .then((response) => {
         setTeachers(response.data);
         setLoading(false);

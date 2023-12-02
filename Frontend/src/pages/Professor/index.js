@@ -32,7 +32,7 @@ function Professor() {
 
   const mostrarOcultarFormulario = () => {
     setMostrarFormulario(!mostrarFormulario);
-}
+  }
 
   function CircularProgress() {
     const [progressStartValue, setProgressStartValue] = useState(0);
@@ -116,12 +116,12 @@ function Professor() {
             <IoMdAdd className='review-icon'/> 
           </div>
         </div>
-        <ReviewForm 
-          mostrarFormulario={mostrarFormulario}
-          mostrarOcultarFormulario={mostrarOcultarFormulario}
-          userid={userId}
-          teacherid={teacher._id}
-        />
+          <ReviewForm 
+            mostrarFormulario={mostrarFormulario}
+            mostrarOcultarFormulario={mostrarOcultarFormulario}
+            userid={userId}
+            teacherid={teacher._id}
+        ></ReviewForm>
         {avaliacoes.map((avaliacao, index) => (
           <Review
             key={index}

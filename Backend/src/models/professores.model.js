@@ -95,14 +95,6 @@ const adicionarComentario = async (usuarioId, professorId, texto, nota, pergunta
   }
 };
 
-const perguntas = [
-  { texto: 'Pergunta 1', nota: 5 },
-  { texto: 'Pergunta 2', nota: 4 },
-  { texto: 'Pergunta 3', nota: 3 },
-  { texto: 'Pergunta 4', nota: 2 },
-  { texto: 'Pergunta 5', nota: 1 },
-];
-
 const adicionarComentarioAnonimo = async (professorId, texto, nota) => {
   try {
     await connectDB();

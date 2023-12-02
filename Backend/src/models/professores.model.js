@@ -84,7 +84,7 @@ const adicionarComentario = async (usuarioId, professorId, texto, nota, pergunta
     const media = soma / avaliacoes.length;
     
    
-    const porcentagem = media * 20; 
+    const porcentagem = Math.round(media * 20); 
 
     const updateResult = await updateProfessor({ professorId });
 
@@ -184,7 +184,7 @@ const enviarEmailAutenticacao = async (id, userEmail) => {
   }
 };
 
-const criarUsuario = async (email, senha, nome, curso, periodo) => {
+const criarUsuario = async (email, senha, nome, curso, periodo, fotoUrl) => {
   try {
     await connectDB();
     
@@ -208,6 +208,7 @@ const criarUsuario = async (email, senha, nome, curso, periodo) => {
       periodo,
       dataCriacao: new Date(),
       emailVerificado: false,
+      fotoUrl: fotoUrl // Adicione a URL da foto aqui
     };
 
     // Enviar e-mail de autenticação

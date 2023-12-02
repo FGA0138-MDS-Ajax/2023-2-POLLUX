@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import instance from '../../services/instance';
 //styles
 import { FaStar } from 'react-icons/fa';
 import './styles.css';
@@ -37,7 +38,7 @@ function ReviewForm({ mostrarFormulario, mostrarOcultarFormulario, userid, teach
       };
 
       try {
-        const response = await axios.post('http://localhost:3000/comentarios', data);
+        const response = await instance.post('/comentarios', data);
         
         if (response.data.success) {
           mostrarOcultarFormulario();

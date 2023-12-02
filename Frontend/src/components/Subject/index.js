@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import instance from '../../services/instance';
 //styles
 import "../SubjectsCaurosel/styles.css";
 
@@ -21,7 +22,7 @@ function Subject({ subject }) {
     const handleClick = async () => {
         try {
             const professorPromises = subject.professorId.map(async (professorId) => {
-            const response = await axios.get(`http://localhost:3000/professores/${professorId}`);
+            const response = await instance.get(`/professores/${professorId}`);
             return response.data;
           });
     

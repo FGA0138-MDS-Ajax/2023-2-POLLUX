@@ -7,6 +7,7 @@ import instance from '../../services/instance';
 import Header from '../../components/Header'
 import Review from '../../components/Review'
 import ReviewForm from '../../components/ReviewForm'
+import RatingGraphic from '../../components/RatingGraphic';
 //styles
 import './styles.css'
 import { IoMdAdd } from "react-icons/io";
@@ -15,8 +16,9 @@ function Professor() {
   const location = useLocation();
   const teacher = location.state ? location.state.professor : null;
   const profile = location.state ? location.state.profile : null;
-  const user = location.state ? location.state.usuario : null;
   const {userId} = useUserContext(); 
+
+  console.log(teacher);
 
   function formatarNomeMateria(nome) {
     const palavras = nome.split(' ');
@@ -32,46 +34,6 @@ function Professor() {
 
   const mostrarOcultarFormulario = () => {
     setMostrarFormulario(!mostrarFormulario);
-}
-
-  function CircularProgress() {
-    const [progressStartValue, setProgressStartValue] = useState(0);
-    var progressEndValue = 1;
-
-    if(teacher.nota != null){
-      progressEndValue =  Math.trunc(teacher.nota);
-    }
-
-    const speed = 15;
-
-    useEffect(() => {
-      const progress = setInterval(() => {
-        setProgressStartValue((prevValue) => {
-          const nextValue = prevValue + 1;
-          if (nextValue === progressEndValue) {
-            clearInterval(progress);
-          }
-          return nextValue;
-        }, speed);
-      }, speed);
-
-      return () => {
-        clearInterval(progress);
-      };
-    }, []);
-
-    const progressStyle = {
-      background: `conic-gradient(
-        ${progressEndValue < 40 ? '#FF0000' : progressEndValue < 70 ? '#FFFF00' : '#04d91d'}
-        ${progressStartValue * 3.6}deg, #ededed 0deg
-      )`,
-    };
-    
-    return (
-      <div className="circular-progress" style={progressStyle}>
-        <span className="progress-value">{`${progressStartValue}%`}</span>
-      </div>
-    );
   }
 
   const [avaliacoes, setAvaliacoes] = useState([]); // Alterei para avaliacoes, pois é usado no backend
@@ -105,7 +67,7 @@ function Professor() {
             ))}
           </div>
           <div className="teacher-rating">
-            <CircularProgress />
+            <RatingGraphic teacherId={teacher._id} />
             <span className="avaliations-number">{avaliacoes.length} avaliações</span>
           </div>
         </div>
@@ -116,12 +78,12 @@ function Professor() {
             <IoMdAdd className='review-icon'/> 
           </div>
         </div>
-        <ReviewForm 
-          mostrarFormulario={mostrarFormulario}
-          mostrarOcultarFormulario={mostrarOcultarFormulario}
-          userid={userId}
-          teacherid={teacher._id}
-        />
+          <ReviewForm 
+            mostrarFormulario={mostrarFormulario}
+            mostrarOcultarFormulario={mostrarOcultarFormulario}
+            userid={userId}
+            teacherid={teacher._id}
+        ></ReviewForm>
         {avaliacoes.map((avaliacao, index) => (
           <Review
             key={index}

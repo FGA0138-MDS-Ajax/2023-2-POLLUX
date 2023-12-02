@@ -16,6 +16,8 @@ import Materias from "./pages/Materias";
 import ProfessoresMateria from "./pages/ProfessoresMateria";
 import Usuario from "./pages/Usuario";
 import SucessValidation from "./pages/SucessValidation";
+import RecuperarSenha from "./pages/RecuperarSenha";
+import RedefinirSenha from "./pages/RedefinirSenha";
 
 const PrivateRoutes = () => {
     return(

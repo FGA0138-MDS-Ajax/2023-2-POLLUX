@@ -48,7 +48,7 @@ const findComentariosByUsuarioId = async (usuarioId) => {
   }
 };
 
-const adicionarComentario = async (usuarioId, professorId, texto, nota, perguntas) => {
+const adicionarComentario = async (usuarioId, professorId, texto, nota) => {
   try {
     await connectDB();
 
@@ -57,14 +57,6 @@ const adicionarComentario = async (usuarioId, professorId, texto, nota, pergunta
     if (notaInt < 0 || notaInt > 5) {
       throw new Error('A nota deve ser entre 0 e 5');
     }
-
-    // Validação das notas das perguntas
-    perguntas.forEach(pergunta => {
-      pergunta.nota = parseInt(pergunta.nota, 10); // Convertendo a nota para um inteiro
-      if (pergunta.nota < 0 || pergunta.nota > 5) {
-        throw new Error('A nota da pergunta deve ser entre 0 e 5');
-      }
-    });
     
     const comentario = {
       _id: new ObjectId(),
@@ -72,7 +64,6 @@ const adicionarComentario = async (usuarioId, professorId, texto, nota, pergunta
       professorId: new ObjectId(professorId),
       texto: texto,
       nota : notaInt,
-      perguntas: perguntas, // Adicionando as perguntas ao comentário
       data: new Date(),
     };
 

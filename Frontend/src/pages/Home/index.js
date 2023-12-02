@@ -8,7 +8,7 @@ import TeacherCard from "../../components/TeacherCard";
 import CourseCard from "../../components/CourseCard";
 //styles
 import "./styles.css";
-import bat404 from '../../assets/gifs/404.gif';
+import bat404 from '../../assets/images/404.gif';
 
 function Home() {
   //recupera os dados do usuário logado

@@ -1,10 +1,14 @@
 import React from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
-const UserContext = React.createContext({userName: 'Convidado', userId: 0, userCurso: '', setUser: () => {}});
+const UserContext = React.createContext({userName: 'Convidado',
+                                        userId: 0,
+                                        userCurso: '',
+                                        userAvatar: '/public/avatars-users/default-avatar.png',
+                                        setUser: () => {}});
 
 function UserProvider({children}) {
-    const [user, setUser] = useLocalStorage('user', {userName: 'Convidado', userId: 0, userCurso: ''});
+    const [user, setUser] = useLocalStorage('user', {userName: 'Convidado', userId: 0, userCurso: '', userAvatar: '/public/avatars-users/default-avatar.png'});
     
     return(
         <UserContext.Provider value={{...user, setUser}}>

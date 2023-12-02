@@ -4,7 +4,7 @@ import instance from '../../services/instance';
 //styles
 import './styles.css'; 
 import { FaStar, FaRegTrashAlt } from 'react-icons/fa';
-import avatarUrls from '../../components/TeacherCard/avatarData.js';
+import profile from '../../assets/images/default-avatar.png';
 
 function Review({ avaliacaoId, nota, texto, data, userId, deleteOption}) {
 
@@ -43,9 +43,6 @@ function Review({ avaliacaoId, nota, texto, data, userId, deleteOption}) {
     }
   }
 
-  const randomIndex = Math.floor(Math.random() * avatarUrls.length);
-  const randomAvatarUrl = avatarUrls[randomIndex];
-
   function formatarData(dataString) {
     const data = new Date(dataString);
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -55,7 +52,7 @@ function Review({ avaliacaoId, nota, texto, data, userId, deleteOption}) {
   return (
     <div className='review-wrapper'>
         <div className='review-avatar'>
-          <img src={randomAvatarUrl} alt='avatar' />
+          <img src={profile} alt='avatar' />
         </div>
         <div className='review-body'>
           <div className='review-header'>

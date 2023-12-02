@@ -102,19 +102,20 @@ routes.delete('/comentarios/:id', async (req, res) => {
 });
 
 routes.post('/usuario', async (req, res) => {
-  const { email, senha, nome, curso, periodo } = req.body;
+  const { email, senha, nome, curso, periodo, fotoUrl } = req.body;
   
   try {
-    const result = await criarUsuario(email, senha, nome, curso, periodo);
+    const result = await criarUsuario(email, senha, nome, curso, periodo, fotoUrl);
     
     if (result === 'E-mail já está em uso.') {
       return res.status(400).json({ message: 'E-mail já está em uso.' });
     }
-    return res.status(201).json({ message: 'Usuário criado com sucesso!' });
+  
+    return res.status(201).json({ message: 'Usuário criado com sucesso!'});
     
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: 'Erro ao criar usuário.', usuario: result.ops[0] });
+    return res.status(500).json({ message: 'Erro ao criar usuário.' });
 
   }
 });

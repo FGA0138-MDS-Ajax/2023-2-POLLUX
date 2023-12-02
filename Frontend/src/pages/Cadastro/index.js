@@ -29,6 +29,7 @@ function Cadastro() {
   const [errorPassword, setErrorPassword] = useState("");
   const [sendValue, setSendValue] = useState(false);
   const [loading, setLoading] = useState(false);
+  const defaultAvatarUrl = require("../../assets/images/404.gif").default;
 
   const navigate = useNavigate();
 
@@ -48,6 +49,7 @@ function Cadastro() {
         nome: nome,
         curso: curso,
         periodo: periodo,
+        fotoUrl: defaultAvatarUrl
       };
 
       try {

@@ -51,6 +51,15 @@ header .sign-in{
     gap: 5px;
 }
 
+header .sign-in .avatar{
+    width: 30px;
+    height: 30px;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 5px;
+    
+}
+
 header .sign-in:hover{
     cursor: pointer;
 }

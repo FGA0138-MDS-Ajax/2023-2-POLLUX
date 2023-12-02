@@ -311,23 +311,23 @@ const iniciarRedefinicaoSenha = async (id, email) => {
 
 const redefinirSenha = async (id, novaSenha) => {
   try {
-    console.log('Conectando ao banco de dados...');
+    
     await connectDB();
-    console.log('Conexão bem-sucedida.');
+   
 
-    console.log('Verificando se o usuário existe...');
+    
     const usuarioExistente = await db.collection('usuarios').findOne({ _id: new ObjectId(id) });
     if (!usuarioExistente) {
-      console.log('Usuário não encontrado.');
+      
       return 'Usuário não encontrado.';
     }
 
-    console.log('Criptografando a nova senha...');
+    
     const saltRounds = 10;
     const senhaHash = await bcrypt.hash(novaSenha, saltRounds);
-    console.log('Nova senha criptografada com sucesso.');
+    
 
-    console.log('Atualizando a senha do usuário no banco de dados...');
+    
     const result = await db.collection('usuarios').updateOne(
       { _id: new ObjectId(id) },
       { $set: { senha: senhaHash } }

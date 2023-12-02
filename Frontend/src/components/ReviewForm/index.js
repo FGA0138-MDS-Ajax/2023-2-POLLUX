@@ -13,16 +13,16 @@ function ReviewForm({ mostrarFormulario, mostrarOcultarFormulario, userid, teach
   const [enviando, setEnviando] = useState(false);
   const [notaFinal, setNotaFinal] = useState(0);
 
-  const [ratings, setRatings] = useState({
-    question1: { texto: 'Pergunta 1', nota: null },
-    question2: { texto: 'Pergunta 2', nota: null },
-    question3: { texto: 'Pergunta 3', nota: null },
-    question4: { texto: 'Pergunta 4', nota: null },
-    question5: { texto: 'Pergunta 5', nota: null },
-  });
+  const [notas, setNotas] = useState({
+    question1: { nota: 0 },
+    question2: { nota: 0 },
+    question3: { nota: 0 },
+    question4: { nota: 0 },
+    question5: { nota: 0 },
+  })
   
   const handleQuestionSelect = (nota, rating) => {
-    setRatings(prevRatings => ({
+    setNotas(prevRatings => ({
       ...prevRatings,
       [nota]: { ...prevRatings[nota], nota: rating },
     }));
@@ -30,12 +30,11 @@ function ReviewForm({ mostrarFormulario, mostrarOcultarFormulario, userid, teach
     //calcular a nota final
     let media = 0;
 
-    Object.keys(ratings).forEach((key) => {
-      media += ratings[key].nota;
+    Object.keys(notas).forEach((key) => {
+      media += notas[key].nota + 1;
     });
 
     media = media / 5; 
-
     setNotaFinal(media);
   };
 
@@ -57,11 +56,10 @@ function ReviewForm({ mostrarFormulario, mostrarOcultarFormulario, userid, teach
         professorId: teacherid,
         usuarioId: userid,
         texto: comentario,
-        nota: notaFinal,
-        perguntas: ratings,
+        nota: notaFinal
       };
 
-      console.log(data)
+      console.log(data);
 
       try {
         const response = await instance.post('/comentarios', data);

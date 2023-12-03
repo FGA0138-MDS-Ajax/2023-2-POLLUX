@@ -205,7 +205,7 @@ routes.post('/inserir-email', async (req, res) => {
 
   try {
     const result = await inserirEmail(email); // Chama a função inserirEmail com o e-mail
-    res.send('E-mail inserido com sucesso!');
+    res.status(200).send('E-mail inserido com sucesso!');
   } catch (error) {
     console.error(error);
     res.status(500).send('Ocorreu um erro ao inserir o e-mail.');
@@ -217,7 +217,7 @@ routes.post('/redefinir-senha', async (req, res) => {
 
   try {
     const result = await redefinirSenha(novaSenha);
-    res.send('Senha de todos os usuários redefinida com sucesso!');
+    res.status(200).send('Senha de todos os usuários redefinida com sucesso!');
   } catch (error) {
     console.error(error);
     res.status(500).send('Ocorreu um erro ao redefinir a senha.');

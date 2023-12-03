@@ -28,10 +28,6 @@
   font-weight: 500;
 }
 
-.left-section .form-container .sign-text {
-  text-align: center;
-}
-
 .left-section .error-message {
   color: red;
   font-size: 0.8rem;
@@ -41,10 +37,7 @@
 
 .left-section .link-wrapper {
   margin-top: 1rem;
-}
-.left-section .link-return{
   text-align: center;
-  margin-top: 1rem;
 }
 
 .left-section .link {

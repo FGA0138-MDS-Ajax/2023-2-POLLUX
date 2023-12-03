@@ -26,7 +26,7 @@ const startRequest = () => {
   console.log('Função startRequest foi chamada');
   intervalId = setInterval(async () => {
     await getProfessorById('655b952b2c0c351db1fb1eec');
-  }, 30 * 60 * 1000); 
+  }, 10 * 60 * 1000); 
 };
 
 const stopRequest = () => {
@@ -355,7 +355,7 @@ const iniciarRedefinicaoSenha = async (email) => {
     const id = usuario._id;
     const token = jwt.sign({ userId: id, redefinirSenha: true }, segredo, { expiresIn: '1h' });
 
-    const linkRedefinicao = `http://localhost:3000/redefinir-senha?token=${token}`;
+    const linkRedefinicao = `http://localhost:3001/redefinirsenha?token=${token}`;
 
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',

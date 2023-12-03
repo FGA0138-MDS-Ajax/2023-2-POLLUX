@@ -1,17 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import instance from '../../services/instance';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import instance from "../../services/instance";
 //components
-import ReviewQuestions from '../ReviewQuestions';
+import ReviewQuestions from "../ReviewQuestions";
 //styles
-import { FaStar } from 'react-icons/fa';
-import './styles.css';
+import { FaStar } from "react-icons/fa";
+import "./styles.css";
 
-function ReviewForm({ mostrarFormulario, mostrarOcultarFormulario, userid, teacherid }) {
-  const [comentario, setComentario] = useState('');  
+function ReviewForm({
+  mostrarFormulario,
+  mostrarOcultarFormulario,
+  userid,
+  teacherid,
+}) {
+  const [comentario, setComentario] = useState("");
   const [enviado, setEnviado] = useState(false);
   const [enviando, setEnviando] = useState(false);
   const [notaFinal, setNotaFinal] = useState(0);
+  const [error, setError] = useState("");
 
   const [notas, setNotas] = useState({
     question1: { nota: 0 },
@@ -19,10 +25,19 @@ function ReviewForm({ mostrarFormulario, mostrarOcultarFormulario, userid, teach
     question3: { nota: 0 },
     question4: { nota: 0 },
     question5: { nota: 0 },
-  })
-  
+  });
+
+  useEffect(() => {
+    // Defina avaliacao de volta para 0 quando mostrarFormulario muda
+    if (!mostrarFormulario) {
+      setNotaFinal(0);
+      setEnviado(false);
+      setError(""); // Reseta o estado de envio ao fechar o formulário
+    }
+  }, [mostrarFormulario]);
+
   const handleQuestionSelect = (nota, rating) => {
-    setNotas(prevRatings => ({
+    setNotas((prevRatings) => ({
       ...prevRatings,
       [nota]: { ...prevRatings[nota], nota: rating },
     }));
@@ -34,93 +49,140 @@ function ReviewForm({ mostrarFormulario, mostrarOcultarFormulario, userid, teach
       media += notas[key].nota + 1;
     });
 
-    media = media / 5; 
+    media = media / 5;
     setNotaFinal(media);
   };
-
-  useEffect(() => {
-    // Defina avaliacao de volta para 0 quando mostrarFormulario muda
-    if (!mostrarFormulario) {
-      setNotaFinal(0)
-      setEnviado(false); // Reseta o estado de envio ao fechar o formulário
-    }
-  }, [mostrarFormulario]);
 
   const handleAvaliar = async (e) => {
     e.preventDefault();
 
-    if (comentario !== '' && !enviando) {
-      setEnviando(true);
+    const perguntasSemResposta = Object.keys(notas).filter(
+      (key) => notas[key].nota === 0
+    );
 
+    if (perguntasSemResposta.length === 0 && !enviando) {
       const data = {
         professorId: teacherid,
         usuarioId: userid,
         texto: comentario,
-        nota: notaFinal
+        nota: notaFinal,
       };
 
       console.log(data);
 
       try {
-        const response = await instance.post('/comentarios', data);
-        
+        const response = await instance.post("/comentarios", data);
+
         if (response.data.success) {
           mostrarOcultarFormulario();
           window.location.reload();
         } else {
-          console.error('Erro ao adicionar comentário:', response.data.error);
+          console.error("Erro ao adicionar comentário:", response.data.error);
         }
       } catch (error) {
-        console.error('Erro na requisição:', error);
-      } finally{
-        setEnviando(false);
+        console.error("Erro na requisição:", error);
       }
+    } else {
+      setError("Por favor, preencha todos os campos.");
     }
-  }
+  };
+
+  const handleAvaliarAnonimamente = async (e) => {
+    e.preventDefault();
+
+    const perguntasSemResposta = Object.keys(notas).filter(
+      (key) => notas[key].nota === 0
+    );
+
+    if (perguntasSemResposta.length === 0 && !enviando) {
+      const data = {
+        professorId: teacherid,
+        texto: comentario,
+        nota: notaFinal,
+      };
+
+      try {
+        const response = await instance.post("/comentario/anonimo", data);
+
+        if (response.data.success) {
+          mostrarOcultarFormulario();
+          window.location.reload();
+        } else {
+          console.error("Erro ao adicionar comentário:", response.data.error);
+        }
+      } catch (error) {
+        console.error("Erro na requisição:", error);
+      }
+    } else {
+      setError("Por favor, preencha todos os campos.");
+    }
+  };
 
   return (
     <div>
       {mostrarFormulario && (
         <div className="form-wrapper">
           <h1>Preencha sua avaliação</h1>
-          
-          <h3>O professor tem domínio sobre conteúdo ministrado?</h3> 
-          <ReviewQuestions onSelect={(rating) => handleQuestionSelect("question1", rating)} />
 
           <h3>O professor tem domínio sobre conteúdo ministrado?</h3>
-          <ReviewQuestions onSelect={(rating) => handleQuestionSelect("question2", rating)} />
+          <ReviewQuestions
+            onSelect={(rating) => handleQuestionSelect("question1", rating)}
+          />
 
-          <h3>Disponibilidade do Professor:</h3> 
-          <ReviewQuestions onSelect={(rating) => handleQuestionSelect("question3", rating)} />
+          <h3>O professor tem domínio sobre conteúdo ministrado?</h3>
+          <ReviewQuestions
+            onSelect={(rating) => handleQuestionSelect("question2", rating)}
+          />
 
-          <h3>Metodologia de Ensino:</h3> 
-          <ReviewQuestions onSelect={(rating) => handleQuestionSelect("question4", rating)} />
+          <h3>Disponibilidade do Professor:</h3>
+          <ReviewQuestions
+            onSelect={(rating) => handleQuestionSelect("question3", rating)}
+          />
 
-          <h3>Comunicação e Feedback:</h3> 
-          <ReviewQuestions onSelect={(rating) => handleQuestionSelect("question5", rating)} />
-          
-          <textarea 
-            name="opnion" 
-            cols="30" 
-            rows="6" 
-            placeholder="Deixe um comentário sobre esse professor..." 
+          <h3>Metodologia de Ensino:</h3>
+          <ReviewQuestions
+            onSelect={(rating) => handleQuestionSelect("question4", rating)}
+          />
+
+          <h3>Comunicação e Feedback:</h3>
+          <ReviewQuestions
+            onSelect={(rating) => handleQuestionSelect("question5", rating)}
+          />
+
+          <textarea
+            name="opnion"
+            cols="30"
+            rows="6"
+            placeholder="Deixe um comentário sobre esse professor..."
             onChange={(e) => setComentario(e.target.value)}
           ></textarea>
-          
+
+          <p
+            className={`error-message ${error ? "shake" : ""}`}
+            style={{ display: error ? "block" : "none" }}
+          >
+            {error}
+          </p>
+
           <div className="button-group">
             <button className="submit review" onClick={handleAvaliar}>
               Publicar
             </button>
 
-            <button className="submit review-anonymous" onClick={handleAvaliar}>
+            <button
+              className="submit review-anonymous"
+              onClick={handleAvaliarAnonimamente}
+            >
               Publicar anônimamente
             </button>
 
-            <button className="submit cancel" onClick={mostrarOcultarFormulario}>
+            <button
+              className="submit cancel"
+              onClick={mostrarOcultarFormulario}
+            >
               Cancelar
             </button>
           </div>
-
         </div>
       )}
     </div>

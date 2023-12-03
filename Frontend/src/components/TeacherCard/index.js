@@ -2,9 +2,16 @@ import React from 'react';
 import { Link, useLocation, useNavigate, navigate } from "react-router-dom";
 //styles
 import './styles.css';
-import avatarUrls from './avatarData.js';
+import manUrls from './manAvatars.js';
+import womanUrls from './womenAvatars.js';
 
 function TeacherCard({ teacher, user }) {
+  if(teacher.genero === 1) {
+    var avatarUrls = manUrls;
+  } else {
+    var avatarUrls = womanUrls;
+  }
+  console.log(teacher)
   const randomIndex = Math.floor(Math.random() * avatarUrls.length);
   const randomAvatarUrl = avatarUrls[randomIndex];
 

@@ -7,24 +7,22 @@
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
-.form-wrapper *{
+.form-wrapper * {
   background-color: transparent;
 }
 
 .form-wrapper h1 {
   margin-bottom: 1.5rem;
-
 }
 
 .form-wrapper h3 {
   font-size: 1.1rem;
   font-weight: 600;
-
 }
 
 .form-wrapper textarea {
   font-size: 1rem;
-  margin: 1rem 0;
+  margin: 1rem 0 0rem 0;
   width: 100%;
   height: 100%;
   background: #fff;
@@ -35,11 +33,43 @@
   resize: none;
 }
 
+.form-wrapper .error-message {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+.shake {
+  animation: shake 1s;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
 .button-group {
   display: flex;
   grid-gap: 0.5rem;
   align-items: center;
   background-color: transparent;
+  margin-top: 1rem;
 }
 
 .button-group .submit {
@@ -55,15 +85,15 @@
 }
 
 .button-group .review {
-  background-color: #53D769;
+  background-color: #53d769;
   transition: background-color 0.2s ease-in-out;
 }
 
 .button-group .review:hover {
-  background-color: #46C263;
+  background-color: #46c263;
 }
 
-.button-group .review-anonymous{
+.button-group .review-anonymous {
   background-color: #343a40;
   transition: background-color 0.2s ease-in-out;
 }
@@ -73,66 +103,10 @@
 }
 
 .button-group .cancel {
-  background-color: #FC3D39;
+  background-color: #fc3d39;
   transition: background-color 0.2s ease-in-out;
 }
 
-.button-group .cancel:hover{
-  background-color: #E33437;
+.button-group .cancel:hover {
+  background-color: #e33437;
 }
-
-/*
-.form-wrapper .form-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: transparent;
-}
-
-.form-wrapper .form-header .rating {
-  display: flex;
-  align-self: center;
-  justify-content: left;
-  grid-gap: 0.5rem;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  background-color: transparent;
-}
-
-.form-wrapper .form-header .rating .star {
-  color: #aaa;
-  cursor: pointer;
-  background-color: transparent;
-}
-
-.form-wrapper .form-header .rating .star.active {
-color:  #FFBD13;
-opacity: 0;
-animation: animate .5s calc(var(--i) * .1s) ease-in-out forwards;
-}
-
-@keyframes animate {
-  0% {
-    opacity: 0;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.2);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.form-wrapper .form-header .rating .star:hover {
-  transform: scale(1.1);
-}
-.form-wrapper h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  background-color: transparent;
-}
-*/

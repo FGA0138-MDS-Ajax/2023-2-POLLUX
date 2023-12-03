@@ -6,8 +6,9 @@ import {
 } from '../controllers/usuariocontroller';
 import { getAllProfessors, findProfessorByName, adicionarComentario,
          findComentariosByProfessorId, getAllAvaliacoes, 
-         adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,excluirComentario,criarUsuario, 
-         findProfessorById, findComentariosByUsuarioId, startRequest, stopRequest, inserirEmail, redefinirSenha} from '../models/professores.model';
+         adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,
+         excluirComentario,criarUsuario, findProfessorById, findComentariosByUsuarioId, startRequest, stopRequest, inserirEmail, redefinirSenha } from '../models/professores.model';
+
 import { findUserById } from '../models/usuario.model';
 import {findMateriaById, getAllMaterias, findMateriaByEngenharia} from'../models/materia.model';
 import { verificarEmail } from '../models/professores.model';

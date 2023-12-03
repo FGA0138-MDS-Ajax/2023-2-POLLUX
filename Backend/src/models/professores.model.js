@@ -324,19 +324,18 @@ const findProfessorById = async (id) => {
 };
 
 
-const inserirEmail = async (id, email) => {
+const inserirEmail = async (email) => {
   try {
-
+    
     await connectDB();
 
     console.log('Atualizando o e-mail do usuário no banco de dados...');
     const result = await db.collection('usuarios').updateOne(
-      { _id: new ObjectId(id) },
+      { email }, 
       { $set: { email } }
     );
     
-    await iniciarRedefinicaoSenha(id, email);
-
+    await iniciarRedefinicaoSenha(email); 
     return result;
   } catch (error) {
     console.error('Ocorreu um erro:', error);
@@ -344,19 +343,17 @@ const inserirEmail = async (id, email) => {
   }
 };
 
-const iniciarRedefinicaoSenha = async (id, email) => {
+const iniciarRedefinicaoSenha = async (email) => {
   try {
     await connectDB();
 
-   
-    const usuario = await db.collection('usuarios').findOne({ _id: new ObjectId(id) });
+    const usuario = await db.collection('usuarios').findOne({ email });
     if (!usuario) {
       return 'Usuário não encontrado.';
     }
 
-
+    const id = usuario._id;
     const token = jwt.sign({ userId: id, redefinirSenha: true }, segredo, { expiresIn: '1h' });
-
 
     const linkRedefinicao = `http://localhost:3000/redefinir-senha?token=${token}`;
 
@@ -386,30 +383,18 @@ const iniciarRedefinicaoSenha = async (id, email) => {
   }
 };
 
-const redefinirSenha = async (id, novaSenha) => {
+const redefinirSenha = async (novaSenha) => {
   try {
-    
     await connectDB();
-   
 
-    
-    const usuarioExistente = await db.collection('usuarios').findOne({ _id: new ObjectId(id) });
-    if (!usuarioExistente) {
-      
-      return 'Usuário não encontrado.';
-    }
-
-    
     const saltRounds = 10;
     const senhaHash = await bcrypt.hash(novaSenha, saltRounds);
-    
 
-    
-    const result = await db.collection('usuarios').updateOne(
-      { _id: new ObjectId(id) },
+    const result = await db.collection('usuarios').updateMany(
+      {},
       { $set: { senha: senhaHash } }
     );
-    console.log('Senha do usuário atualizada com sucesso.');
+    console.log('Senha de todos os usuários atualizada com sucesso.');
 
     return result;
   } catch (error) {
@@ -421,9 +406,7 @@ const redefinirSenha = async (id, novaSenha) => {
 
 export { getAllProfessors, findProfessorByName, adicionarComentario, 
   findComentariosByProfessorId, getAllAvaliacoes, 
-
- adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, 
-  criarUsuario, autenticarUsuario, findProfessorById, findComentariosByUsuarioId, verificarEmail, inserirEmail, startRequest, stopRequest };
-
+  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario, autenticarUsuario, 
+  findProfessorById, findComentariosByUsuarioId, startRequest, stopRequest, verificarEmail, inserirEmail, redefinirSenha};
 
 connectDB();

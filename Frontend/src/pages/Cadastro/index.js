@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import instance from "../../services/instance";
 //styles
@@ -26,11 +26,20 @@ function Cadastro() {
   const [confirmedSenha, setConfirmedSenha] = useState("");
   const [error, setError] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [errorSemester, setErrorSemester] = useState(false);
   const [sendValue, setSendValue] = useState(false);
   const [loading, setLoading] = useState(false);
   const defaultAvatarUrl = require("../../assets/images/404.gif").default;
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setError("");
+    setErrorEmail(false);
+    setErrorSemester(false);
+    setErrorPassword(false);
+  }, [nome, email, curso, periodo, senha, confirmedSenha]);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -38,6 +47,34 @@ function Cadastro() {
     if (email == "" && senha == "") {
       setErrorPassword(false);
       setError("Preencha todos os campos.");
+      return;
+    }
+
+    const isAlunoUnbEmail = /^[0-9]{9}@aluno.unb.br$/.test(email);
+
+    if (!isAlunoUnbEmail) {
+      setErrorEmail(true)
+      setError("Insira um e-mail válido. Ex: 123456789@aluno.unb.br")
+      return;
+    }
+
+    const semesterPattern = /^20[0-9]{2}.[1-2]$/.test(periodo);
+
+    if (!semesterPattern) {
+      setErrorSemester(true)
+      setError("Insira um semestre válido. Ex: 2021.2")
+      return;
+    }
+
+    if (senha.length<8) {
+      setErrorPassword(true)
+      setError("A senha deve ter mais de 8 caracteres.")
+      return;
+    }
+
+    if (!/\d/.test(senha)) {
+      setErrorPassword(true)
+      setError("A senha deve ter pelo menos um número.")
       return;
     }
 
@@ -93,8 +130,9 @@ function Cadastro() {
           <Input
             type="text"
             nome="email"
-            placeholder="Email"
+            placeholder="Email universitário"
             onChange={setEmail}
+            error={errorEmail}
           />
 
           <DropDown
@@ -107,6 +145,7 @@ function Cadastro() {
             name="periodo"
             placeholder="Período de entrada"
             onChange={setPeriodo}
+            error={errorSemester}
           />
 
           <InputPassword

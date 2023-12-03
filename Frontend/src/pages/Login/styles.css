@@ -33,6 +33,7 @@
   font-size: 0.8rem;
   margin-top: 0.5rem;
   display: none;
+  max-width: 30ch;
 }
 
 .left-section .link-wrapper {

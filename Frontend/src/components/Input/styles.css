@@ -10,3 +10,6 @@
     margin-top: 10px;
 }
 
+.input-container input.error {
+    border-color: red;
+}

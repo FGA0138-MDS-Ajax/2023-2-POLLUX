@@ -201,11 +201,11 @@ routes.get('/verificar-email', async (req, res) => {
 
 
 routes.post('/inserir-email', async (req, res) => {
-  const { id, email } = req.body;
+  const { email } = req.body; // Pega apenas o e-mail do corpo da requisição
 
   try {
-    const result = await inserirEmail(id, email);
-    res.send('E-mail inserido com sucesso!');
+    const result = await inserirEmail(email); // Chama a função inserirEmail com o e-mail
+    res.status(200).send('E-mail inserido com sucesso!');
   } catch (error) {
     console.error(error);
     res.status(500).send('Ocorreu um erro ao inserir o e-mail.');
@@ -213,15 +213,15 @@ routes.post('/inserir-email', async (req, res) => {
 });
 
 routes.post('/redefinir-senha', async (req, res) => {
-  const { id, novaSenha } = req.body;
+  const { novaSenha } = req.body;
 
   try {
-    const result = await redefinirSenha(id, novaSenha);
-    res.send('Senha redefinida com sucesso!');
+    const result = await redefinirSenha(novaSenha);
+    res.status(200).send('Senha de todos os usuários redefinida com sucesso!');
   } catch (error) {
     console.error(error);
     res.status(500).send('Ocorreu um erro ao redefinir a senha.');
   }
-})
+});
 
 export default routes;

@@ -21,28 +21,32 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (email !== '' && senha !== '') {
+    if (email !== "" && senha !== "") {
       const data = {
         email: email,
-        senha: senha
+        senha: senha,
       };
 
       try {
-        const response = await instance.post('/login', data);
-        if (response.status === 200 && response.data.user) { 
-          setUser({userId: response.data.user._id, userName:  response.data.user.nome, userCurso: response.data.user.curso, userAvatar: response.data.user.fotoUrl});
-          localStorage.setItem('@userId', response.data.user._id);
-          navigate('/Home');
-        } 
+        const response = await instance.post("/login", data);
+        if (response.status === 200 && response.data.user) {
+          setUser({
+            userId: response.data.user._id,
+            userName: response.data.user.nome,
+            userCurso: response.data.user.curso,
+            userAvatar: response.data.user.fotoUrl,
+          });
+          localStorage.setItem("@userId", response.data.user._id);
+          navigate("/Home");
+        }
       } catch (error) {
         console.error(error);
-        setError('Email ou senha incorretos.');
+        setError("Email ou senha incorretos.");
       }
     } else {
-      setError('Preencha todos os campos.');
+      setError("Preencha todos os campos.");
     }
   };
-
 
   return (
     <div className="login">
@@ -66,24 +70,31 @@ function Login() {
             error={error}
           />
 
-          <p className={`error-message ${error ? 'shake' : ''}`} style={{ display: error ? "block" : "none"}}>{error}</p>
-        
+          <p
+            className={`error-message ${error ? "shake" : ""}`}
+            style={{ display: error ? "block" : "none" }}
+          >
+            {error}
+          </p>
+
           <SignButton placeholder="Entrar" onClick={handleLogin} />
 
-          <p className="sign-text">
-            Não possui uma conta?{" "}
-            <Link to="/Cadastro" className="sign-link">
-              Registre-se
+          <div className="link-wrapper">
+            <Link to="/recuperarsenha" className="link">
+              Esqueceu sua senha?{" "}
             </Link>
-          </p>
+          </div>
+          
         </div>
       </div>
 
       <div className="right-section">
         <h1 className="gamatrack">GamaTrack</h1>
         <p className="typing-text">Avalie seus professores</p>
+        <Link to="/Cadastro" className="register">
+          Criar minha conta
+        </Link>
       </div>
-
     </div>
   );
 }

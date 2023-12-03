@@ -31,8 +31,10 @@ export default function AppRoutes() {
         <Routes>
             <Route exact path="/" element={<Login></Login>}/>
             <Route path="/Cadastro" element={<Cadastro></Cadastro>}/>
-            <Route element={<SucessValidation></SucessValidation>} path="/sucess" exact/>
-            <Route element={<PrivateRoutes />}>
+            <Route element={<SucessValidation></SucessValidation>} path="/sucess"/>
+            <Route element={<RecuperarSenha></RecuperarSenha>} path="/recuperarsenha"/>
+            <Route element={<RedefinirSenha></RedefinirSenha>} path="/redefinirsenha"/>
+            <Route element={<PrivateRoutes/>}>
                 <Route element={<Home/>} path="/home" exact/>
                 <Route element={<Professor/>} path="/professor" exact/>
                 <Route element={<Materias/>} path="/materias" exact/>

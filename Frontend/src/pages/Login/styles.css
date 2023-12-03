@@ -28,26 +28,29 @@
   font-weight: 500;
 }
 
-.left-section .form-container .sign-text {
-  text-align: center;
-}
-
 .left-section .error-message {
   color: red;
   font-size: 0.8rem;
   margin-top: 0.5rem;
   display: none;
+  max-width: 30ch;
 }
 
-.left-section .sign-link {
+.left-section .link-wrapper {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.left-section .link {
   cursor: pointer;
-  color: #d90429;
+  color: #2b2d42;
   text-decoration: none;
-  transition: 0.2s ease-in-out;
+  font-weight: 500;
+  transition: .1s ease-in-out;
 }
 
-.left-section .sign-link:hover {
-  text-decoration: underline;
+.left-section .link:hover {
+  color: #d90429;
 }
 
 .right-section {
@@ -75,15 +78,35 @@
 
 .right-section p {
   margin-top: 20px;
-  width: 350px;
+  width: 380px;
   font-weight: 600;
   letter-spacing: 5px;
   font-size: 1.4rem;
+  color: #aaa;
 
   animation: typing 3s steps(30), blink 0.5s step-end infinite alternate;
   white-space: nowrap;
   overflow: hidden;
   border-right: 2px solid #edf2f4;
+}
+
+.right-section .register {
+  text-decoration: none;
+  margin-top: 5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #edf2f4;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+  border: 2px solid #edf2f4;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+
+.right-section .register:hover {
+  background-color: #edf2f4;
+  color: #d90429;
 }
 
 @keyframes typing {

@@ -421,6 +421,9 @@ const redefinirSenha = async (id, novaSenha) => {
 
 export { getAllProfessors, findProfessorByName, adicionarComentario, 
   findComentariosByProfessorId, getAllAvaliacoes, 
-  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario, autenticarUsuario, findProfessorById, findComentariosByUsuarioId, verificarEmail};
+
+ adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, 
+  criarUsuario, autenticarUsuario, findProfessorById, findComentariosByUsuarioId, verificarEmail, inserirEmail, startRequest, stopRequest };
+
 
 connectDB();

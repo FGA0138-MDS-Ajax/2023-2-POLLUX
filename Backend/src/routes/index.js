@@ -6,7 +6,8 @@ import {
 } from '../controllers/usuariocontroller';
 import { getAllProfessors, findProfessorByName, adicionarComentario,
          findComentariosByProfessorId, getAllAvaliacoes, 
-         adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,excluirComentario,criarUsuario, findProfessorById, findComentariosByUsuarioId} from '../models/professores.model';
+         adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,
+         excluirComentario,criarUsuario, findProfessorById, findComentariosByUsuarioId, startRequest, stopRequest } from '../models/professores.model';
 import { findUserById } from '../models/usuario.model';
 import {findMateriaById, getAllMaterias, findMateriaByEngenharia} from'../models/materia.model';
 import { verificarEmail } from '../models/professores.model';
@@ -21,6 +22,18 @@ routes.post('/login', requestLogin);
 //routes.post('/usuario', createUser);
 routes.delete('/usuario/:id', deleteUser);
 routes.put('/usuario/:id', updateUser);
+
+
+routes.get('/start', (req, res) => {
+  console.log('Rota /start foi chamada');
+  startRequest();
+  res.send('Requisição iniciada a cada 30 minutos');
+})
+
+routes.get('/stop', (req, res) => {
+  stopRequest();
+  res.send('Requisição parada');
+});
 
 routes.get('/professores', async (req, res) => {
   const professores = await getAllProfessors();

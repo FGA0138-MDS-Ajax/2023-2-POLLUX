@@ -15,6 +15,24 @@ const connectDB = async () => {
 
 const getAllProfessors = async () => db.collection('professores').find().toArray();
 
+let intervalId; 
+
+const getProfessorById = async (id) => {
+  
+  console.log(`Obtendo professor com ID ${id}`);
+};
+
+const startRequest = () => {
+  console.log('Função startRequest foi chamada');
+  intervalId = setInterval(async () => {
+    await getProfessorById('655b952b2c0c351db1fb1eec');
+  }, 30 * 60 * 1000); 
+};
+
+const stopRequest = () => {
+  clearInterval(intervalId);
+};
+
 const getAllAvaliacoes = async () => db.collection('avaliacoes').find().toArray();
 
 const findProfessorByName = async (nome) => {
@@ -191,7 +209,7 @@ const criarUsuario = async (email, senha, nome, curso, periodo, fotoUrl) => {
       periodo,
       dataCriacao: new Date(),
       emailVerificado: false,
-      fotoUrl: fotoUrl // Adicione a URL da foto aqui
+      fotoUrl: fotoUrl 
     };
 
     // Enviar e-mail de autenticação
@@ -308,6 +326,7 @@ const findProfessorById = async (id) => {
 
 export { getAllProfessors, findProfessorByName, adicionarComentario, 
   findComentariosByProfessorId, getAllAvaliacoes, 
-  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario, autenticarUsuario, findProfessorById, findComentariosByUsuarioId, verificarEmail};
+  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, 
+  criarUsuario, autenticarUsuario, findProfessorById, findComentariosByUsuarioId, verificarEmail, startRequest, stopRequest };
 
 connectDB();

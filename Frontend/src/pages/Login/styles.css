@@ -1,140 +1,148 @@
 .login {
-    display: flex;
-    justify-self: space-between;
-    height: 100vh;
-    color: #2B2D42;
-    overflow: hidden;
+  display: flex;
+  justify-self: space-between;
+  height: 100vh;
+  color: #2b2d42;
+  overflow: hidden;
 }
 
 .left-section {
-    width: 55vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  width: 55vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.left-section .form-container{
-    padding: 10px;
+.left-section .form-container {
+  padding: 10px;
 }
 
-.left-section .form-container h1{
-    margin-bottom: 20px;
-    text-align: center;
+.left-section .form-container h1 {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.left-section .form-container p{
-    margin-top: 15px;
-    font-weight: 500; 
+.left-section .form-container p {
+  margin-top: 15px;
+  font-weight: 500;
 }
 
-.left-section .form-container .sign-text{
-    text-align: center;
+.left-section .form-container .sign-text {
+  text-align: center;
 }
 
-.left-section .error-message{
-    color: red;
-    font-size: 0.8rem;
-    margin-top: 0.5rem;
-    display: none;
+.left-section .error-message {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  display: none;
 }
 
-.left-section .sign-link{
-    cursor: pointer; 
-    color: #D90429;
-    text-decoration: none;
-    transition: 0.2s ease-in-out;
+.left-section .sign-link {
+  cursor: pointer;
+  color: #d90429;
+  text-decoration: none;
+  transition: 0.2s ease-in-out;
 }
 
-.left-section .sign-link:hover{
-    text-decoration: underline;
+.left-section .sign-link:hover {
+  text-decoration: underline;
 }
 
 .right-section {
-    width: 45vw;
-    height: 100%;
-    border-radius: 100px 0 0 100px;
-    background-color: #D90429  ;
-    color: #EDF2F4;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    padding: 13em 0 0 5em;
+  width: 45vw;
+  height: 100%;
+  border-radius: 100px 0 0 100px;
+  background-color: #d90429;
+  color: #edf2f4;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 13em 0 0 5em;
 }
 
-.right-section *{
-    background-color: transparent;
+.right-section * {
+  background-color: transparent;
 }
 
-.right-section h1{
-    font-size: 4rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-
+.right-section h1 {
+  font-size: 4rem;
+  font-weight: 600;
+  letter-spacing: 2px;
 }
 
-.right-section p{
-    margin-top: 20px;
-    width: 350px;
-    font-weight: 600;
-    letter-spacing: 5px;
-    font-size: 1.4rem;
-    
-    animation: typing 3s steps(30), blink 0.5s step-end infinite alternate;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 2px solid #EDF2F4;
+.right-section p {
+  margin-top: 20px;
+  width: 350px;
+  font-weight: 600;
+  letter-spacing: 5px;
+  font-size: 1.4rem;
+
+  animation: typing 3s steps(30), blink 0.5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #edf2f4;
 }
 
 @keyframes typing {
-    from {
-      width: 0
-    }
+  from {
+    width: 0;
   }
-  
-@keyframes blink {
-    50% {
-        border-color: transparent;
-    }
 }
- 
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
 
 .shake {
-    animation: shake 1s;
+  animation: shake 1s;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
   }
-  
-  @keyframes shake {
-    0%, 100% {
-      transform: translateX(0);
-    }
-    10%, 30%, 50%, 70%, 90% {
-      transform: translateX(-10px);
-    }
-    20%, 40%, 60%, 80% {
-      transform: translateX(10px);
-    }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-10px);
   }
-  
-  .loading-container-login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;    
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(10px);
   }
-  
-  .loading-container-login .loading-spinner {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-left: 4px solid #D90429;
-    border-radius: 50%;
-    width: 70px;
-    height: 70px;
-    animation: spin 1s linear infinite;
+}
+
+.loading-container-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.loading-container-login .loading-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #d90429;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
   }
-  
-  
+}

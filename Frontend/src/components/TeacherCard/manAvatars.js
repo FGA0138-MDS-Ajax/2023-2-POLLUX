@@ -1,0 +1,28 @@
+const manUrls = [
+  "/avatars/man.png",
+  "/avatars/man1.png",
+  "/avatars/man2.png",
+  "/avatars/man3.png",
+  "/avatars/man4.png",
+  "/avatars/man5.png",
+  "/avatars/man6.png",
+  "/avatars/man7.png",
+  "/avatars/man8.png",
+  "/avatars/man9.png",
+  "/avatars/man10.png",
+  "/avatars/man11.png",
+  "/avatars/man12.png",
+  "/avatars/man13.png",
+  "/avatars/man14.png",
+  "/avatars/man15.png",
+  "/avatars/man16.png",
+  "/avatars/man17.png",
+  "/avatars/man18.png",
+  "/avatars/man19.png",
+  "/avatars/man20.png",
+  "/avatars/man22.png",
+  "/avatars/man23.png",
+  "/avatars/man24.png",
+];
+
+export default manUrls;

@@ -132,12 +132,13 @@ function Cadastro() {
 
                 <SignButton placeholder="Criar" onClick={handleRegister} />
 
-                <p className="sign-text">
+                <div className="link-wrapper">
                   Já possui uma conta?{" "}
-                  <Link to="/" className="sign-link">
-                    Entrar
+                  <Link to="/" className="link">
+                      Entrar
                   </Link>
-                </p>
+                </div>
+                 
               </div>
             )
           }
@@ -158,6 +159,9 @@ function Cadastro() {
       <div className="right-section">
         <h1>GamaTrack</h1>
         <p>Avalie seus professores</p>
+        <Link to="/" className="register">
+          Já possuo uma conta
+        </Link>
       </div>
     </div>
   );

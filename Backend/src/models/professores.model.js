@@ -324,9 +324,103 @@ const findProfessorById = async (id) => {
 };
 
 
+const inserirEmail = async (id, email) => {
+  try {
+
+    await connectDB();
+
+    console.log('Atualizando o e-mail do usuário no banco de dados...');
+    const result = await db.collection('usuarios').updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { email } }
+    );
+    
+    await iniciarRedefinicaoSenha(id, email);
+
+    return result;
+  } catch (error) {
+    console.error('Ocorreu um erro:', error);
+    return null;
+  }
+};
+
+const iniciarRedefinicaoSenha = async (id, email) => {
+  try {
+    await connectDB();
+
+   
+    const usuario = await db.collection('usuarios').findOne({ _id: new ObjectId(id) });
+    if (!usuario) {
+      return 'Usuário não encontrado.';
+    }
+
+
+    const token = jwt.sign({ userId: id, redefinirSenha: true }, segredo, { expiresIn: '1h' });
+
+
+    const linkRedefinicao = `http://localhost:3000/redefinir-senha?token=${token}`;
+
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port : 587,
+      auth: {
+        user: 'polluxmds@gmail.com', 
+        pass: 'jehz uocr bsen wgtn'
+      }
+    });
+
+    const mailOptions = {
+      from: 'polluxmds@gmail.com',
+      to: email,
+      subject: 'Redefinição de Senha',
+      text: `Clique no link a seguir para redefinir sua senha: ${linkRedefinicao}`,
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log('E-mail de redefinição de senha enviado com sucesso');
+
+    return 'E-mail de redefinição de senha enviado.';
+  } catch (error) {
+    console.error(error);
+    return 'Erro ao iniciar a redefinição de senha.';
+  }
+};
+
+const redefinirSenha = async (id, novaSenha) => {
+  try {
+    
+    await connectDB();
+   
+
+    
+    const usuarioExistente = await db.collection('usuarios').findOne({ _id: new ObjectId(id) });
+    if (!usuarioExistente) {
+      
+      return 'Usuário não encontrado.';
+    }
+
+    
+    const saltRounds = 10;
+    const senhaHash = await bcrypt.hash(novaSenha, saltRounds);
+    
+
+    
+    const result = await db.collection('usuarios').updateOne(
+      { _id: new ObjectId(id) },
+      { $set: { senha: senhaHash } }
+    );
+    console.log('Senha do usuário atualizada com sucesso.');
+
+    return result;
+  } catch (error) {
+    console.error('Ocorreu um erro:', error);
+    return null;
+  }
+};
+
+
 export { getAllProfessors, findProfessorByName, adicionarComentario, 
   findComentariosByProfessorId, getAllAvaliacoes, 
-  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, 
-  criarUsuario, autenticarUsuario, findProfessorById, findComentariosByUsuarioId, verificarEmail, startRequest, stopRequest };
+  adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor, excluirComentario, criarUsuario, autenticarUsuario, findProfessorById, findComentariosByUsuarioId, verificarEmail};
 
 connectDB();

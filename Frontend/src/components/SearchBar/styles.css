@@ -10,7 +10,7 @@
 }
 
 .input-wrapper input{
-    color: #435334;
+    color: #2B2D42;
     font-size: 1.25em;
     background-color: transparent;
     margin-left: 30px;
@@ -23,7 +23,7 @@
 }
 
 .input-wrapper input::placeholder{
-    color: rgba(67, 83, 52, 0.8);
+    color: rgba(0, 0 ,0 , 0.5);
 }
 
 #search-icon{
@@ -35,6 +35,7 @@
 
 #search-icon:hover{
     color: #EF233C;
+    cursor: pointer;
 }
 
 

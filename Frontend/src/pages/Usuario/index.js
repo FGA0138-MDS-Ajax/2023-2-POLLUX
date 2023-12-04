@@ -3,6 +3,7 @@ import { useUserContext } from "../../context/UserContext";
 import instance from "../../services/instance";
 //styles
 import './styles.css';
+import noResults from "../../assets/images/no-results.png";
 //components
 import Header from "../../components/Header";
 import Review from "../../components/Review";
@@ -28,8 +29,9 @@ function Usuario() {
                 <h1>Minhas avaliações</h1>
                 <div className="linha-divisoria"></div>
                 { reviews.length === 0 && (
-                    <div className="no-reviews">
-                        <h2>Você não possui avaliações.</h2>
+                    <div className="no-user-reviews">
+                        <h2>Você não possui nenhuma avaliação</h2>
+                        <img src={noResults} alt="Nenhuma avaliação"/>
                     </div>
                 )}
                 {  reviews.length > 0 && (

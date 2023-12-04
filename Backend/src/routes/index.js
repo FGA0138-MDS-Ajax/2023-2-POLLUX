@@ -1,226 +1,258 @@
-import { Router } from 'express';
+import { Router } from "express";
 
-import { requestLogin } from '../models/usuario.model';
+import { requestLogin } from "../models/usuario.model";
 import {
-  getAll, deleteUser, updateUser,
-} from '../controllers/usuariocontroller';
-import { getAllProfessors, findProfessorByName, adicionarComentario,
-         findComentariosByProfessorId, getAllAvaliacoes, 
-         adicionarComentarioAnonimo, calcularMediaNotas, updateProfessor,
-         excluirComentario,criarUsuario, findProfessorById, findComentariosByUsuarioId, startRequest, stopRequest, inserirEmail, redefinirSenha } from '../models/professores.model';
+  getAll,
+  deleteUser,
+  updateUser,
+} from "../controllers/usuariocontroller";
+import {
+  getAllProfessors,
+  findProfessorByName,
+  adicionarComentario,
+  findComentariosByProfessorId,
+  getAllAvaliacoes,
+  adicionarComentarioAnonimo,
+  calcularMediaNotas,
+  updateProfessor,
+  excluirComentario,
+  criarUsuario,
+  findProfessorById,
+  findComentariosByUsuarioId,
+  startRequest,
+  stopRequest,
+  inserirEmail,
+  redefinirSenha,
+} from "../models/professores.model";
 
-import { findUserById } from '../models/usuario.model';
-import {findMateriaById, getAllMaterias, findMateriaByEngenharia} from'../models/materia.model';
-import { verificarEmail } from '../models/professores.model';
+import { findUserById } from "../models/usuario.model";
+import {
+  findMateriaById,
+  getAllMaterias,
+  findMateriaByEngenharia,
+} from "../models/materia.model";
+import { verificarEmail } from "../models/professores.model";
 const routes = new Router();
 
-routes.get('/', (req, res) => {
-  res.status(200).json({ ok: 'conected' });
+routes.get("/", (req, res) => {
+  res.status(200).json({ ok: "conected" });
 });
 
-routes.get('/usuario', getAll);
-routes.post('/login', requestLogin);
+routes.get("/usuario", getAll);
+routes.post("/login", requestLogin);
 //routes.post('/usuario', createUser);
-routes.delete('/usuario/:id', deleteUser);
-routes.put('/usuario/:id', updateUser);
+routes.delete("/usuario/:id", deleteUser);
+routes.put("/usuario/:id", updateUser);
 
-
-routes.get('/start', (req, res) => {
-  console.log('Rota /start foi chamada');
+routes.get("/start", (req, res) => {
+  console.log("Rota /start foi chamada");
   startRequest();
-  res.send('Requisição iniciada a cada 30 minutos');
-})
-
-routes.get('/stop', (req, res) => {
-  stopRequest();
-  res.send('Requisição parada');
+  res.send("Requisição iniciada a cada 30 minutos");
 });
 
-routes.get('/professores', async (req, res) => {
+routes.get("/stop", (req, res) => {
+  stopRequest();
+  res.send("Requisição parada");
+});
+
+routes.get("/professores", async (req, res) => {
   const professores = await getAllProfessors();
   res.send(professores);
 });
 
-routes.get('/professores/search', async (req, res) => {
+routes.get("/professores/search", async (req, res) => {
   const { nome } = req.query;
   const professores = await findProfessorByName(nome);
   res.send(professores);
 });
 
-routes.get('/usuarios/:id', async (req, res) => {
+routes.get("/usuarios/:id", async (req, res) => {
   const { id } = req.params;
   const user = await findUserById(id);
   res.send(user);
 });
 
-
-routes.post('/comentarios', async (req, res) => {
+routes.post("/comentarios", async (req, res) => {
   const { professorId, usuarioId, texto, nota } = req.body;
   const result = await adicionarComentario(usuarioId, professorId, texto, nota);
   if (result) {
     res.status(200).send({ success: true, data: result });
   } else {
-    res.status(500).send({ error: 'Erro ao adicionar comentário' });
+    res.status(500).send({ error: "Erro ao adicionar comentário" });
   }
 });
 
-routes.post('/comentario/anonimo', async (req, res) => {
+routes.post("/comentario/anonimo", async (req, res) => {
   const { professorId, texto, nota } = req.body;
   const result = await adicionarComentarioAnonimo(professorId, texto, nota);
   if (result) {
     res.status(200).json({ success: true, data: result });
   } else {
-    res.status(500).json({ success: false, message: 'Erro ao adicionar comentário' });
+    res
+      .status(500)
+      .json({ success: false, message: "Erro ao adicionar comentário" });
   }
 });
 
-routes.get('/comentarios/professor/:id', async (req, res) => {
+routes.get("/comentarios/professor/:id", async (req, res) => {
   const { id } = req.params;
   const comentarios = await findComentariosByProfessorId(id);
   res.send(comentarios);
 });
 
-routes.get('/avaliacoes', async (req, res) => {
+routes.get("/avaliacoes", async (req, res) => {
   const avaliacoes = await getAllAvaliacoes();
   res.send(avaliacoes);
 });
 
-routes.get('/professor/:id/media', async (req, res) => {
+routes.get("/professor/:id/media", async (req, res) => {
   const { id } = req.params;
   const { media, porcentagem } = await calcularMediaNotas(id);
   if (media !== null) {
     res.status(200).json({ success: true, media, porcentagem });
   } else {
-    res.status(500).json({ success: false, message: 'Erro ao calcular a média das notas' });
+    res
+      .status(500)
+      .json({ success: false, message: "Erro ao calcular a média das notas" });
   }
 });
 
-routes.put('/professor/:id', async (req, res) => {
+routes.put("/professor/:id", async (req, res) => {
   const { id } = req.params;
   const result = await updateProfessor({ professorId: id });
   if (result) {
     res.status(200).json({ success: true, data: result });
   } else {
-    res.status(500).json({ success: false, message: 'Erro ao atualizar professor' });
+    res
+      .status(500)
+      .json({ success: false, message: "Erro ao atualizar professor" });
   }
 });
 
-routes.delete('/comentarios/:id', async (req, res) => {
-  const { id } = req.params;
-  const result = await excluirComentario(id);
+routes.delete("/comentarios/:id", async (req, res) => {
+  const { id, professorId } = req.params;
+  const result = await excluirComentario(id, professorId);
   if (result) {
     res.status(200).json({ success: true });
   } else {
-    res.status(500).json({ success: false, message: 'Erro ao excluir comentário' });
+    res
+      .status(500)
+      .json({ success: false, message: "Erro ao excluir comentário" });
   }
 });
 
-  routes.post('/usuario', async (req, res) => {
-    const { email, senha, nome, curso, periodo, fotoUrl } = req.body;
-    
-    try {
-      const result = await criarUsuario(email, senha, nome, curso, periodo, fotoUrl);
-      
-      if (result === 'E-mail já está em uso.') {
-        return res.status(400).json({ message: 'E-mail já está em uso.' });
-      }
-    
-      return res.status(201).json({ message: 'Usuário criado com sucesso!'});
-      
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ message: 'Erro ao criar usuário.' });
+routes.post("/usuario", async (req, res) => {
+  const { email, senha, nome, curso, periodo, fotoUrl } = req.body;
 
+  try {
+    const result = await criarUsuario(
+      email,
+      senha,
+      nome,
+      curso,
+      periodo,
+      fotoUrl
+    );
+
+    if (result === "E-mail já está em uso.") {
+      return res.status(400).json({ message: "E-mail já está em uso." });
     }
-  });
 
-routes.get('/materias/:id', async (req, res) => {
+    return res.status(201).json({ message: "Usuário criado com sucesso!" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Erro ao criar usuário." });
+  }
+});
+
+routes.get("/materias/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const materia = await findMateriaById(id);
     if (materia) {
       res.json(materia);
     } else {
-      res.status(404).json({ error: 'Matéria não encontrada.' });
+      res.status(404).json({ error: "Matéria não encontrada." });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Erro ao buscar matéria.' });
+    res.status(500).json({ error: "Erro ao buscar matéria." });
   }
 });
 
-routes.get('/materia/:engenharia', async (req, res) => {
+routes.get("/materia/:engenharia", async (req, res) => {
   const { engenharia } = req.params;
   const materia = await findMateriaByEngenharia(engenharia);
   if (materia) {
     res.status(200).send({ success: true, data: materia });
   } else {
-    res.status(404).send({ error: 'Materia não encontrada' });
+    res.status(404).send({ error: "Materia não encontrada" });
   }
 });
 
-routes.get('/materias', async (req, res) => {
+routes.get("/materias", async (req, res) => {
   try {
     const materias = await getAllMaterias();
     res.json(materias);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Erro ao buscar matérias.' });
+    res.status(500).json({ error: "Erro ao buscar matérias." });
   }
 });
 
-routes.get('/professores/:id', async (req, res) => {
+routes.get("/professores/:id", async (req, res) => {
   const { id } = req.params;
   const professor = await findProfessorById(id);
   if (professor) {
     res.status(200).json({ success: true, data: professor });
   } else {
-    res.status(500).json({ success: false, message: 'Erro ao procurar professor' });
+    res
+      .status(500)
+      .json({ success: false, message: "Erro ao procurar professor" });
   }
 });
 
-routes.get('/comentarios/usuario/:id', async (req, res) => {
+routes.get("/comentarios/usuario/:id", async (req, res) => {
   const { id } = req.params;
   const comentarios = await findComentariosByUsuarioId(id);
   res.send(comentarios);
 });
 
-routes.get('/verificar-email', async (req, res) => {
+routes.get("/verificar-email", async (req, res) => {
   const { token } = req.query;
 
   try {
     const result = await verificarEmail(token);
-    const successMessage = encodeURIComponent('E-mail verificado com sucesso');
+    const successMessage = encodeURIComponent("E-mail verificado com sucesso");
     return res.redirect(`https://gamatrack-pollux.vercel.app/sucess`);
   } catch (error) {
     console.error(error);
-    const successMessage = encodeURIComponent('Erro ao verificar o e-mail');
+    const successMessage = encodeURIComponent("Erro ao verificar o e-mail");
     return res.redirect(`https://gamatrack-pollux.vercel.app/sucess`);
   }
 });
 
-
-routes.post('/inserir-email', async (req, res) => {
+routes.post("/inserir-email", async (req, res) => {
   const { email } = req.body; // Pega apenas o e-mail do corpo da requisição
 
   try {
     const result = await inserirEmail(email); // Chama a função inserirEmail com o e-mail
-    res.status(200).send('E-mail inserido com sucesso!');
+    res.status(200).send("E-mail inserido com sucesso!");
   } catch (error) {
     console.error(error);
-    res.status(500).send('Ocorreu um erro ao inserir o e-mail.');
+    res.status(500).send("Ocorreu um erro ao inserir o e-mail.");
   }
 });
 
-routes.post('/redefinir-senha', async (req, res) => {
+routes.post("/redefinir-senha", async (req, res) => {
   const { novaSenha } = req.body;
 
   try {
     const result = await redefinirSenha(novaSenha);
-    res.status(200).send('Senha de todos os usuários redefinida com sucesso!');
+    res.status(200).send("Senha de todos os usuários redefinida com sucesso!");
   } catch (error) {
     console.error(error);
-    res.status(500).send('Ocorreu um erro ao redefinir a senha.');
+    res.status(500).send("Ocorreu um erro ao redefinir a senha.");
   }
 });
 

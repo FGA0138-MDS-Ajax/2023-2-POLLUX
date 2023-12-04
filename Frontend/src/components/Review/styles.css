@@ -1,119 +1,122 @@
-.review-wrapper{
-    display: flex;
-    justify-content: center;
-    margin: 17px 0px;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 12px;   
-    transition: 0.3s ease;
-    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    padding: 20px 30px; 
+.review-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 17px 0px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  transition: 0.3s ease;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  padding: 20px 30px;
 }
 
-.review-wrapper:hover{
-    transform: scale(1.03);
-    cursor: pointer;
+.review-wrapper.delete:hover {
+  position: relative;
+  background-color: rgba(239, 35, 60, 0.8);
 }
 
-.review-avatar{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 1em;
+.review-wrapper.delete .delete-text {
+  width: 100%;
+  height: 100%;
+  color: transparent; /* Cor igual ao fundo */
+  transition: color 0.3s ease; /* Adicionando transição para suavizar a mudança */
+  top: 50px;
+  background-color: transparent;
+  z-index: 100;
+  position: absolute;
+  left: 30%;
+}
+.review-wrapper.delete .delete-text:hover {
+  color: #fff;
 }
 
-.review-avatar img{
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
+.review-wrapper:hover {
+  transform: scale(1.03);
+  cursor: pointer;
 }
 
-.review-body{
-    width: 100%;
-    background-color: transparent;
+.review-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 1em;
 }
 
-.review-body *{
-    background-color: transparent;
+.review-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.review-body .review-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.review-body {
+  width: 100%;
+  background-color: transparent;
+}
+
+.review-body * {
+  background-color: transparent;
+}
+
+.review-body .review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .review-header .rating {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    grid-gap: 0.5rem;
-    font-size: 1.5rem;
-  }
-  
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  grid-gap: 0.5rem;
+  font-size: 1.5rem;
+}
+
 .review-header .rating .star {
-    color: #aaa; 
+  color: #aaa;
 }
 
 .review-header .rating .star.active {
-    color: #FFBD13;
+  color: #ffbd13;
 }
 
 .review-header .rating .star:hover {
-    transform: scale(1.1);
-    cursor: pointer;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
-.review-body .review-info span{
-    color: #aaa;
-    font-size: 0.8rem;
-    font-weight: 500;
-    margin-right: 1em;
+.review-body .review-info span {
+  color: #aaa;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-right: 1em;
 }
 
-.review-body .review-info p{
-    font-size: 1rem;
-    margin-top: 2em;
-    font-weight: 500;
+.review-body .review-info p {
+  font-size: 1rem;
+  margin-top: 2em;
+  font-weight: 500;
 }
 
-.review-footer{
-    display: flex;
-    justify-content: end;
+.review-footer {
+  display: flex;
+  justify-content: end;
 }
 
-.review-footer .delete {
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    background-color: #ff0000;
-    color: #fff;
-    font-weight: 600;
-    transition: 0.3s ease;
-}
-.review-footer .delete:hover{
-    background-color: #cc0000;
-    cursor: pointer;
+.review-footer span {
+  color: #aaa;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
-.review-footer span{
-    color: #aaa;
-    font-size: 1rem;
-    font-weight: 500;
+.review-footer button {
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #fff;
 }
-  
-.review-footer button{
-    border-radius: 0.5rem;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #fff;
-}
-

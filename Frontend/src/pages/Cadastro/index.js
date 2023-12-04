@@ -3,11 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 import instance from "../../services/instance";
 //styles
 import "../Login/styles.css";
+import check from "../../assets/images/check.png";
 //components
 import Input from "../../components/Input";
 import InputPassword from "../../components/InputPassword";
 import SignButton from "../../components/SignButton";
 import DropDown from "../../components/DropDown";
+
 
 function Cadastro() {
   const cursos = [
@@ -187,7 +189,13 @@ function Cadastro() {
           ) : (
             <div className="success">
               <h1>Enviamos um link de verificação para o seu email!</h1>
-              <p>Retornar a página de login.</p>
+              <img src={check}></img>
+              <p>Aguarde alguns instantes e faça a verificação.</p>
+              <div className="link-wrapper">
+                <Link to="/" className="link">
+                  Retornar para a página de login
+                </Link>
+              </div>
             </div>
           )}
           

@@ -47,7 +47,7 @@ function Review({ avaliacaoId, nota, texto, data, userId, deleteOption }) {
     return data.toLocaleString("pt-BR", options);
   }
 
-  console.log(userData);
+  console.log(texto);
 
   return (
     <div className="review-wrapper">
@@ -68,12 +68,14 @@ function Review({ avaliacaoId, nota, texto, data, userId, deleteOption }) {
         </div>
         <div className="review-info">
           <span>
-            {userData ? userData.curso : ""} |{" "}
+            {userData ? userData.curso + " |" : "Desconhecido"}{" "}
             {userData ? userData.periodo : ""}
           </span>
-          <p>
-            <em>"{texto}"</em>
-          </p>
+          {texto.trim() !== "" && (
+            <p>
+              <em>"{texto}"</em>
+            </p>
+          )}
         </div>
         <div className="review-footer">
           <span>{formatarData(data)}</span>

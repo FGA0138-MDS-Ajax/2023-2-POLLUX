@@ -17,6 +17,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); 
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -26,7 +27,7 @@ function Login() {
         email: email,
         senha: senha,
       };
-
+      setLoading(true); 
       try {
         const response = await instance.post("/login", data);
         if (response.status === 200 && response.data.user) {
@@ -36,11 +37,13 @@ function Login() {
             userCurso: response.data.user.curso,
             userAvatar: response.data.user.fotoUrl,
           });
+          setLoading(false);
           localStorage.setItem("@userId", response.data.user._id);
           navigate("/Home");
         }
       } catch (error) {
         console.error(error);
+        setLoading(false);
         setError("Email ou senha incorretos.");
       }
     } else {
@@ -77,7 +80,11 @@ function Login() {
             {error}
           </p>
 
-          <SignButton placeholder="Entrar" onClick={handleLogin} />
+          <SignButton 
+            placeholder="Entrar" 
+            onClick={handleLogin}
+            loading={loading}
+               />
 
           <div className="link-wrapper">
             <Link to="/recuperarsenha" className="link">

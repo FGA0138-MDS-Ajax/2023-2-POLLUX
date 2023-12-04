@@ -28,7 +28,6 @@ function Home() {
     try {
       const response = await instance.get(`/usuarios/${userId}`);
       if (response.data) {
-        console.log(response.data);
         setUserData(response.data);
       } else {
         console.error('Resposta da API não contém o campo "user" esperado.');

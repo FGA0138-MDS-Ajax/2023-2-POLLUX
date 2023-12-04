@@ -25,8 +25,6 @@ function Header () {
         localStorage.clear();
     }    
     
-    console.log(userAvatar)
-  
     return(
         <header>
             <h2 className="logo">

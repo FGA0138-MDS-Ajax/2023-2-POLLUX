@@ -19,8 +19,6 @@ function Professor() {
   const profile = location.state ? location.state.profile : null;
   const { userId } = useUserContext();
 
-  console.log(teacher);
-
   function formatarNomeMateria(nome) {
     const palavras = nome.split(" ");
     palavras.shift();
@@ -53,8 +51,6 @@ function Professor() {
         setLoading(false);
       });
   }, [teacher._id]);
-
-  console.log(avaliacoes);
 
   return (
     <div>

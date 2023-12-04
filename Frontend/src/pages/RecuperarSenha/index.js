@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import instance from "../../services/instance";
 //styles
 import "../Login/styles.css";
+import check from "../../assets/images/check.png";  
 //componentes
 import Input from "../../components/Input";
 import SignButton from "../../components/SignButton";
@@ -40,7 +41,7 @@ function RecuperarSenha() {
     <div className="login">
       <div className="left-section">
         <div className="form-container">
-          {!emailEnviado ? (
+          {emailEnviado ? (
             <>
               <h1>Insira seu email</h1>
 
@@ -65,14 +66,19 @@ function RecuperarSenha() {
               />
             </>
           ) : (
-            <h1>Link de recuperação enviado para o email.</h1>
+            <div className="success">
+              <h1>Enviamos um link de recuperação de senha para o seu email!</h1>
+              <img src={check}></img>
+              <p>Aguarde alguns instantes e a redefina.</p>
+              <div className="link-wrapper">
+                <Link to="/" className="link">
+                  Retornar para a página de login
+                </Link>
+              </div>
+            </div>
           )}
 
-          <div className="link-wrapper">
-            <Link to="/" className="link">
-              Retornar para a página de login{" "}
-            </Link>
-          </div>
+          
         </div>
       </div>
 

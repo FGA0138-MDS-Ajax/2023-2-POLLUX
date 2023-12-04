@@ -10,7 +10,6 @@ function ProfessoresMateria() {
   const location = useLocation();
   const subject = location.state ? location.state.subject : null;
   const professores = location.state ? location.state.professores : null;
-  console.log(professores); 
 
   function formatarNomeMateria(nome) {
     const palavras = nome.split(' ');

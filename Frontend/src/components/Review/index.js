@@ -47,46 +47,85 @@ function Review({ avaliacaoId, nota, texto, data, userId, deleteOption }) {
     return data.toLocaleString("pt-BR", options);
   }
 
-  console.log(userData);
+  console.log(texto);
 
   return (
-    <div className="review-wrapper">
-      <div className="review-avatar">
-        <img src={profile} alt="avatar" />
-      </div>
-      <div className="review-body">
-        <div className="review-header">
-          <h2>{userData ? userData.nome : "Anônimo"}</h2>
-          <div className="rating">
-            {[...Array(5)].map((_, idx) => (
-              <FaStar
-                key={idx}
-                className={`star ${idx < nota ? "active" : ""}`}
-              ></FaStar>
-            ))}
+    <>
+      { !deleteOption ? (
+        <div className="review-wrapper">
+        <div className="review-avatar">
+          <img src={profile} alt="avatar" />
+        </div>
+        <div className="review-body">
+          <div className="review-header">
+            <h2>{userData ? userData.nome : "Anônimo"}</h2>
+            <div className="rating">
+              {[...Array(5)].map((_, idx) => (
+                <FaStar
+                  key={idx}
+                  className={`star ${idx < nota ? "active" : ""}`}
+                ></FaStar>
+              ))}
+            </div>
+          </div>
+          <div className="review-info">
+            <span>
+              {userData ? userData.curso + " |" : "Desconhecido"}{" "}
+              {userData ? userData.periodo : ""}
+            </span>
+            {texto.trim() !== "" && (
+              <p>
+                <em>"{texto}"</em>
+              </p>
+            )}
+          </div>
+          <div className="review-footer">
+            <span>{formatarData(data)}</span>
           </div>
         </div>
-        <div className="review-info">
-          <span>
-            {userData ? userData.curso : ""} |{" "}
-            {userData ? userData.periodo : ""}
-          </span>
-          <p>
-            <em>"{texto}"</em>
-          </p>
+      </div>
+      ) : (
+        <div className="review-wrapper delete" onClick={deleteReview}>
+        <h1  className="delete-text">EXCLUIR ESSE COMENTÁRIO?</h1>
+        <div className="review-avatar">
+          <img src={profile} alt="avatar" />
         </div>
-        <div className="review-footer">
-          <span>{formatarData(data)}</span>
-          {deleteOption && (
-            <div className="delete" onClick={deleteReview}>
-              <FaRegTrashAlt></FaRegTrashAlt>
-              <button>Excluir este comentário</button>
+        <div className="review-body">
+          <div className="review-header">
+            <h2>{userData ? userData.nome : "Anônimo"}</h2>
+            <div className="rating">
+              {[...Array(5)].map((_, idx) => (
+                <FaStar
+                  key={idx}
+                  className={`star ${idx < nota ? "active" : ""}`}
+                ></FaStar>
+              ))}
             </div>
-          )}
+          </div>
+          <div className="review-info">
+            <span>
+              {userData ? userData.curso + " |" : "Desconhecido"}{" "}
+              {userData ? userData.periodo : ""}
+            </span>
+            {texto.trim() !== "" && (
+              <p>
+                <em>"{texto}"</em>
+              </p>
+            )}
+          </div>
+          <div className="review-footer">
+            <span>{formatarData(data)}</span>
+          </div>
         </div>
       </div>
-    </div>
+      )
+      }
+    </>
+    
   );
 }
 
 export default Review;
+
+
+

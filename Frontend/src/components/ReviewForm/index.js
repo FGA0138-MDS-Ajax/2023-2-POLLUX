@@ -124,27 +124,27 @@ function ReviewForm({
         <div className="form-wrapper">
           <h1>Preencha sua avaliação</h1>
 
-          <h3>O professor tem domínio sobre conteúdo ministrado?</h3>
+          <h3>Como você descreveria a clareza e eficácia da comunicação do professor durante as aulas?</h3>
           <ReviewQuestions
             onSelect={(rating) => handleQuestionSelect("question1", rating)}
           />
 
-          <h3>O professor tem domínio sobre conteúdo ministrado?</h3>
+          <h3>O professor demonstra domínio do conteúdo lecionado?</h3>
           <ReviewQuestions
             onSelect={(rating) => handleQuestionSelect("question2", rating)}
           />
 
-          <h3>Disponibilidade do Professor:</h3>
+          <h3>Como você avaliaria a capacidade do professor em motivar os alunos e criar um ambiente de aprendizado positivo?</h3>
           <ReviewQuestions
             onSelect={(rating) => handleQuestionSelect("question3", rating)}
           />
 
-          <h3>Metodologia de Ensino:</h3>
+          <h3>O professor fornece feedback construtivo e está disponível para ajudar os alunos fora do horário de aula?</h3>
           <ReviewQuestions
             onSelect={(rating) => handleQuestionSelect("question4", rating)}
           />
 
-          <h3>Comunicação e Feedback:</h3>
+          <h3>Como você percebe a abordagem do professor em relação à diversidade de aprendizado e inclusão na sala de aula?</h3>
           <ReviewQuestions
             onSelect={(rating) => handleQuestionSelect("question5", rating)}
           />

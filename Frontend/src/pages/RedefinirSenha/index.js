@@ -27,7 +27,9 @@ function RecuperarSenha() {
     setLoading(true);
 
     try {
-      const result = await instance.post("/redefinir-senha", { novaSenha: senha });
+      const result = await instance.post("/redefinir-senha", {
+        novaSenha: senha,
+      });
       if (result === 200 || result) {
         setReseted(true);
         setLoading(false);
@@ -74,9 +76,11 @@ function RecuperarSenha() {
             />
           </>
         ) : (
-          <h1>Sua senha foi redefinida com sucesso!</h1>
+          <>
+            <h1>Sua senha foi redefinida com sucesso!</h1>
+            <p>Você já pode fechar essa página agora</p>
+          </>
         )}
-
       </div>
     </div>
   );

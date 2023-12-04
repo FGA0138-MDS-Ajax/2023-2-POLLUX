@@ -11,7 +11,6 @@ function TeacherCard({ teacher, user }) {
   } else {
     var avatarUrls = womanUrls;
   }
-  console.log(teacher)
   const randomIndex = Math.floor(Math.random() * avatarUrls.length);
   const randomAvatarUrl = avatarUrls[randomIndex];
 
@@ -26,8 +25,6 @@ function TeacherCard({ teacher, user }) {
   const handleClick = () => {
     navigate('/professor', { state: { professor: teacher, profile: randomAvatarUrl, usuario: user } });
   }
-
-  console.log(teacher)
 
   return (
     <div className='card-wrapper' onClick={handleClick}>

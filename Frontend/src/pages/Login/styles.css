@@ -169,3 +169,25 @@
     transform: rotate(360deg);
   }
 }
+
+.success{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px; 
+}
+.success p{
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.success img{
+  width: 100px;
+  height: 100px;
+  margin-bottom: 2rem;
+}
+
+.success .link{
+  color:#d90429; 
+}

@@ -1,0 +1,1517 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../documentoVisao/">
+      
+      
+        <link rel="next" href="../documentoArquitetura/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.14">
+    
+    
+      
+        <title>Declaração de Escopo - Pollux | GamaTrack</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fad675c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7Csans-serif:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"sans-serif"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#declaracao-de-escopo-do-produto" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Pollux | GamaTrack" class="md-header__button md-logo" aria-label="Pollux | GamaTrack" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Pollux | GamaTrack
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Declaração de Escopo
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="lime" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/FGA0138-MDS-Ajax/2023-2-POLLUX" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2023-2-Pollux
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../documentoVisao/" class="md-tabs__link">
+        
+  
+    
+  
+  Documento de Visão
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Declaração de Escopo
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../documentoArquitetura/" class="md-tabs__link">
+        
+  
+    
+  
+  Documento de Arquitetura
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../sprints/" class="md-tabs__link">
+        
+  
+    
+  
+  Sprints
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Pollux | GamaTrack" class="md-nav__button md-logo" aria-label="Pollux | GamaTrack" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Pollux | GamaTrack
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/FGA0138-MDS-Ajax/2023-2-POLLUX" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2023-2-Pollux
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Início
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentoVisao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Visão
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Declaração de Escopo
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Declaração de Escopo
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#10-problema-sistema-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.0 Problema / Sistema de Software
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.0 Problema / Sistema de Software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicao-da-equipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definição da equipe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumo-do-problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumo do problema
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sistema-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sistema de Software
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumo-de-tecnologias-usadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumo de Tecnologias Usadas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumo-da-metodologia-de-desenvolvimento-usada" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumo da Metodologia de Desenvolvimento Usada:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.0 Backlog do Produto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.0 Backlog do Produto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#temas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Temas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#epicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Épicos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#historias-do-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historias do Usuário
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#21-perfis" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Perfis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-cenarios-funcionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Cenários Funcionais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Backlog do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-sprints-previstas" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Sprints Previstas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#30-definicao-de-ready-done" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.0 Definição de Ready / Done
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#40-us-user-stories" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.0 US – User Stories
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.0 US – User Stories">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us-user-stories" class="md-nav__link">
+    <span class="md-ellipsis">
+      US – User Stories
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#50-casos-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.0 Casos de Uso
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#60-mvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.0 MVP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.0 MVP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#registro-e-login-de-usuario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registro e Login de Usuário:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avaliacao-de-professores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Avaliação de Professores:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#busca-por-professores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Busca por professores:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualizacao-de-avaliacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualização de Avaliações:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recuperacao-de-senha" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recuperação de Senha:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentoArquitetura/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Arquitetura
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sprints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="declaracao-de-escopo-do-produto">Declaração de Escopo do Produto</h1>
+<p><strong>Histórico de Revisão</strong> </p>
+<table>
+<thead>
+<tr>
+<th><strong>Data</strong></th>
+<th><strong>Versão</strong></th>
+<th><strong>Descrição</strong></th>
+<th><strong>Autor</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>23/10/2023</td>
+<td>1.0</td>
+<td>Início do Documento Visão.</td>
+<td>Nicollas Gabriel; Samuel Ribeiro; Eric Rabelo; Isaque Colem; Rodrigo Braz</td>
+</tr>
+<tr>
+<td>10/11/2023</td>
+<td>2.0</td>
+<td>Aplicando alterações ao documento de acordo com a correção do professor Ricardo Ajax.</td>
+<td>Nicollas Gabriel Samuel Ribeiro Eric Rabelo Isaque Colem Rodrigo Braz</td>
+</tr>
+</tbody>
+</table>
+<h2 id="10-problema-sistema-de-software"><strong>1.0 Problema / Sistema de Software</strong></h2>
+<h3 id="definicao-da-equipe"><strong>Definição da equipe</strong></h3>
+<ul>
+<li>Nicollas Gabriel – Responsável por desenvolver funcionalidades e implementação de rotas Backend.</li>
+<li>Samuel Ribeiro – Responsável pelo desenvolvimento funcionalidades e correções de bugs no Backend.</li>
+<li>Rodrigo Braz – Responsável pelo desenvolvimento funcionalidades e correções de bugs no Backend.</li>
+<li>Isaque Colem – Responsável pelo desenvolvimento e testes Frontend.</li>
+<li>Eric Rabelo – Responsável pelo desenvolvimento e funcionalidades no Frontend.</li>
+</ul>
+<h3 id="resumo-do-problema"><strong>Resumo do problema</strong></h3>
+<p>Como proporcionar aos estudantes da FGA um sistema eficaz que lhes permita avaliar e acessar avaliações de outros alunos sobre os professores, a fim de facilitar a escolha de suas disciplinas e professores de maneira informada e alinhada com suas
+preferências acadêmicas?</p>
+<h3 id="sistema-de-software"><strong>Sistema de Software</strong></h3>
+<p>Este sistema permite que os alunos avaliem os professores e as disciplinas de forma anônima, proporcionando feedback valioso para a melhoria contínua do ensino. Além disso, o “GamaTrack” também oferece aos professores a oportunidade de entender melhor as necessidades e expectativas dos alunos, permitindo-lhes ajustar seus métodos de ensino de acordo.</p>
+<p>Os principais objetivos do “GamaTrack” são:</p>
+<ul>
+<li>
+<p>Fornecer uma plataforma fácil de usar para a avaliação dos professores e disciplinas.</p>
+</li>
+<li>
+<p>Garantir o anonimato dos alunos para promover uma avaliação honesta e sem medo de represálias.</p>
+</li>
+<li>
+<p>Utilizar os feedbacks coletados para melhorar a qualidade da educação na FGA.</p>
+</li>
+</ul>
+<p>Conforme o documento de visão do produto e do projeto, o “Avalia FGA” é mais do que apenas um sistema de avaliação - é uma ferramenta para promover a excelência no ensino e aprendizagem na Faculdade do Gama.</p>
+<h3 id="resumo-de-tecnologias-usadas"><strong>Resumo de Tecnologias Usadas</strong></h3>
+<ul>
+<li>
+<p>Node.js: Utilizado para o backend por ser uma plataforma de servidor eficiente e escalável que permite a execução de JavaScript no servidor. Ele é ideal para aplicações em tempo real com uso intensivo de dados.</p>
+</li>
+<li>
+<p>MongoDB: Escolhido como banco de dados por ser um banco de dados NoSQL, o que significa que ele pode lidar com grandes quantidades de dados e é flexível em termos de estruturas de dados, o que é ideal para projetos que podem evoluir ao longo do tempo.</p>
+</li>
+<li>
+<p>React: Utilizado para o frontend por ser uma biblioteca JavaScript para construir interfaces de usuário. Ele permite a criação de componentes reutilizáveis, o que pode aumentar a eficiência do desenvolvimento.</p>
+</li>
+<li>
+<p>Microsoft Teams: Utilizado para reuniões de grupo por ser uma plataforma que oferece chamadas de vídeo, compartilhamento de tela e fácil colaboração em documentos.</p>
+</li>
+<li>
+<p>Trello: Escolhido para a organização de tarefas por ser uma ferramenta de gerenciamento de projetos que permite ao grupo acompanhar o progresso das tarefas e colaborar mais efetivamente.</p>
+</li>
+<li>
+<p>Figma: Utilizado para criar protótipos das telas do site por ser uma ferramenta de design intuitiva que permite a colaboração em tempo real.</p>
+</li>
+</ul>
+<h3 id="resumo-da-metodologia-de-desenvolvimento-usada"><strong>Resumo da Metodologia de Desenvolvimento Usada:</strong></h3>
+<p>A metodologia Scrum foi utilizada no desenvolvimento do nosso projeto. O Scrum é uma estrutura de gerenciamento de projetos que é amplamente utilizada no desenvolvimento de software. Ela é caracterizada por ciclos de trabalho curtos e iterativos, conhecidos como Sprints, que foi dada uma semana para ser concluída.</p>
+<p>Aqui está um breve resumo de como o Scrum foi aplicado:</p>
+<ul>
+<li>
+<p><strong>Planejamento do Sprint:</strong> No início de cada Sprint, a equipe se reúne para identificar as tarefas a serem realizadas. Essas tarefas são então adicionadas ao Backlog do Sprint.</p>
+</li>
+<li>
+<p><strong>Sprints:</strong> Durante o Sprint, a equipe trabalha para completar as tarefas selecionadas. Cada membro da equipe possui um papel específico: ficou dividido assim membros no backend e membros no frontend e teve tarefas que todos os membros tinham que participar.</p>
+</li>
+<li>
+<p><strong>Reuniões diárias de Scrum:</strong> A equipe se reúne brevemente todos os dias para discutir o progresso e planejar o trabalho do dia.</p>
+</li>
+<li>
+<p><strong>Revisão do Sprint:</strong> No final do Sprint, a equipe se reúne para revisar o trabalho realizado e discutir o que funcionou bem e o que pode ser melhorado.</p>
+</li>
+</ul>
+<p>O uso da metodologia Scrum permitiu à nossa equipe responder rapidamente às mudanças, melhorar continuamente nossos processos e entregar resultados de alta qualidade de forma consistente quando aliadas às práticas técnicas do Extreme Programming (XP) para garantir a qualidade técnica do software.</p>
+<h2 id="20-backlog-do-produto">2.0 Backlog do Produto</h2>
+<h3 id="temas">Temas</h3>
+<table>
+<thead>
+<tr>
+<th>ID Temas</th>
+<th>Tema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T01</td>
+<td>Acesso à aplicação</td>
+</tr>
+<tr>
+<td>T02</td>
+<td>Busca de Professores e Listagem de Matérias</td>
+</tr>
+<tr>
+<td>T03</td>
+<td>Avaliação de Professores</td>
+</tr>
+</tbody>
+</table>
+<h3 id="epicos">Épicos</h3>
+<table>
+<thead>
+<tr>
+<th>Tema</th>
+<th>ID Épico</th>
+<th>Épico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T01</td>
+<td>E01</td>
+<td>Autenticação de Usuário</td>
+</tr>
+<tr>
+<td>T01</td>
+<td>E02</td>
+<td>Registro de Usuário</td>
+</tr>
+<tr>
+<td>T02</td>
+<td>E03</td>
+<td>Busca de Professores</td>
+</tr>
+<tr>
+<td>T02</td>
+<td>E04</td>
+<td>Busca de Matérias por Curso</td>
+</tr>
+<tr>
+<td>T02</td>
+<td>E05</td>
+<td>Seleção de Professores por Matéria</td>
+</tr>
+<tr>
+<td>T03</td>
+<td>E06</td>
+<td>Visualização de Dados de Professor Específico</td>
+</tr>
+<tr>
+<td>T03</td>
+<td>E07</td>
+<td>Avaliação de Professor Específico</td>
+</tr>
+</tbody>
+</table>
+<h3 id="historias-do-usuario">Historias do Usuário</h3>
+<table>
+<thead>
+<tr>
+<th>Tema</th>
+<th>Épico</th>
+<th>US</th>
+<th>Histórias de Usuário</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T01</td>
+<td>E02</td>
+<td>US-01</td>
+<td>Eu como usuário quero ser capaz de criar uma conta</td>
+</tr>
+<tr>
+<td>T01</td>
+<td>E02</td>
+<td>US-02</td>
+<td>Eu como usuário quero ser capaz de acessar minha conta</td>
+</tr>
+<tr>
+<td>T01</td>
+<td>E01</td>
+<td>US-03</td>
+<td>Eu como usuário quero ser capaz de redefinir minha senha</td>
+</tr>
+<tr>
+<td>T01</td>
+<td>E06</td>
+<td>US-04</td>
+<td>Eu como usuário que poder ter acesso a um header para facilitar a navegação</td>
+</tr>
+<tr>
+<td>T02</td>
+<td>E03</td>
+<td>US-05</td>
+<td>Eu como usuário quero poder buscar por um professor específico</td>
+</tr>
+<tr>
+<td>T02</td>
+<td>E04</td>
+<td>US-06</td>
+<td>Eu como usuário quero poder filtrar as matérias para cada engenharia</td>
+</tr>
+<tr>
+<td>T02</td>
+<td>E05</td>
+<td>US-07</td>
+<td>Eu como usuário quero poder ver todos os professores ativos de uma matéria específica</td>
+</tr>
+<tr>
+<td>T02</td>
+<td>E06</td>
+<td>US-08</td>
+<td>Eu como usuário quero poder ver os dados de um professor em uma página específica</td>
+</tr>
+<tr>
+<td>T03</td>
+<td>E07</td>
+<td>US-09</td>
+<td>Eu como usuário quero poder ver a nota de um professor</td>
+</tr>
+<tr>
+<td>T02</td>
+<td>E06</td>
+<td>US-10</td>
+<td>Eu como usuário quero poder ver quais matérias determinado professor leciona</td>
+</tr>
+<tr>
+<td>T03</td>
+<td>E07</td>
+<td>US-11</td>
+<td>Eu como usuário quero poder avaliar um professor com um comentário</td>
+</tr>
+<tr>
+<td>T03</td>
+<td>E07</td>
+<td>US-12</td>
+<td>Eu como usuário quero poder avaliar um professor com uma nota</td>
+</tr>
+<tr>
+<td>T03</td>
+<td>E07</td>
+<td>US-13</td>
+<td>Eu como usuário quero poder avaliar um professor através de tags fixas como: "boa didática", "difícil aprendizado" e etc.</td>
+</tr>
+<tr>
+<td>T01</td>
+<td>E02</td>
+<td>US-14</td>
+<td>Eu como usuário quero poder ver todos os comentários feitos por outros alunos sobre um determinado professor</td>
+</tr>
+<tr>
+<td>T01</td>
+<td>E02</td>
+<td>US-15</td>
+<td>Eu como usuário quero poder saber o curso e o semestre de quem realizou uma avaliação</td>
+</tr>
+<tr>
+<td>T01</td>
+<td>E02</td>
+<td>US-16</td>
+<td>Eu como usuário quero poder ver todos os meus comentários na aplicação em uma página específica</td>
+</tr>
+<tr>
+<td>T03</td>
+<td>E07</td>
+<td>US-17</td>
+<td>Eu como usuário quero poder avaliar um professor de forma anônima</td>
+</tr>
+<tr>
+<td>T01</td>
+<td>E02</td>
+<td>US-18</td>
+<td>Eu como usuário quero poder ter uma foto de perfil</td>
+</tr>
+<tr>
+<td>T01</td>
+<td>E02</td>
+<td>US-19</td>
+<td>Eu como usuário quero poder excluir minha conta</td>
+</tr>
+<tr>
+<td>T01</td>
+<td>E01</td>
+<td>US-20</td>
+<td>Eu como usuário quero poder sair da aplicação</td>
+</tr>
+</tbody>
+</table>
+<h3 id="21-perfis">2.1 Perfis</h3>
+<table>
+<thead>
+<tr>
+<th>Nome do Perfil</th>
+<th>Características do Perfil</th>
+<th>Permissões de Acesso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Administrador</td>
+<td>Responsável por manter os perfis de acesso da aplicação, criar novos usuários, alterar usuários já existentes, ou excluir usuários (Manter usuários).</td>
+<td>Descrever sucintamente as permissões de acesso.</td>
+</tr>
+<tr>
+<td>Usuário Comum</td>
+<td>Pode acessar as principais funcionalidades e utilizar livremente o software.</td>
+<td>Acesso às informações e funcionalidades principais.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-cenarios-funcionais"><strong>2.2 Cenários Funcionais</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Numeração do Cenário</th>
+<th>Nome do Cenário</th>
+<th>Sprints</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Registro de Usuário</td>
+<td>Sprint 1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Login de Usuário</td>
+<td>Sprint 2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Pesquisa por Professor</td>
+<td>Sprint 3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Visualização dos Dados de um Professor Específico</td>
+<td>Sprint 3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Listagem de Matérias por Engenharia</td>
+<td>Sprint 4</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Visualização dos Professores de uma Matéria Específica</td>
+<td>Sprint 4</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Avaliação de um Professor Específico</td>
+<td>Sprint 5</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Visualização de Avaliações de outros Alunos</td>
+<td>Sprint 6</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23-backlog-do-produto"><strong>2.3 Backlog do Produto</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Numeração da Sprint</th>
+<th>Nome do Requisito (Cenário / Requisito)</th>
+<th>Tipo de Requisito</th>
+<th>Priorização do Requisito (Funcional / Não Funcional)</th>
+<th>Must, Should, Could</th>
+<th>Descrição Sucinta do Requisito</th>
+<th>User Stories (U.S.) Associadas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Registro de Usuário</td>
+<td>Funcional</td>
+<td>Must</td>
+<td></td>
+<td>Os usuários devem ser capazes de criar uma conta no sistema.</td>
+<td>US-01 / US-03</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Login de Usuário</td>
+<td>Funcional</td>
+<td>Must</td>
+<td></td>
+<td>Os usuários devem ser capazes de fazer login no sistema.</td>
+<td>US-02</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Pesquisa por Professor</td>
+<td>Funcional</td>
+<td>Must</td>
+<td></td>
+<td>Os usuários devem ser capazes de procurar por professores.</td>
+<td>US-05 / US-07</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Avaliação de um Professor Específico</td>
+<td>Funcional</td>
+<td>Must</td>
+<td></td>
+<td>Os usuários devem ser capazes de avaliar os professores.</td>
+<td>US-08 / US-11 / US-12 / US-13 / US-17</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Visualização de Avaliações de outros Alunos</td>
+<td>Funcional</td>
+<td>Must</td>
+<td></td>
+<td>Os usuários devem ser capazes de ver avaliações feitas por outros usuários.</td>
+<td>US-08 / US-09 / US-14 / US-15</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Listagem de Matérias por Engenharia</td>
+<td>Funcional</td>
+<td>Should</td>
+<td></td>
+<td>Os usuários devem ser capazes de buscar todas as matérias de uma engenharia específica.</td>
+<td>US-06</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Visualização dos Dados de um Professor Específico</td>
+<td>Funcional</td>
+<td>Must</td>
+<td></td>
+<td>Os usuários devem ser capazes de visualizar dados de um professor específico.</td>
+<td>US-07 / US-08 / US-09 / US-10</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Visualização dos Professores de uma Matéria Específica</td>
+<td>Funcional</td>
+<td>Should</td>
+<td></td>
+<td>Os usuários devem ser capazes de visualizar todos os comentários feitos por outros alunos sobre um professor específico.</td>
+<td>US-06 / US-07</td>
+</tr>
+</tbody>
+</table>
+<h3 id="24-sprints-previstas"><strong>2.4 Sprints Previstas</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Sprint</th>
+<th>Descrição</th>
+<th>Objetivos</th>
+<th>User Stories</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sprint 1</td>
+<td>Tema 1 - Acesso a aplicação</td>
+<td>Implementação da funcionalidade de registro e login do usuário.</td>
+<td>US-01, US-02, US-03, US-16, US-18</td>
+</tr>
+<tr>
+<td>Sprint 2</td>
+<td>Tema 1 - Acesso a aplicação</td>
+<td>Desenvolvimento do login e cadastro de usuários.</td>
+<td>US-18, US-19, US-20</td>
+</tr>
+<tr>
+<td>Sprint 3</td>
+<td>Tema 2 - Busca de Professores</td>
+<td>Implementar a funcionalidade de busca de professores.</td>
+<td>US-05</td>
+</tr>
+<tr>
+<td>Sprint 4</td>
+<td>Tema 2 - Listagem de Matérias por Engenharia</td>
+<td>Implementar a funcionalidade de listagem de todas as matérias das engenharias da FGA.</td>
+<td>US-06</td>
+</tr>
+<tr>
+<td>Sprint 5</td>
+<td></td>
+<td>Implementar funcionalidades adicionais.</td>
+<td></td>
+</tr>
+<tr>
+<td>Sprint 6</td>
+<td>Teste e funcionalidade do projeto</td>
+<td>Fazer todos os testes do software e reparo do código.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Versão</th>
+<th>Funcionalidade</th>
+<th>Data Estimada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>Perfil dos Professores</td>
+<td>15/11/2023</td>
+</tr>
+<tr>
+<td>2.0</td>
+<td>Avaliação dos Professores</td>
+<td>30/11/2023</td>
+</tr>
+<tr>
+<td>3.0</td>
+<td>Versão Final</td>
+<td>15/11/2023</td>
+</tr>
+</tbody>
+</table>
+<h2 id="30-definicao-de-ready-done"><strong>3.0 Definição de Ready / Done</strong></h2>
+<p>Os critérios de "Ready" indicam as condições que uma tarefa deve atender antes de ser considerada pronta para os testes. Isso inclui ter uma descrição clara da tarefa, critérios de aceitação bem definidos, a resolução de todas as dependências, garantir que a equipe de teste tenha os recursos necessários e a devida priorização no backlog.</p>
+<p>"Done" representa as condições que uma tarefa deve cumprir para ser considerada concluída. Isso envolve atender a todos os critérios de aceitação estabelecidos, realizar testes e validações adequados, atualizar a documentação relevante para refletir as mudanças introduzidas e passar por uma revisão e aprovação pela equipe ou pelo cliente.</p>
+<h2 id="40-us-user-stories"><strong>4.0 US – User Stories</strong></h2>
+<h3 id="us-user-stories">US – User Stories</h3>
+<table>
+<thead>
+<tr>
+<th>Perfil de Acesso</th>
+<th>Técnicas de Elicitação</th>
+<th>US ID</th>
+<th>Histórias de Usuário</th>
+<th>Critérios de Ready/Done</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-01</td>
+<td>Eu como usuário quero ser capaz de criar uma conta</td>
+<td>Input para entrada de cada dado de registro do usuário. Botão para confirmar cadastro.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-02</td>
+<td>Eu como usuário quero ser capaz de acessar minha conta</td>
+<td>Input para entrada de cada dado de autenticação do usuário. Botão para confirmar acesso.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-03</td>
+<td>Eu como usuário quero ser capaz de redefinir minha senha</td>
+<td>Link para redefinição de senha.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-04</td>
+<td>Eu como usuário que poder ter acesso a um header para facilitar a navegação</td>
+<td>Header com link para Home, Matérias e Sobre. Além do logo da aplicação e da foto do usuário.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-05</td>
+<td>Eu como usuário quero poder buscar por um professor específico</td>
+<td>Header com link para Home, Matérias e Sobre. Além do logo da aplicação e da foto do usuário. Barra de pesquisa para inserção do nome do professor a ser buscado. Seção com retorno de professores pesquisados no formato de card.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-06</td>
+<td>Eu como usuário quero poder filtrar as matérias pra cada engenharia</td>
+<td>Cards para cada engenharia. Carrossel de matérias separados por nível. Seção com todos os professores ativos da matéria selecionada no formato de card. Página específica com os dados e avaliações dos professores. Gráfico com as notas de todas as avaliações que aquele professor já recebeu.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-07</td>
+<td>Eu como usuário quero poder ver todos os professores ativos de uma matéria específica</td>
+<td>Seção com todos os professores ativos da matéria selecionada no formato de card</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-08</td>
+<td>Eu como usuário quero poder ver os dados de um professor em uma página específica</td>
+<td>Página específica com os dados e avaliações dosprofessores.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-09</td>
+<td>Eu como usuário quero poder ver a nota de um professor</td>
+<td>Página específica com os dados e avaliações dos professores.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-10</td>
+<td>Eu como usuário quero poder ver quais matérias determinado professor leciona</td>
+<td>Tags coloridas das matérias ativas que o professor leciona.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-11</td>
+<td>Eu como usuário quero poder avaliar um professor com um comentário</td>
+<td>Input de texto para que o usuário insira o comentário no campo de avaliação.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-12</td>
+<td>Eu como usuário quero poder avaliar um professor com uma nota</td>
+<td>Checkbox com o número de estrelas para compor a nota daquele professor.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-13</td>
+<td>Eu como usuário quero poder avaliar um professor através de tags fixas como: “boa didática”, “difícil aprendizado” e etc</td>
+<td>Tags com características pré-estabelecidas para a avaliação do professor na área de avaliação.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-14</td>
+<td>Eu como usuário quero poder ver todos os comentários feitos por outros alunos sobre um determinado professor</td>
+<td>Seção de comentários.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-15</td>
+<td>Eu como usuário quero poder saber o curso e o semestre de quem realizou uma avaliação</td>
+<td>Seção com período e curso do usuário em seu comentário.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-16</td>
+<td>Eu como usuário quero poder ver todos meus comentários na aplicação em uma página específica</td>
+<td>Dropdown com opção de “ver todos os meus comentários”.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-17</td>
+<td>Eu como usuário quero poder avaliar um professor de forma anônima</td>
+<td>Checkbox para avaliação anônima.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-18</td>
+<td>Eu como usuário quero poder ter uma foto de perfil</td>
+<td>Dropdown com opção para troca de foto de perfil. Foto de perfil do usuário no header.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-19</td>
+<td>Eu como usuário quero poder excluir minha conta</td>
+<td>Dropdown com opção de excluir a conta.</td>
+</tr>
+<tr>
+<td>Usuário</td>
+<td>Levantamento de requisitos</td>
+<td>US-20</td>
+<td>Eu como usuário quero poder sair da aplicação</td>
+<td>Dropdown com opção de sair da aplicação.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="50-casos-de-uso"><strong>5.0 Casos de Uso</strong></h2>
+<p><img alt="" src="/assets/DiagramaDeCasos%20de%20Uso.png" /></p>
+<p>Estudante: Este ator tem várias ações que pode realizar.
+Criar uma conta: O estudante pode criar uma nova conta no sistema. 
+Logar no sistema: Após criar uma conta, o estudante pode fazer login no sistema. 
+Buscar professor: O estudante pode buscar diretamente o professor pelo nome.
+Buscar por curso: O estudante também pode buscar por curso, onde serão listadas matérias referentes ao curso escolhido, assim fazendo com o que o estudante tenha uma variedade de opções de professores que dão aquela disciplina.
+Ver avaliações do professor: O estudante pode visualizar detalhes sobre um professor específico. Como opiniões de alunos que já fizeram a disciplina com aquele professor.
+Avaliar professor: O estudante pode avaliar um professor com base em sua experiência. </p>
+<p>Administrador: Este ator tem responsabilidades adicionais.
+Gerenciar avaliações: O administrador pode gerenciar as avaliações feitas pelos estudantes. Visando a segurança e a ética da aplicação.
+Gerenciar contas de usuários: O administrador tem a capacidade de editar as informações de
+usuários. Podendo e criar ou excluir contas, também visando a segurança e ética da aplicação.</p>
+<h2 id="60-mvp"><strong>6.0 MVP</strong></h2>
+<p>O Produto Mínimo Viável (MVP) para o nosso projeto é uma versão simplificada do sistema que inclui as funcionalidades essenciais para atender às necessidades básicas dos usuários. Para o nosso sistema, definimos o MVP da seguinte forma:</p>
+<h3 id="registro-e-login-de-usuario"><strong>Registro e Login de Usuário:</strong></h3>
+<p>Os usuários devem ser capazes de criar uma conta e fazer login no sistema. Esta é uma funcionalidade fundamental que permite aos usuários acessar o sistema e suas funcionalidades.</p>
+<h3 id="avaliacao-de-professores"><strong>Avaliação de Professores:</strong></h3>
+<p>Os usuários devem ser capazes de avaliar os professores e, se quiserem, poderão fazer isso anonimamente também. Esta é a principal funcionalidade do nosso sistema e é essencial para coletar feedback sobre os professores.</p>
+<h3 id="busca-por-professores"><strong>Busca por professores:</strong></h3>
+<p>Os usuários devem ser capazes de procurar por professores usando um campo de busca na plataforma. Eles podem digitar o nome do professor e o sistema deve retornar uma lista de professores que correspondam à consulta de busca. Isso permite que os usuários encontrem facilmente os professores que desejam avaliar ou cujas avaliações desejam ver.</p>
+<h3 id="visualizacao-de-avaliacoes"><strong>Visualização de Avaliações:</strong></h3>
+<p>Os usuários devem ser capazes de visualizar as avaliações feitas por outros usuários. Isso permite que os usuários obtenham informações dos métodos de avaliações dos professores, bem como a didática do professor.</p>
+<h3 id="recuperacao-de-senha"><strong>Recuperação de Senha:</strong></h3>
+<p>Os usuários devem ser capazes de recuperar suas senhas caso as esqueçam. Isso melhora a experiência do usuário ao usar o sistema.</p>
+<p>Escolhemos essas funcionalidades para o MVP porque acreditamos que elas são as mais importantes para atender às necessidades dos nossos usuários. Além disso, essas funcionalidades formam a base do nosso sistema, sobre a qual podemos construir funcionalidades adicionais em futuras iterações.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.cd18aaf1.min.js"></script>
+      
+    
+  </body>
+</html>

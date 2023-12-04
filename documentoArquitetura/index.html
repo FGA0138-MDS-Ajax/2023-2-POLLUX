@@ -1,0 +1,789 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../declaracaoEscopo/">
+      
+      
+        <link rel="next" href="../sprints/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.14">
+    
+    
+      
+        <title>Documento de Arquitetura - Pollux | GamaTrack</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.fad675c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7Csans-serif:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"sans-serif"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-proposito" class="md-skip">
+          Ir para o conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="Pollux | GamaTrack" class="md-header__button md-logo" aria-label="Pollux | GamaTrack" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Pollux | GamaTrack
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Documento de Arquitetura
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="lime" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="lime" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando a pesquisa
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/FGA0138-MDS-Ajax/2023-2-POLLUX" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2023-2-Pollux
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../documentoVisao/" class="md-tabs__link">
+        
+  
+    
+  
+  Documento de Visão
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../declaracaoEscopo/" class="md-tabs__link">
+        
+  
+    
+  
+  Declaração de Escopo
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+    
+  
+  Documento de Arquitetura
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../sprints/" class="md-tabs__link">
+        
+  
+    
+  
+  Sprints
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Pollux | GamaTrack" class="md-nav__button md-logo" aria-label="Pollux | GamaTrack" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Pollux | GamaTrack
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/FGA0138-MDS-Ajax/2023-2-POLLUX" title="Ir ao repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2023-2-Pollux
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Início
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../documentoVisao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Visão
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../declaracaoEscopo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Declaração de Escopo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Documento de Arquitetura
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Arquitetura
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-proposito" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Propósito
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-escopo" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Escopo
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Escopo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-definicoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. Definições
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-justificativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. Justificativa
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-detalhamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3. Detalhamento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-metas-e-restricoes-arquiteturais" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4. Metas e restrições arquiteturais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-visao-de-casos-de-uso-escopo-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 Visão de Casos de uso (escopo do produto)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-visao-logica" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 Visão lógica
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-visao-de-implementacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.7 Visão de Implementação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#28-visao-de-implantacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.8 Visão de Implantação*
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#29-restricoes-adicionais" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.9 Restrições adicionais
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-bibliografia" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Bibliografia
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sprints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sprints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>Documento de Arquitetura</h1>
+
+<p><strong>Histórico de Revisão</strong> </p>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>02/11/2023</td>
+<td>1.0</td>
+<td>Versão inicial do documento</td>
+<td>Eric Rabelo; Nicollas Gabriel; Isaque Colem; Samuel Ribeiro;  Rodrigo Braz</td>
+</tr>
+</tbody>
+</table>
+<p>Autores: </p>
+<table>
+<thead>
+<tr>
+<th>Matrícula</th>
+<th>Nome</th>
+<th style="text-align: left;">Descrição do papel assumido na equipe</th>
+<th style="text-align: left;">% de contribuição ao trabalho</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21/1030729</td>
+<td>Eric Rabelo</td>
+<td style="text-align: left;">Desenvolvedor Frontend</td>
+<td style="text-align: left;">20%</td>
+</tr>
+<tr>
+<td>22/1022300</td>
+<td>Isaque Colem</td>
+<td style="text-align: left;">Desenvolvedor Frontend</td>
+<td style="text-align: left;">20%</td>
+</tr>
+<tr>
+<td>21/1062802</td>
+<td>Nicollas Gabriel</td>
+<td style="text-align: left;">Desenvolvedor Backend</td>
+<td style="text-align: left;">20%</td>
+</tr>
+<tr>
+<td>21/1031486</td>
+<td>Samuel Ribeiro</td>
+<td style="text-align: left;">Desenvolvedor Backend</td>
+<td style="text-align: left;">20%</td>
+</tr>
+<tr>
+<td>19/0116498</td>
+<td>Rodrigo Braz</td>
+<td style="text-align: left;">Desenvolvedor Backend</td>
+<td style="text-align: left;">20%</td>
+</tr>
+</tbody>
+</table>
+<p><em>Visão de Produto e Projeto  Página 3 de 9</em>*</p>
+<p><a name="_page3_x69.00_y72.75"></a><strong>1  Introdução</strong> </p>
+<h2 id="1-proposito">1. <strong>Propósito<a name="_page3_x69.00_y98.75"></a></strong></h2>
+<p>Este documento descreve a arquitetura do sistema sendo desenvolvido pelo grupo na disciplina de MDS – Métodos de Desenvolvimento de Software – edição do segundo semestre de 2023, chamado "GamaTrack", com o objetivo de proporcionar uma visão completa do sistema para desenvolvedores, testadores e demais partes interessadas. </p>
+<h2 id="2-escopo">2. <strong>Escopo<a name="_page3_x69.00_y191.75"></a></strong></h2>
+<p>O detalhamento do escopo pode ser encontrado no documento Declaração de Escopo do Produto no repositório da equipe no GitHub. Porém, em linhas gerais o escopo do produto compreende uma aplicação web na qual estudantes da FGA – UNB poderão pesquisar por professores da instituição, avaliá-los e consultar opiniões de outros estudantes sobre os mesmos.  </p>
+<p><a name="_page3_x69.00_y298.75"></a><strong>2  Representação Arquitetural</strong> </p>
+<h3 id="21-definicoes">2.1. <strong>Definições<a name="_page3_x69.00_y324.75"></a></strong></h3>
+<p>O sistema seguirá uma arquitetura em três camadas.  </p>
+<h3 id="22-justificativa">2.2. <strong>Justificativa</strong></h3>
+<p>A escolha do padrão arquitetural em três camadas foi justificada pela equipe devido à sua simplicidade e clara divisão de responsabilidades. Isso permite que subequipes possam trabalhar paralelamente em diferentes áreas do projeto sem conflitos, aumentando a eficiência do desenvolvimento. A camada de frontend construída com React.js lida com a interface do usuário, a camada de backend com Node.js abrange a lógica de negócios e as APIs, e o MongoDB serve como o banco de dados, cada um com funções bem definidas. Isso facilita a manutenção, escalabilidade e colaboração entre os membros da equipe, garantindo um desenvolvimento mais organizado e eficaz do projeto como um todo.  </p>
+<h3 id="23-detalhamento">2.3. <strong>Detalhamento<a name="_page3_x69.00_y523.75"></a></strong></h3>
+<p>O padrão arquitetural em três camadas promove uma estrutura sólida e organizada. Cada camada desempenha um papel específico no sistema, o que permite uma clara divisão de responsabilidades e facilita o desenvolvimento colaborativo. </p>
+<p><strong>Camada de Apresentação (Frontend com React.js):</strong> Nesta camada, temos a interface de usuário (UI) responsável por interagir com os usuários finais. Ela inclui componentes de interface que exibem formulários de avaliação, resultados de pesquisas, e outras informações relevantes. A camada de apresentação também lida com a lógica de exibição e a comunicação com o backend por meio de requisições HTTP para acessar os dados e serviços. </p>
+<p><strong>Camada de Lógica de Aplicação (Backend com Node.js):</strong> No backend, temos a lógica de negócios do sistema. Ela processa as solicitações do frontend, realiza validações, processa os dados, acessa o banco de dados MongoDB e executa ações como o cálculo de pontuações de professores, armazenamento de avaliações, etc. Essa camada é responsável por garantir a segurança e a consistência dos dados. </p>
+<p><strong>Camada de Dados (MongoDB):</strong> O MongoDB serve como o banco de dados subjacente para armazenar todas as informações relacionadas aos professores, avaliações e pesquisas. Ele é projetado para lidar com dados não estruturados, tornando-o adequado para um projeto que lida com avaliações e pesquisas, que podem ter diferentes tipos de informações. A camada de dados é acessada pela camada de lógica de aplicação para buscar e armazenar informações. </p>
+<p><img alt="" src="Aspose.Words.2189e231-3b66-4f8b-89ae-efd262cf4a7e.002.jpeg" /></p>
+<p>Imagem 1 - Representação das camadas </p>
+<h3 id="24-metas-e-restricoes-arquiteturais">2.4. <strong>Metas<a name="_page4_x69.00_y407.75"></a> e restrições arquiteturais</strong></h3>
+<p><strong>Segurança:</strong> O sistema deve enfatizar a segurança em todas as camadas da arquitetura, em conformidade com a Lei Geral de Proteção de Dados (LGPD) e a sensibilidade dos dados dos alunos. Isso inclui a implementação de robustos mecanismos de autenticação e autorização para proteger os dados sensíveis dos alunos, assegurando que somente usuários autorizados tenham acesso a essas informações. </p>
+<p><strong>Tempo de resposta</strong>:  O sistema deve ser capaz de responder a 80% das requisições dos usuários em um tempo de no máximo 3 segundos. Além disso, é importante realizar testes de carga e monitoramento contínuo do desempenho do sistema para garantir que os tempos de resposta permaneçam dentro dos parâmetros especificados. Dessa forma, os usuários terão uma experiência rápida e responsiva ao utilizar o sistema. </p>
+<p><strong>Escalabilidade:</strong> O sistema deve ser capaz de acomodar, sem perda de desempenho, as solicitações de 50 usuários simultaneamente. Essa métrica foi estabelecida tendo em vista o uso potencial do software por alunos da FGA – UNB, uma comunidade com cerca de 5.000 alunos. Portanto, o objetivo é garantir que o sistema possa suportar um número significativo de usuários em um ambiente real de utilização, mantendo uma experiência de uso eficiente para todos. </p>
+<p><strong>Facilidade de manutenção do código</strong>:  As camadas arquiteturais do sistema devem ser claramente separadas a fim de facilitar a manutenção do código. Isso implica em seguir boas práticas de organização e documentação do código-fonte. </p>
+<p><strong>Facilidade de uso do sistema pelos usuários finais:</strong> A interface do sistema deve ser amigável e intuitiva, priorizando a simplicidade e a objetividade. A finalidade é simplificar a busca por feedback de professores, garantindo que os usuários possam navegar de forma descomplicada e encontrar as informações desejadas de maneira direta e eficaz. </p>
+<h3 id="25-visao-de-casos-de-uso-escopo-do-produto">2.5 <strong>Visão<a name="_page5_x69.00_y120.75"></a> de Casos de uso (escopo do produto)</strong></h3>
+<p>A visão de casos de uso do GamaTrack está alinhada com a Declaração de Escopo do Produto. Em resumo, nosso sistema permite que os usuários acessem uma plataforma web baseada em React.js para avaliar e pesquisar professores. Os casos de uso englobam registro e autenticação de usuários, pesquisa de professores, a avaliação dos mesmos e a consulta das avaliações de outros alunos. Além disso, o sistema oferecerá a funcionalidade de filtragem de professores e matérias de acordo com o curso, proporcionando uma experiência de busca mais específica e direcionada. A escolha da arquitetura em três camadas (frontend React.js, backend Node.js e MongoDB) se deve à necessidade de uma interface de usuário interativa e à gestão eficiente de dados, conforme delineado nos requisitos do projeto. A experiência técnica da equipe e a clara separação de responsabilidades em cada camada contribuíram para essa escolha arquitetural. O diagrama de casos de uso detalhado está disponível na Declaração de Escopo do Produto (Pollux, 2023, p 14-15).  </p>
+<h3 id="26-visao-logica">2.6 <strong>Visão<a name="_page5_x69.00_y331.75"></a> lógica</strong></h3>
+<p>O sistema é subdividido nos seguintes módulos: </p>
+<p><strong>Módulo de Autenticação:</strong> Responsável por verificar a identidade do usuário. Composto por funcionalidades como login, logout, registro de usuário e recuperação de senha. Essencial para garantir que o cliente alvo - discentes da FGA - é o usuário, garantindo a confiabilidade das avaliações e definindo o que o Módulo de Interface de Usuário exibirá. </p>
+<p><strong>Módulo de Interface do Usuário:</strong> Este módulo é responsável por renderizar a interface do usuário e lidar com a interação do usuário, requisitando ao Módulo de Gerenciamento de Dados as  atualizações  necessárias,  recebendo-as  e  exibindo  conforme  solicitado  e  adequado  às permissões de usuário. </p>
+<p><strong>Módulo de Gerenciamento de Dados:</strong> Módulo responsável por todas as operações de CRUD dentro do banco de dados da aplicação, garantindo que não haja interação de dados direta entre o  Módulo  de  Interface  do  Usuário  e  o  banco  de  dados  propriamente  dito,  servindo  de intermédio entre os dois, assegurando assim a segurança e integridade dos dados do sistema.  </p>
+<p>A comunicação entre os módulos de autenticação, interface do usuário e gerenciamento de dados do GamaTrack ocorre da seguinte maneira: </p>
+<p><strong>Interface do Usuário para Autenticação:</strong> Quando um usuário tenta fazer login, criar, excluir ou editar cadastro, a interface do usuário coleta as credenciais do usuário e as envia para o módulo de autenticação. </p>
+<p><strong>Autenticação  para  Gerenciamento  de  Dados:</strong>  O  Módulo  de  Autenticação  recebe  as credenciais do usuário e as faz uma requisição para o Módulo de Gerenciamento de Dados para verificação. </p>
+<p><strong>Gerenciamento  de  Dados  para  Autenticação:</strong>  O  Módulo  de  Gerenciamento  de  Dados verifica as credenciais do usuário e retorna o resultado para o Módulo de Autenticação. <strong>Autenticação para Interface do Usuário:</strong> O Módulo de Autenticação recebe o resultado da verificação e o envia para a interface do usuário. Se as credenciais forem válidas, o usuário será autenticado e terá acesso ao sistema. </p>
+<p><img alt="" src="Aspose.Words.2189e231-3b66-4f8b-89ae-efd262cf4a7e.003.jpeg" /></p>
+<p>Imagem 2 – Diagrama de Estados </p>
+<p><img alt="" src="Aspose.Words.2189e231-3b66-4f8b-89ae-efd262cf4a7e.004.png" /></p>
+<p>Imagem 3 – Diagrama de Atividades </p>
+<p><img alt="" src="Aspose.Words.2189e231-3b66-4f8b-89ae-efd262cf4a7e.005.jpeg" /></p>
+<p>Imagem 4 – Diagrama de Classes </p>
+<h3 id="27-visao-de-implementacao">2.7 <strong>Visão<a name="_page7_x69.00_y269.75"></a> de Implementação</strong></h3>
+<p><img alt="" src="Aspose.Words.2189e231-3b66-4f8b-89ae-efd262cf4a7e.006.jpeg" /></p>
+<p>Imagem 5 – Diagrama de Pacotes </p>
+<h3 id="28-visao-de-implantacao">2.8 <strong>Visão<a name="_page7_x102.00_y725.75"></a> de Implantação</strong>*</h3>
+<p>A implantação do software Gama Track, é importante definir a infraestrutura de hardware necessária para garantir o desempenho e a escalabilidade do sistema. A infraestrutura deve ser capaz de lidar com número considerável de usuários e dados sem diminuir o desempenho. </p>
+<p>As tecnologias escolhidas para a implantação do software devem ser capazes de suportar as necessidades do sistema. Com isso foi decidido desenvolver o frontend em React.js, uma biblioteca popular para criar interfaces de usuário. Já o backend vai ser desenvolvido em Node.js, uma plataforma popular para criar aplicativos da web escaláveis e de alto desempenho. Existem muitos recursos disponíveis on-line para aprender Node.js, incluindo tutoriais, documentação e fóruns de discussão. </p>
+<p>O banco de dados escolhido para a implantação do software deve ser capaz de armazenar e gerenciar grandes quantidades de dados. O MongoDB é um banco de dados popular que pode ser uma boa opção para o projeto Gama Track. Ele é escalável, flexível e pode lidar com grandes volumes de dados. Além disso, o MongoDB é compatível com muitas linguagens de programação, incluindo Node.js. </p>
+<h3 id="29-restricoes-adicionais">2.9 <strong>Restrições<a name="_page8_x69.00_y313.75"></a> adicionais</strong></h3>
+<p>Ao se tratar em quesitos adicionais à aplicação, é importante levar em consideração os aspectos de qualidade sob requisitos não funcionais do software. Em usabilidade, a aplicação deve ser fácil de usar e intuitiva para os usuários finais. Além disso, a aplicação deve ser capaz de lidar com um grande volume de dados sem diminuir o desempenho. Isso ajudará a garantir que o sistema possa lidar com um grande número de usuários e dados sem diminuir o desempenho. </p>
+<p>Sob quesito de suportabilidade, a aplicação deve ser executável em diferentes plataformas e sistemas operacionais. Isso ajudará a garantir que a aplicação possa ser usada por usuários com diferentes configurações de hardware e software. </p>
+<p>Por fim, sob critérios de confiabilidade, o usuário deve ser capaz de identificar o estado de sua ação e reconhecer por meio de notificações na interface visual sobre possíveis erros ao buscar dados ou realizar tarefas dentro da aplicação. Isso ajuda a garantir que o usuário possa usar o sistema sem problemas e que possa identificar possíveis erros ou problemas com facilidade. </p>
+<h2 id="3-bibliografia">3 <a name="_page8_x69.00_y633.75"></a><strong>Bibliografia</strong></h2>
+<p>GamaTrack. Declaração de Escopo do Produto. 2023. Disponível em: https://github.com/FGA0138-MDS-Ajax/2023-2- POLLUX/blob/docs/Entregas/Declara%C3%A7%C3%A3o%20de%20Escopo%20do%20Pro duto.pdf Acesso em: 02/11/2023. 
+<em>Página 9 de 9</em>*</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Voltar ao topo
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate", "navigation.top", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "Mais 1 nesta p\u00e1gina", "search.result.more.other": "Mais # nesta p\u00e1gina", "search.result.none": "Nenhum resultado encontrado", "search.result.one": "1 resultado encontrado", "search.result.other": "# resultados encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.cd18aaf1.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -38,8 +38,9 @@ function Home() {
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e) =>  {
     e.preventDefault();
+    
     const value = e.target.value;
     setValue(value);
 

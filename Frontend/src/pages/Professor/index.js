@@ -10,6 +10,7 @@ import ReviewForm from "../../components/ReviewForm";
 import RatingGraphic from "../../components/RatingGraphic";
 //styles
 import "./styles.css";
+import noResults from "../../assets/images/no-results.png";
 import { IoMdAdd } from "react-icons/io";
 
 function Professor() {
@@ -36,16 +37,20 @@ function Professor() {
     setMostrarFormulario(!mostrarFormulario);
   };
 
-  const [avaliacoes, setAvaliacoes] = useState([]); // Alterei para avaliacoes, pois é usado no backend
+  const [avaliacoes, setAvaliacoes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     instance
       .get(`/comentarios/professor/${teacher._id}`)
       .then((response) => {
         setAvaliacoes(response.data.reverse());
+        setLoading(false);
       })
+
       .catch((error) => {
         console.error("Error fetching comments:", error);
+        setLoading(false);
       });
   }, [teacher._id]);
 
@@ -75,29 +80,59 @@ function Professor() {
             </span>
           </div>
         </div>
-        <div className="reviews-label">
-          <h2>Todas as avaliações</h2>
-          <div className="review-button" onClick={mostrarOcultarFormulario}>
-            <button>Avaliar</button>
-            <IoMdAdd className="review-icon" />
+
+        {loading ? (
+          <div className="loading-reviews">
+            <div className="loading-spinner"></div>
           </div>
-        </div>
-        <ReviewForm
-          mostrarFormulario={mostrarFormulario}
-          mostrarOcultarFormulario={mostrarOcultarFormulario}
-          userid={userId}
-          teacherid={teacher._id}
-        ></ReviewForm>
-        {avaliacoes.map((avaliacao, index) => (
-          <Review
-            key={index}
-            avaliacaoId={avaliacao._id}
-            nota={avaliacao.nota}
-            texto={avaliacao.texto}
-            data={avaliacao.data}
-            userId={avaliacao.usuarioId}
-          ></Review>
-        ))}
+        ) : (
+          <>
+            {avaliacoes.length > 0 && (
+              <div className="reviews-label">
+                <h2>Todas as avaliações</h2>
+                <div
+                  className="review-button"
+                  onClick={mostrarOcultarFormulario}
+                >
+                  <button>Avaliar</button>
+                  <IoMdAdd className="review-icon" />
+                </div>
+              </div>
+            )}
+            <ReviewForm
+              mostrarFormulario={mostrarFormulario}
+              mostrarOcultarFormulario={mostrarOcultarFormulario}
+              userid={userId}
+              teacherid={teacher._id}
+            ></ReviewForm>
+            {avaliacoes.length > 0 && (
+              <>
+                {avaliacoes.map((avaliacao, index) => (
+                  <Review
+                    key={index}
+                    avaliacaoId={avaliacao._id}
+                    nota={avaliacao.nota}
+                    texto={avaliacao.texto}
+                    data={avaliacao.data}
+                    userId={avaliacao.usuarioId}
+                  ></Review>
+                ))}
+              </>
+            )}
+            {avaliacoes.length === 0 && !mostrarFormulario && (
+              <div className="no-review">
+                <h2>Este professor ainda não possui nenhuma avaliação!</h2>
+                <img src={noResults}></img>
+                <button
+                  className="first-review-button"
+                  onClick={mostrarOcultarFormulario}
+                >
+                  Seja o primerio a avaliar
+                </button>
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );

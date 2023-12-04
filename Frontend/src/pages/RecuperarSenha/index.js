@@ -41,7 +41,7 @@ function RecuperarSenha() {
     <div className="login">
       <div className="left-section">
         <div className="form-container">
-          {emailEnviado ? (
+          {!emailEnviado ? (
             <>
               <h1>Insira seu email</h1>
 
